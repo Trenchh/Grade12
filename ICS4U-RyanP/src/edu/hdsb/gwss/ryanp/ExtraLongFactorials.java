@@ -27,9 +27,8 @@ public class ExtraLongFactorials {
         System.out.println("Enter a number: ");
         userInput = input.nextBigInteger();
 
-        for (BigInteger i = userInput; i.compareTo(BigInteger.ZERO) > 0; i = i.subtract(BigInteger.ONE)) {
-            System.out.println(i);
-            userInput = userInput.add(userInput.multiply(i));
+        for (BigInteger i = userInput.subtract(BigInteger.ONE); i.compareTo(BigInteger.ZERO) > 0; i = i.subtract(BigInteger.ONE)) {
+            userInput = userInput.multiply(i);
         }
 
         System.out.println(userInput);
