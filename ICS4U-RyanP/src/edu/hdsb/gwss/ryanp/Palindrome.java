@@ -21,6 +21,7 @@ public class Palindrome {
         String word;
         String palindrome;
         int length = 0;
+        int yesOrNo = 0;
 
         //OBJECTS
         Scanner input = new Scanner(System.in);
@@ -33,15 +34,28 @@ public class Palindrome {
 
         //USER INPUT
         System.out.println("Please enter a word: ");
-        word = input.next();
+        word = input.nextLine();
         length = word.length();
+        word = word.toLowerCase();
+        palindrome = word;
         System.out.println();
 
-        word = word.toLowerCase();
-        for (int index = 0; index <= length; index++) {
-            //palindrome.
-            
-        }
+        //CHECKS EACH LETTER TO SEE IF IT MATCHES LETTER AT CORRESPONDING INDEX
+        for (int index = 0; index < length; index++, length--) {
+            if (palindrome.substring(index, index + 1).equals(palindrome.substring(length - 1, length))) {
+                yesOrNo = 1;
+                System.out.println("yee");
 
+            } else {
+                yesOrNo = 2;
+                System.out.println("nah");
+                break;
+            }
+        }
+        if (yesOrNo == 1) {
+            System.out.println(word + " is a palindrome");
+        } else {
+            System.out.println(word + " is not a palindrome");
+        }
     }
 }
