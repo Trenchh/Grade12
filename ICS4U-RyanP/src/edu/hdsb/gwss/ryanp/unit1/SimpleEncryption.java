@@ -1,17 +1,16 @@
 /*
- * Name: DistanceCalculator.java
- * Date: February,10th 2016
+ * Name: RoundingError.java
+ * Date: February,16th 2016
  * Version: v0.1
  * Author: Ryan Protheroe
- * Description:
  */
-package edu.hdsb.gwss.ryanp;
+package edu.hdsb.gwss.ryanp.unit1;
 
 /**
  *
  * @author 1protheroery
  */
-public class DistanceCalculator {
+public class SimpleEncryption {
 
     /**
      * @param args the command line arguments

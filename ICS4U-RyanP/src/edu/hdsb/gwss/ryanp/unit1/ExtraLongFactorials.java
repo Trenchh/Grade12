@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hdsb.gwss.ryanp;
+package edu.hdsb.gwss.ryanp.unit1;
 
 import java.math.BigInteger;
 import java.util.Scanner;

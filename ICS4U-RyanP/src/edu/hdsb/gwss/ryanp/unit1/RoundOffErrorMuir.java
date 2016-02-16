@@ -1,7 +1,7 @@
 /*
  * ICS4U.2015.16.S2
  */
-package edu.hdsb.gwss.ryanp;
+package edu.hdsb.gwss.ryanp.unit1;
 
 public class RoundOffErrorMuir {
 

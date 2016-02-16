@@ -5,7 +5,7 @@
  * Author: Ryan Protheroe
  * Description:
  */
-package edu.hdsb.gwss.ryanp;
+package edu.hdsb.gwss.ryanp.unit1;
 
 import java.util.Scanner;
 

@@ -5,7 +5,7 @@
  * Author: Ryan Protheroe
  * Description: Tells you when easter is for every year
  */
-package edu.hdsb.gwss.ryanp;
+package edu.hdsb.gwss.ryanp.unit1;
 
 import java.util.Scanner;
 
