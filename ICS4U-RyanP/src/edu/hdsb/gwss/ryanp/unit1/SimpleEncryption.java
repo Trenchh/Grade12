@@ -6,6 +6,8 @@
  */
 package edu.hdsb.gwss.ryanp.unit1;
 
+import java.util.Scanner;
+
 /**
  *
  * @author 1protheroery
@@ -16,7 +18,42 @@ public class SimpleEncryption {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        //VARIABLES
+        String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+            "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+            "x", "y", "z"};
+        String word;
+        int length;
+        String encryption = " ";
+        int amount;
+        String tmp;
+        int indexInArray;
+
+        //OBJECTS
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Please enter a word or sentence to be encrypted: ");
+        word = input.nextLine();
+        length = word.length();
+        word = word.toLowerCase();
+        System.out.println("Enter the decryption amount: ");
+        amount = input.nextInt();
+
+        for (int index = 0; index < length; index++) {
+
+            tmp = word.substring(index, index + 1);
+
+            for (int i = 0; i <= alphabet.length; i++) {
+                if (tmp == alphabet[i]) {
+                    indexInArray = i;
+                }
+
+            }
+
+            System.out.println(tmp);
+        }
+
     }
-    
+
 }
