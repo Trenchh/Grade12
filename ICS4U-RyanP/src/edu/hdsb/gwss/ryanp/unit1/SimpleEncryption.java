@@ -29,14 +29,15 @@ public class SimpleEncryption {
         int amount;
         String tmp;
         int indexInArray = 0;
-        int encrypt = 0;
+        int crypt = 0;
         int choice;
 
         //OBJECTS
         Scanner input = new Scanner(System.in);
+        Scanner input2 = new Scanner(System.in);
 
         System.out.println("Press 1 to decrypt or 2 to encrypt?");
-        choice = input.nextInt();
+        choice = input2.nextInt();
         System.out.println();
 
         System.out.println("Please enter a word or sentence: ");
@@ -49,30 +50,27 @@ public class SimpleEncryption {
         amount = input.nextInt();
         System.out.println();
 
+        //ENCRYPTION
         if (choice == 2) {
-
             for (int index = 0; index < length; index++) {
 
                 if (word.substring(index, index + 1).equals(" ")) {
                     cryption = cryption.concat(" ");
                 } else {
-
                     tmp = word.substring(index, index + 1);
-
                     for (int i = 0; i <= alphabet.length - 1; i++) {
                         if (tmp.equals(alphabet[i])) {
-                            encrypt = i + amount;
+                            crypt = i + amount;
                         }
                     }
-                    while ((encrypt) > 25) {
-                        encrypt = encrypt - 26;
+                    while ((crypt) > 25) {
+                        crypt = crypt - 26;
                     }
-                    cryption = cryption.concat(alphabet[encrypt]);
+                    cryption = cryption.concat(alphabet[crypt]);
                 }
             }
         } else {
             for (int index = 0; index < length; index++) {
-
                 if (word.substring(index, index + 1).equals(" ")) {
                     cryption = cryption.concat(" ");
                 } else {
@@ -80,17 +78,16 @@ public class SimpleEncryption {
 
                     for (int i = 0; i <= alphabet.length - 1; i++) {
                         if (tmp.equals(alphabet[i])) {
-                            encrypt = i - amount;
+                            crypt = i - amount;
                         }
                     }
-                    while ((encrypt) > 25) {
-                        encrypt = encrypt - 26;
+                    while ((crypt) < 0) {
+                        crypt = crypt + 26;
                     }
-                    cryption = cryption.concat(alphabet[encrypt]);
+                    cryption = cryption.concat(alphabet[crypt]);
                 }
-                System.out.println(cryption);
-
             }
         }
+        System.out.println(cryption);
     }
 }
