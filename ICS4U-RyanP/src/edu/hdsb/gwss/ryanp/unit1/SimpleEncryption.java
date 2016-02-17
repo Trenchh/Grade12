@@ -49,14 +49,11 @@ public class SimpleEncryption {
             for (int i = 0; i <= alphabet.length - 1; i++) {
                 if (tmp.equals(alphabet[i])) {
                     encrypt = i + amount;
-                    System.out.println(i);
                 }
             }
-
             while ((encrypt) > 25) {
-                encrypt = encrypt - 25;
+                encrypt = encrypt - 26;
             }
-
             encryption = encryption.concat(alphabet[encrypt]);
         }
         System.out.println(encryption);
