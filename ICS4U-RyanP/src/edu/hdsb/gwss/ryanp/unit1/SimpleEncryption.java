@@ -44,17 +44,22 @@ public class SimpleEncryption {
 
         for (int index = 0; index < length; index++) {
 
-            tmp = word.substring(index, index + 1);
+            if (word.substring(index, index + 1).equals(" ")) {
+                encryption = encryption.concat(" ");
+            } else {
 
-            for (int i = 0; i <= alphabet.length - 1; i++) {
-                if (tmp.equals(alphabet[i])) {
-                    encrypt = i + amount;
+                tmp = word.substring(index, index + 1);
+
+                for (int i = 0; i <= alphabet.length - 1; i++) {
+                    if (tmp.equals(alphabet[i])) {
+                        encrypt = i + amount;
+                    }
                 }
+                while ((encrypt) > 25) {
+                    encrypt = encrypt - 26;
+                }
+                encryption = encryption.concat(alphabet[encrypt]);
             }
-            while ((encrypt) > 25) {
-                encrypt = encrypt - 26;
-            }
-            encryption = encryption.concat(alphabet[encrypt]);
         }
         System.out.println(encryption);
     }
