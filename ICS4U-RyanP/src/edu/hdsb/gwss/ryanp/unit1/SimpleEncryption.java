@@ -29,6 +29,7 @@ public class SimpleEncryption {
         int amount;
         String tmp;
         int indexInArray = 0;
+        int encrypt = 0;
 
         //OBJECTS
         Scanner input = new Scanner(System.in);
@@ -37,8 +38,9 @@ public class SimpleEncryption {
         word = input.nextLine();
         length = word.length();
         word = word.toLowerCase();
-        System.out.println("Enter the decryption amount: ");
+        System.out.println("Enter the encryption amount: ");
         amount = input.nextInt();
+        System.out.println();
 
         for (int index = 0; index < length; index++) {
 
@@ -46,11 +48,16 @@ public class SimpleEncryption {
 
             for (int i = 0; i <= alphabet.length - 1; i++) {
                 if (tmp.equals(alphabet[i])) {
-                    indexInArray = i;
-                } else {
+                    encrypt = i + amount;
+                    System.out.println(i);
                 }
             }
-            encryption = encryption.concat(alphabet[(indexInArray + amount)]);
+
+            while ((encrypt) > 25) {
+                encrypt = encrypt - 25;
+            }
+
+            encryption = encryption.concat(alphabet[encrypt]);
         }
         System.out.println(encryption);
     }
