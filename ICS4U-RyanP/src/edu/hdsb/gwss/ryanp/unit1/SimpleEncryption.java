@@ -25,43 +25,72 @@ public class SimpleEncryption {
             "x", "y", "z"};
         String word;
         int length;
-        String encryption = " ";
+        String cryption = " ";
         int amount;
         String tmp;
         int indexInArray = 0;
         int encrypt = 0;
+        int choice;
 
         //OBJECTS
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Please enter a word or sentence to be encrypted: ");
+        System.out.println("Press 1 to decrypt or 2 to encrypt?");
+        choice = input.nextInt();
+        System.out.println();
+
+        System.out.println("Please enter a word or sentence: ");
         word = input.nextLine();
         length = word.length();
         word = word.toLowerCase();
-        System.out.println("Enter the encryption amount: ");
+        System.out.println();
+
+        System.out.println("Enter the encryption/decryption amount: ");
         amount = input.nextInt();
         System.out.println();
 
-        for (int index = 0; index < length; index++) {
+        if (choice == 2) {
 
-            if (word.substring(index, index + 1).equals(" ")) {
-                encryption = encryption.concat(" ");
-            } else {
+            for (int index = 0; index < length; index++) {
 
-                tmp = word.substring(index, index + 1);
+                if (word.substring(index, index + 1).equals(" ")) {
+                    cryption = cryption.concat(" ");
+                } else {
 
-                for (int i = 0; i <= alphabet.length - 1; i++) {
-                    if (tmp.equals(alphabet[i])) {
-                        encrypt = i + amount;
+                    tmp = word.substring(index, index + 1);
+
+                    for (int i = 0; i <= alphabet.length - 1; i++) {
+                        if (tmp.equals(alphabet[i])) {
+                            encrypt = i + amount;
+                        }
                     }
+                    while ((encrypt) > 25) {
+                        encrypt = encrypt - 26;
+                    }
+                    cryption = cryption.concat(alphabet[encrypt]);
                 }
-                while ((encrypt) > 25) {
-                    encrypt = encrypt - 26;
+            }
+        } else {
+            for (int index = 0; index < length; index++) {
+
+                if (word.substring(index, index + 1).equals(" ")) {
+                    cryption = cryption.concat(" ");
+                } else {
+                    tmp = word.substring(index, index + 1);
+
+                    for (int i = 0; i <= alphabet.length - 1; i++) {
+                        if (tmp.equals(alphabet[i])) {
+                            encrypt = i - amount;
+                        }
+                    }
+                    while ((encrypt) > 25) {
+                        encrypt = encrypt - 26;
+                    }
+                    cryption = cryption.concat(alphabet[encrypt]);
                 }
-                encryption = encryption.concat(alphabet[encrypt]);
+                System.out.println(cryption);
+
             }
         }
-        System.out.println(encryption);
     }
-
 }
