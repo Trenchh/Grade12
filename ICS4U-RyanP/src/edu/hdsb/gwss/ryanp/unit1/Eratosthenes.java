@@ -26,15 +26,17 @@ public class Eratosthenes {
 
         for (int i = 0; i < 1000; i++) {
             number = i + 1;
-            numbers[i] = false;
-            for (int k = 1; k < (number / 2); k++) {
-                if (number % 2 != 0) {
-                    numbers[i] = true;
+            numbers[i] = true;
+
+            for (int k = 2; k < number; k++) {
+                if (number % k != 0) {
+                    numbers[i] = false;
                 }
             }
-            if (numbers[i] = true) {
+            if (numbers[i] = false) {
                 System.out.print(number + ", ");
             }
+
         }
 
     }
