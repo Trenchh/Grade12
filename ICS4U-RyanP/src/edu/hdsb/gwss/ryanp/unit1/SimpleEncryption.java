@@ -1,5 +1,5 @@
 /*
- * Name: RoundingError.java
+ * Name: SimpleEncryption.java
  * Date: February,16th 2016
  * Version: v0.1
  * Author: Ryan Protheroe
