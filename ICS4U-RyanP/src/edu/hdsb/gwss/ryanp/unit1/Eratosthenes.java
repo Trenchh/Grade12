@@ -19,25 +19,9 @@ public class Eratosthenes {
 
         //VARIABLES
         boolean numbers[] = new boolean[1000];
-        int index = 0;
-        int number;
 
         System.out.println("The prime numbers from 1 - 1000 are:");
 
-        for (int i = 0; i < 1000; i++) {
-            number = i + 1;
-            numbers[i] = true;
-
-            for (int k = 2; k < number; k++) {
-                if (number % k != 0) {
-                    numbers[i] = false;
-                }
-            }
-            if (numbers[i] = false) {
-                System.out.print(number + ", ");
-            }
-
-        }
 
     }
 
