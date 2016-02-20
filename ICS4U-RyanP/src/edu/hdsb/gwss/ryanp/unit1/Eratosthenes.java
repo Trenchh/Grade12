@@ -6,6 +6,8 @@
  */
 package edu.hdsb.gwss.ryanp.unit1;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 1protheroery
@@ -18,27 +20,39 @@ public class Eratosthenes {
     public static void main(String[] args) {
 
         //VARIABLES
-        boolean numbers[] = new boolean[1000];
-        int index = 0;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
         int number;
+        boolean result = true;
+        int count = 0;
 
         System.out.println("The prime numbers from 1 - 1000 are:");
-
+        
         for (int i = 0; i < 1000; i++) {
+        
             number = i + 1;
-            numbers[i] = true;
-
-            for (int k = 2; k < number; k++) {
-                if (number % k != 0) {
-                    numbers[i] = false;
-                }
-            }
-            if (numbers[i] = false) {
-                System.out.print(number + ", ");
-            }
-
+            
+        
         }
+        
+        
+        
 
+//        for (int i = 0; i < 1000; i++) {
+//            number = i + 1;
+//
+//            for (int k = 2; k < number; k++) {
+//                if (number % k == 0) {
+//                    result = false;
+//                    break;
+//                }
+//            }
+//            if (result = true) {
+//                numbers.add(number);
+//            }
+//        }
+//        for (int i = 0; i < 1000; i++) {
+//            System.out.print(numbers.toArray()[i] + ", ");
+//        }
     }
 
 }
