@@ -1,6 +1,6 @@
 /*
- * Name: Eratosthenes.java
- * Date: February,20th 2016
+ * Name: Resistors.java
+ * Date: February,22th 2016
  * Version: v0.1
  * Author: Ryan Protheroe
  */
