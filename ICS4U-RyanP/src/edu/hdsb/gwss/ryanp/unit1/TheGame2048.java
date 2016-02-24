@@ -100,32 +100,58 @@ public class TheGame2048 extends javax.swing.JFrame {
         return adjust;
     }
 
-    private void shiftRight() {
-        int end = 3;
-
-        for (int r = 0; r < 4; r++) {
-            for (int c = 3; c >= 0; c--) {
-                if (c == 0) {
-                    if (values[r][c] != 0) {
-                        int adjust = horizontalAdjust(r, end);
-                        boxes[r][adjust].setText(values[r][c] + "");
-                        boxes[r][c].setText("");
-                        values[r][adjust] = values[r][c];
-                        values[r][c] = 0;
+    private void shiftRight2() {
+        //FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            for (int pass = 0; pass < values[row].length - 1; pass++) {
+                //LOOK LEFT
+                for (int col = 0; col < values[row].length - 1; col++) {
+                    if (values[row][col + 1] == 0) {
+                        values[row][col + 1] = values[row][col];
+                        values[row][col] = 0;
                     }
+                }
+            }
 
-                } else if (values[r][c] != 0) {
-                    int adjust = horizontalAdjust(r, end);
-                    boxes[r][adjust].setText(values[r][c] + "");
-                    boxes[r][c].setText("");
-                    values[r][adjust] = values[r][c];
-                    values[r][c] = 0;
+        }
+
+    }
+    private void compressRight() {
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            //LOOK RIGHT
+            for (int col = values[row].length - 1; col > 0; col--) {
+                if (values[row][col] == values[row][col - 1]) {
+                    values[row][col] = values[row][col] * 2;
+                    values[row][col - 1] = 0;
                 }
 
             }
 
         }
+
     }
+
+//    private void shiftRight() {
+//        int end = 3;
+//
+//        for (int r = 0; r < 4; r++) {
+//            for (int c = 3; c >= 0; c--) {
+//                if (c == 0) {
+//                    if (values[r][0] != 0) {
+//                        int adjust = horizontalAdjust(r, end);
+//                        values[r][adjust] = values[r][c];
+//                        values[r][c] = 0;
+//                    }
+//
+//                } else if (values[r][c] != 0) {
+//                    int adjust = horizontalAdjust(r, end);
+//                    values[r][adjust] = values[r][c];
+//                    values[r][c] = 0;
+//                }
+//            }
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -395,7 +421,11 @@ public class TheGame2048 extends javax.swing.JFrame {
 
     private void right(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_right
 
-        shiftRight();
+        shiftRight2();
+        compressRight();
+        shiftRight2();
+        placeRandomTwo();
+        updateDisplay();
 
 
     }//GEN-LAST:event_right
