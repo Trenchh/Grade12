@@ -80,32 +80,46 @@ public class TheGame2048 extends javax.swing.JFrame {
 
     }
 
-    public static int adjust(int r, int c) {
+    private int horizontalAdjust(int r, int end) {
         int adjust = 0;
-        
+        for (int i = 0; i < 4; i++) {
+            //SWIPE RIGHT
+            if (end == 3) {
+                if (values[r][3 - i] == 0) {
+                    adjust = 3 - i;
+                    break;
+                }
+                //SWIPE LEFT
+            } else {
+                if (values[r][i] == 0) {
+                    adjust = i;
+                    break;
+                }
+            }
+        }
         return adjust;
     }
 
     private void shiftRight() {
-        int adjust;
+        int end = 3;
 
         for (int r = 0; r < 4; r++) {
             for (int c = 3; c >= 0; c--) {
                 if (c == 0) {
-                    if (values[r][c] != 0 && values[r][c + 1] == 0) {
-                        adjust = adjust(r, c);
-                        boxes[r][c + 1].setText(values[r][c] + "");
+                    if (values[r][c] != 0) {
+                        int adjust = horizontalAdjust(r, end);
+                        boxes[r][adjust].setText(values[r][c] + "");
                         boxes[r][c].setText("");
-                        values[r][c + 1] = values[r][c];
+                        values[r][adjust] = values[r][c];
                         values[r][c] = 0;
                     }
 
-                } else if (values[r][c] == 0 && values[r][c - 1] != 0) {
-                    adjust = adjust(r, c);
-                    boxes[r][c].setText(values[r][c - 1] + "");
-                    boxes[r][c - 1].setText("");
-                    values[r][c] = values[r][c - 1];
-                    values[r][c - 1] = 0;
+                } else if (values[r][c] != 0) {
+                    int adjust = horizontalAdjust(r, end);
+                    boxes[r][adjust].setText(values[r][c] + "");
+                    boxes[r][c].setText("");
+                    values[r][adjust] = values[r][c];
+                    values[r][c] = 0;
                 }
 
             }
@@ -382,6 +396,7 @@ public class TheGame2048 extends javax.swing.JFrame {
     private void right(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_right
 
         shiftRight();
+
 
     }//GEN-LAST:event_right
 
