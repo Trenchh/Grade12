@@ -80,25 +80,37 @@ public class TheGame2048 extends javax.swing.JFrame {
 
     }
 
+    public static int adjust(int r, int c) {
+        int adjust = 0;
+        
+        return adjust;
+    }
+
     private void shiftRight() {
+        int adjust;
 
         for (int r = 0; r < 4; r++) {
             for (int c = 3; c >= 0; c--) {
-                if (c == 0 & values[r][c] != 0 & values[r][c + 1] == 0) {
-                    boxes[r][c + 1].setText(values[r][c] + "");
-                    boxes[r][c].setText("");
-                    values[r][c + 1] = values[r][c];
+                if (c == 0) {
+                    if (values[r][c] != 0 && values[r][c + 1] == 0) {
+                        adjust = adjust(r, c);
+                        boxes[r][c + 1].setText(values[r][c] + "");
+                        boxes[r][c].setText("");
+                        values[r][c + 1] = values[r][c];
+                        values[r][c] = 0;
+                    }
 
-                } else if (values[r][c] == 0 & values[r][c - 1] != 0) {
+                } else if (values[r][c] == 0 && values[r][c - 1] != 0) {
+                    adjust = adjust(r, c);
                     boxes[r][c].setText(values[r][c - 1] + "");
                     boxes[r][c - 1].setText("");
                     values[r][c] = values[r][c - 1];
+                    values[r][c - 1] = 0;
                 }
 
             }
 
         }
-
     }
 
     /**
