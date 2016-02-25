@@ -16,6 +16,8 @@ public class TheGame2048 extends javax.swing.JFrame {
 
     JLabel[][] boxes = new JLabel[4][4];
     int[][] values = new int[4][4];
+    int score = 0;
+    boolean canMove = false;
 
     /**
      * Creates new form TheGame2048
@@ -62,7 +64,8 @@ public class TheGame2048 extends javax.swing.JFrame {
                 placed = true;
             }
         } while (!placed);
-
+        if (placed == true) {
+        }
     }
 
     private void updateDisplay() {
@@ -77,6 +80,7 @@ public class TheGame2048 extends javax.swing.JFrame {
             }
 
         }
+        scoreDisplay.setText(score + "");
 
     }
 
@@ -100,7 +104,7 @@ public class TheGame2048 extends javax.swing.JFrame {
         return adjust;
     }
 
-    private void shiftRight2() {
+    private void shiftRight() {
         //FOR EACH ROW
         for (int row = 0; row < values.length; row++) {
             for (int pass = 0; pass < values[row].length - 1; pass++) {
@@ -116,6 +120,7 @@ public class TheGame2048 extends javax.swing.JFrame {
         }
 
     }
+
     private void compressRight() {
         // FOR EACH ROW
         for (int row = 0; row < values.length; row++) {
@@ -124,6 +129,7 @@ public class TheGame2048 extends javax.swing.JFrame {
                 if (values[row][col] == values[row][col - 1]) {
                     values[row][col] = values[row][col] * 2;
                     values[row][col - 1] = 0;
+                    score = score + values[row][col];
                 }
 
             }
@@ -132,26 +138,105 @@ public class TheGame2048 extends javax.swing.JFrame {
 
     }
 
-//    private void shiftRight() {
-//        int end = 3;
-//
-//        for (int r = 0; r < 4; r++) {
-//            for (int c = 3; c >= 0; c--) {
-//                if (c == 0) {
-//                    if (values[r][0] != 0) {
-//                        int adjust = horizontalAdjust(r, end);
-//                        values[r][adjust] = values[r][c];
-//                        values[r][c] = 0;
-//                    }
-//
-//                } else if (values[r][c] != 0) {
-//                    int adjust = horizontalAdjust(r, end);
-//                    values[r][adjust] = values[r][c];
-//                    values[r][c] = 0;
-//                }
-//            }
-//        }
-//    }
+    private void shiftLeft() {
+        //FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            for (int pass = 0; pass < values[row].length - 1; pass++) {
+                //LOOK LEFT
+                for (int col = 3; col > 0; col--) {
+                    if (values[row][col - 1] == 0) {
+                        values[row][col - 1] = values[row][col];
+                        values[row][col] = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    private void compressleft() {
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            //LOOK RIGHT
+            for (int col = 3; col > 0; col--) {
+                if (values[row][col] == values[row][col - 1]) {
+                    values[row][col - 1] = values[row][col] * 2;
+                    values[row][col] = 0;
+                    score = score + values[row][col - 1];
+                }
+
+            }
+
+        }
+
+    }
+
+    private void shiftDown() {
+        //FOR EACH ROW
+        for (int col = 0; col < 4; col++) {
+            for (int pass = 0; pass < values[col].length - 1; pass++) {
+                //LOOK LEFT
+                for (int row = 0; row < 3; row++) {
+                    if (values[row + 1][col] == 0) {
+                        values[row + 1][col] = values[row][col];
+                        values[row][col] = 0;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    private void compressDown() {
+        // FOR EACH ROW
+        for (int col = 0; col < 4; col++) {
+            //LOOK RIGHT
+            for (int row = 0; row < 3; row++) {
+                if (values[row][col] == values[row + 1][col]) {
+                    values[row + 1][col] = values[row][col] * 2;
+                    values[row][col] = 0;
+                    score = score + values[row + 1][col];
+                }
+
+            }
+
+        }
+
+    }
+
+    private void shiftUp() {
+        //FOR EACH ROW
+        for (int col = 0; col < 4; col++) {
+            for (int pass = 0; pass < values[col].length - 1; pass++) {
+                //LOOK LEFT
+                for (int row = 3; row > 0; row--) {
+                    if (values[row - 1][col] == 0) {
+                        values[row - 1][col] = values[row][col];
+                        values[row][col] = 0;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    private void compressUp() {
+        // FOR EACH ROW
+        for (int col = 0; col < 4; col++) {
+            //LOOK RIGHT
+            for (int row = 3; row > 0; row--) {
+                if (values[row][col] == values[row - 1][col]) {
+                    values[row - 1][col] = values[row][col] * 2;
+                    values[row][col] = 0;
+                    score = score + values[row - 1][col];
+                }
+
+            }
+
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,6 +266,10 @@ public class TheGame2048 extends javax.swing.JFrame {
         box33 = new javax.swing.JLabel();
         box34 = new javax.swing.JLabel();
         shiftRight = new javax.swing.JButton();
+        shiftLeft = new javax.swing.JButton();
+        scoreDisplay = new javax.swing.JLabel();
+        shiftUp = new javax.swing.JButton();
+        shiftDown = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -382,22 +471,65 @@ public class TheGame2048 extends javax.swing.JFrame {
             }
         });
 
+        shiftLeft.setText("LEFT");
+        shiftLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                left(evt);
+            }
+        });
+
+        scoreDisplay.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 36)); // NOI18N
+        scoreDisplay.setForeground(new java.awt.Color(255, 0, 102));
+        scoreDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scoreDisplay.setText("0");
+        scoreDisplay.setToolTipText("");
+
+        shiftUp.setText("UP");
+        shiftUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                up(evt);
+            }
+        });
+
+        shiftDown.setText("DOWN");
+        shiftDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                down(evt);
+            }
+        });
+
         javax.swing.GroupLayout basePanelLayout = new javax.swing.GroupLayout(basePanel);
         basePanel.setLayout(basePanelLayout);
         basePanelLayout.setHorizontalGroup(
             basePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basePanelLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(basePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(shiftRight)
-                    .addComponent(gameBoardBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(basePanelLayout.createSequentialGroup()
+                .addGroup(basePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basePanelLayout.createSequentialGroup()
+                        .addContainerGap(27, Short.MAX_VALUE)
+                        .addComponent(gameBoardBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basePanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(shiftLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(shiftDown, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(scoreDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(shiftUp, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(shiftRight, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26))
         );
         basePanelLayout.setVerticalGroup(
             basePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basePanelLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(shiftRight, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(basePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(shiftLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scoreDisplay)
+                    .addComponent(shiftUp, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shiftDown, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shiftRight, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(gameBoardBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -419,16 +551,39 @@ public class TheGame2048 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void right(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_right
-
-        shiftRight2();
-        compressRight();
-        shiftRight2();
+    private void left(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_left
+//        if (canMove = true) {
+        shiftLeft();
+        compressleft();
+        shiftLeft();
         placeRandomTwo();
         updateDisplay();
+//        }
+    }//GEN-LAST:event_left
 
-
+    private void right(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_right
+        shiftRight();
+        compressRight();
+        shiftRight();
+        placeRandomTwo();
+        updateDisplay();
     }//GEN-LAST:event_right
+
+    private void up(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up
+        shiftUp();
+        compressUp();
+        shiftUp();
+        placeRandomTwo();
+        updateDisplay();
+    }//GEN-LAST:event_up
+
+    private void down(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down
+        shiftDown();
+        compressDown();
+        shiftDown();
+        placeRandomTwo();
+        updateDisplay();
+    }//GEN-LAST:event_down
 
     /**
      * @param args the command line arguments
@@ -484,6 +639,10 @@ public class TheGame2048 extends javax.swing.JFrame {
     private javax.swing.JLabel box33;
     private javax.swing.JLabel box34;
     private javax.swing.JPanel gameBoardBackground;
+    private javax.swing.JLabel scoreDisplay;
+    private javax.swing.JButton shiftDown;
+    private javax.swing.JButton shiftLeft;
     private javax.swing.JButton shiftRight;
+    private javax.swing.JButton shiftUp;
     // End of variables declaration//GEN-END:variables
 }
