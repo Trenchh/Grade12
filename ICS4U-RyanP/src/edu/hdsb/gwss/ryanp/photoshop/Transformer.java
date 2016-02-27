@@ -172,17 +172,7 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] flipX(int[][] sourcePixels) {
-        //FOR EACH ROW
-        for (int col = 0; col < sourcePixels.length - 1; col++) {
-            //LOOK LEFT
-            for (int row = 0; row != sourcePixels[row].length - row; row++) {
-                int tmp1 = sourcePixels[row][col];
-                sourcePixels[row][col] = sourcePixels[sourcePixels[row].length - row][col];
-                sourcePixels[sourcePixels[row].length - row][col] = tmp1;
 
-            }
-
-        }
         return sourcePixels;
     }
 
@@ -190,8 +180,14 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] flipY(int[][] sourcePixels) {
-        // TO DO
-        return new int[1][1];
+        for (int col = 0; col < 15; col++) {  //NEED TO FIX THIS, ARRAY LENGTH NOT ACCURATE
+            for (int row = 0; row < sourcePixels.length - row; row++) {
+                int swap = sourcePixels[row][col];
+                sourcePixels[row][col] = sourcePixels[sourcePixels.length - (row + 1)][col];
+                sourcePixels[sourcePixels.length - (row + 1)][col] = swap;
+            }
+        }
+        return sourcePixels;
     }
 
     /**
