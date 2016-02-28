@@ -110,7 +110,7 @@ public class Transformer extends Object implements ITransformations {
     public void performTransformation(String transformationName) {
 
         if (DARKEN.equals(transformationName)) {
-            this.picture = changeIntensity(2, this.picture);
+            this.picture = changeIntensity(-2, this.picture);
         } else if (BRIGHTEN.equals(transformationName)) {
             this.picture = changeIntensity(2, this.picture);
         } else if (INVERT.equals(transformationName)) {
@@ -156,16 +156,34 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
-        // TO DO
-        return new int[1][1];
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
+                if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * (percent / 10)) > 255) {
+                    sourcePixels[row][col] = 255;
+                } else if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * (percent / 10)) < 0) {
+                    sourcePixels[row][col] = 0;
+                } else {
+                    sourcePixels[row][col] = sourcePixels[row][col] + (int) (sourcePixels[row][col] * (percent / 10));
+
+                }
+            }
+        }
+
+        return sourcePixels;
+
     }
 
     /**
      * TODO: ICS4U - TODO
      */
     private int[][] invert(int[][] sourcePixels) {
-        // TO DO
-        return new int[1][1];
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
+                sourcePixels[row][col] = 255 - sourcePixels[row][col];
+            }
+        }
+
+        return sourcePixels;
     }
 
     /**
@@ -200,16 +218,23 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] rotate(int[][] sourcePixels) {
-        // TO DO
-        return new int[1][1];
+
+        return sourcePixels;
+
     }
 
     /**
      * TODO: ICS4U - TODO
      */
     private int[][] mirror(int[][] sourcePixels) {
-        // TO DO
-        return new int[1][1];
+//        for (int row = 0; row < sourcePixels.length; row++) {
+//            for (int col = 0; col < sourcePixels[row].length - col; col++) {
+//                int swap = sourcePixels[row][col];
+//                sourcePixels[row][col] = sourcePixels[row][sourcePixels[row].length - (col + 1)];
+//                sourcePixels[row][sourcePixels[row].length - (col + 1)] = swap;
+//            }
+//        }
+        return sourcePixels;
     }
 
     /**
