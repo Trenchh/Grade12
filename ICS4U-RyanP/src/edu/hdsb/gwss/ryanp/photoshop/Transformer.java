@@ -23,9 +23,10 @@ public class Transformer extends Object implements ITransformations {
 
     private String[] transformations = new String[MIN_NUM_TRANS];
 
-    private ArrayList<Integer> copies = new ArrayList<Integer>();
     private int[][] pictureOriginal;
     private int[][] picture;
+
+    static ArrayList<int[][]> previous = new ArrayList<int[][]>();
 
     /**
      * Construct a Transformer object by setting the possible transformations
@@ -56,6 +57,7 @@ public class Transformer extends Object implements ITransformations {
     public Transformer(int[][] originalPic) {
         this();
         this.setPixels(originalPic);
+
     }
 
     /**
@@ -75,6 +77,7 @@ public class Transformer extends Object implements ITransformations {
     public void setPixels(int[][] newPix) {
         this.pictureOriginal = newPix;
         this.picture = this.copyArray(newPix);
+
     }
 
     /**
@@ -110,9 +113,9 @@ public class Transformer extends Object implements ITransformations {
     public void performTransformation(String transformationName) {
 
         if (DARKEN.equals(transformationName)) {
-            this.picture = changeIntensity(-2, this.picture);
+            this.picture = changeIntensity(-0.2, this.picture);
         } else if (BRIGHTEN.equals(transformationName)) {
-            this.picture = changeIntensity(2, this.picture);
+            this.picture = changeIntensity(0.2, this.picture);
         } else if (INVERT.equals(transformationName)) {
             this.picture = invert(this.picture);
         } else if (FLIPX.equals(transformationName)) {
@@ -128,9 +131,9 @@ public class Transformer extends Object implements ITransformations {
         } else if (BLUR.equals(transformationName)) {
             this.picture = blur(this.picture);
         } else if (RESET.equals(transformationName)) {
-            this.picture = this.copyArray(this.picture);
+            this.picture = this.reset(this.picture);
         } else if (UNDO.equals(transformationName)) {
-            this.picture = this.undo();
+            this.picture = this.undo(this.picture);
         } else {
             throw new Error("Invalid transformation requested.");
         }
@@ -139,17 +142,27 @@ public class Transformer extends Object implements ITransformations {
     /**
      * TODO: ICS4U - TODO
      */
-    private int[][] copyArray(int[][] a) {
-//        a = picture;
-//        // copies.add(a);
-        return a;
+    private int[][] copyArray(int[][] sourcePixels) {
+        this.previous.add(pictureOriginal);
+
+        return sourcePixels;
+    }
+
+    private int[][] reset(int[][] sourcePixels) {
+
+        this.picture.equals(previous.get(0));
+        
+        return previous.get(0);
     }
 
     /**
      * TODO: ICS4U - TODO
      */
-    private int[][] undo() {
-        return null;
+    private int[][] undo(int[][] sourcePixels) {
+
+//        this.picture.equals(previous.get(previous.size() - 1));
+//        previous.remove(previous.size() - 1);
+        return sourcePixels;
     }
 
     /**
@@ -158,16 +171,17 @@ public class Transformer extends Object implements ITransformations {
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
-                if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * (percent / 10)) > 255) {
+                if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent) > 255) {
                     sourcePixels[row][col] = 255;
-                } else if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * (percent / 10)) < 0) {
+                } else if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent) < 0) {
                     sourcePixels[row][col] = 0;
                 } else {
-                    sourcePixels[row][col] = sourcePixels[row][col] + (int) (sourcePixels[row][col] * (percent / 10));
+                    sourcePixels[row][col] = sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent);
 
                 }
             }
         }
+//        previous.add(this.picture);
 
         return sourcePixels;
 
@@ -183,6 +197,7 @@ public class Transformer extends Object implements ITransformations {
             }
         }
 
+//        previous.add(this.picture);
         return sourcePixels;
     }
 
@@ -197,6 +212,7 @@ public class Transformer extends Object implements ITransformations {
                 sourcePixels[row][sourcePixels[row].length - (col + 1)] = swap;
             }
         }
+//        previous.add(this.picture);
         return sourcePixels;
     }
 
@@ -211,6 +227,7 @@ public class Transformer extends Object implements ITransformations {
                 sourcePixels[sourcePixels.length - (row + 1)][col] = swap;
             }
         }
+//        previous.add(this.picture);
         return sourcePixels;
     }
 
@@ -219,6 +236,7 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] rotate(int[][] sourcePixels) {
 
+//        previous.add(this.picture);
         return sourcePixels;
 
     }
@@ -234,6 +252,7 @@ public class Transformer extends Object implements ITransformations {
 //                sourcePixels[row][sourcePixels[row].length - (col + 1)] = swap;
 //            }
 //        }
+//        previous.add(this.picture);
         return sourcePixels;
     }
 
@@ -242,6 +261,7 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] scale50(int[][] sourcePixels) {
         // TO DO
+//        previous.add(this.picture);
         return new int[1][1];
     }
 
@@ -250,6 +270,7 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] blur(int[][] sourcePixels) {
         // TO DO
+//        previous.add(this.picture);
         return new int[1][1];
     }
 
