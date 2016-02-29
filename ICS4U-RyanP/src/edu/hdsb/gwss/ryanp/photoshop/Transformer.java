@@ -152,7 +152,7 @@ public class Transformer extends Object implements ITransformations {
 
         this.picture.equals(previous.get(0));
         
-        return previous.get(0);
+        return this.previous.get(0);
     }
 
     /**
