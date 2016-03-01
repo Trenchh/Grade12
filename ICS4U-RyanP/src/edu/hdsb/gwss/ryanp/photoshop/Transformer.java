@@ -131,7 +131,7 @@ public class Transformer extends Object implements ITransformations {
         } else if (BLUR.equals(transformationName)) {
             this.picture = blur(this.picture);
         } else if (RESET.equals(transformationName)) {
-            this.picture = this.reset(this.picture);
+            this.picture = this.reset(picture);
         } else if (UNDO.equals(transformationName)) {
             this.picture = this.undo(this.picture);
         } else {
@@ -143,16 +143,15 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] copyArray(int[][] sourcePixels) {
-        this.previous.add(pictureOriginal);
+//        this.previous.add(pictureOriginal);
 
         return sourcePixels;
     }
 
     private int[][] reset(int[][] sourcePixels) {
 
-        this.picture.equals(previous.get(0));
-        
-        return this.previous.get(0);
+//        this.picture.equals(previous.get(0));
+        return sourcePixels;
     }
 
     /**
@@ -181,7 +180,6 @@ public class Transformer extends Object implements ITransformations {
                 }
             }
         }
-//        previous.add(this.picture);
 
         return sourcePixels;
 
@@ -197,7 +195,6 @@ public class Transformer extends Object implements ITransformations {
             }
         }
 
-//        previous.add(this.picture);
         return sourcePixels;
     }
 
@@ -212,7 +209,6 @@ public class Transformer extends Object implements ITransformations {
                 sourcePixels[row][sourcePixels[row].length - (col + 1)] = swap;
             }
         }
-//        previous.add(this.picture);
         return sourcePixels;
     }
 
@@ -227,7 +223,6 @@ public class Transformer extends Object implements ITransformations {
                 sourcePixels[sourcePixels.length - (row + 1)][col] = swap;
             }
         }
-//        previous.add(this.picture);
         return sourcePixels;
     }
 
@@ -235,8 +230,15 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] rotate(int[][] sourcePixels) {
+        int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
+//                int swap = sourcePixels[row][col];
+//                rotate[row][col] = sourcePixels[col][row];
+            }
+        }
+        sourcePixels = rotate;
 
-//        previous.add(this.picture);
         return sourcePixels;
 
     }
@@ -245,14 +247,21 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] mirror(int[][] sourcePixels) {
-//        for (int row = 0; row < sourcePixels.length; row++) {
-//            for (int col = 0; col < sourcePixels[row].length - col; col++) {
-//                int swap = sourcePixels[row][col];
-//                sourcePixels[row][col] = sourcePixels[row][sourcePixels[row].length - (col + 1)];
-//                sourcePixels[row][sourcePixels[row].length - (col + 1)] = swap;
-//            }
-//        }
-//        previous.add(this.picture);
+
+        int[][] mirror = new int[sourcePixels.length][sourcePixels[0].length * 2];
+
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
+                mirror[row][col] = sourcePixels[row][col];
+
+            }
+        }
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int col = sourcePixels[row].length, i = 0; col < sourcePixels[row].length * 2; col++, i++) {
+                mirror[row][col] = sourcePixels[row][sourcePixels[row].length - (1 + i)];
+            }
+        }
+        sourcePixels = mirror;
         return sourcePixels;
     }
 
@@ -261,7 +270,6 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] scale50(int[][] sourcePixels) {
         // TO DO
-//        previous.add(this.picture);
         return new int[1][1];
     }
 
@@ -270,7 +278,6 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] blur(int[][] sourcePixels) {
         // TO DO
-//        previous.add(this.picture);
         return new int[1][1];
     }
 
