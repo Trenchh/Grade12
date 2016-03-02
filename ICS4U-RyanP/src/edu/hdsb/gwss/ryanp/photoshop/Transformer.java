@@ -143,14 +143,13 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] copyArray(int[][] sourcePixels) {
-//        this.previous.add(pictureOriginal);
 
         return sourcePixels;
     }
 
     private int[][] reset(int[][] sourcePixels) {
 
-//        this.picture.equals(previous.get(0));
+        sourcePixels = pictureOriginal;
         return sourcePixels;
     }
 
@@ -275,22 +274,26 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] scale50(int[][] sourcePixels) {
-        int[][] scale = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
+        if (sourcePixels.length > 2 && sourcePixels[0].length > 2) {
 
-        for (int row = 0, rowCount = 0; rowCount < scale.length; row += 2, rowCount++) {
-            for (int col = 0, colCount = 0; colCount < scale[0].length; col += 2, colCount++) {
-                if (col > sourcePixels[0].length) {
-                    scale[rowCount][colCount] = sourcePixels[row][sourcePixels[0].length - 1];
-                } else if (row > sourcePixels.length) {
-                    scale[rowCount][colCount] = sourcePixels[sourcePixels.length - 1][col];
-                } else {
-                    scale[rowCount][colCount] = sourcePixels[row][col];
+            int[][] scale = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
+
+            for (int row = 0, rowCount = 0; rowCount < scale.length; row += 2, rowCount++) {
+                for (int col = 0, colCount = 0; colCount < scale[0].length; col += 2, colCount++) {
+                    if (col > sourcePixels[0].length) {
+                        scale[rowCount][colCount] = sourcePixels[row][sourcePixels[0].length - 1];
+                    } else if (row > sourcePixels.length) {
+                        scale[rowCount][colCount] = sourcePixels[sourcePixels.length - 1][col];
+                    } else {
+                        scale[rowCount][colCount] = sourcePixels[row][col];
+                    }
                 }
+
             }
+
+            sourcePixels = scale;
+
         }
-
-        sourcePixels = scale;
-
         return sourcePixels;
     }
 
@@ -298,6 +301,12 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] blur(int[][] sourcePixels) {
+        int[][] blur = new int[sourcePixels.length][sourcePixels[0].length];
+        for (int row = 1; row < sourcePixels.length - 1; row++) {
+            for (int col = 1; col < sourcePixels[row].length - 1; col += 2) {
+
+            }
+        }
 
         return sourcePixels;
     }
