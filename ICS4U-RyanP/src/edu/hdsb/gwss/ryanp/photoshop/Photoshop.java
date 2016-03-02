@@ -4,7 +4,7 @@ import edu.hdsb.gwss.ryanp.photoshop.Transformer;
 import becker.xtras.imageTransformation.ITransformations;
 import becker.xtras.imageTransformation.ImageTransformerGUI;
 
-public class PhotoEditor extends Object {
+public class Photoshop extends Object {
 
     public static void main(String args[]) {
         /*This main method will run a sample solution using a

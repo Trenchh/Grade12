@@ -231,16 +231,22 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] rotate(int[][] sourcePixels) {
         int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
-        for (int row = 0; row < sourcePixels.length; row++) {
-            for (int col = 0; col < sourcePixels[row].length; col++) {
-//                int swap = sourcePixels[row][col];
-//                rotate[row][col] = sourcePixels[col][row];
+        for (int row = 0; row < rotate.length; row++) {
+            for (int col = 0; col < rotate[row].length; col++) {
+                rotate[row][col] = sourcePixels[col][row];
             }
         }
+        for (int row = 0; row < rotate.length; row++) {
+            for (int col = 0; col < rotate[row].length - col; col++) {
+                int swap = rotate[row][col];
+                rotate[row][col] = rotate[row][rotate[row].length - (col + 1)];
+                rotate[row][rotate[row].length - (col + 1)] = swap;
+
+            }
+        }
+
         sourcePixels = rotate;
-
         return sourcePixels;
-
     }
 
     /**
@@ -269,8 +275,9 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] scale50(int[][] sourcePixels) {
-        // TO DO
-        return new int[1][1];
+        int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
+
+        return sourcePixels;
     }
 
     /**
