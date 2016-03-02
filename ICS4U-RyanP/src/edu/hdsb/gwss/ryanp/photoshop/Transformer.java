@@ -277,13 +277,18 @@ public class Transformer extends Object implements ITransformations {
     private int[][] scale50(int[][] sourcePixels) {
         int[][] scale = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
 
-        for (int row = 0; row < scale.length; row++) {
-            for (int col = 0; col < scale[row].length; col++) {
-                if (row + 1 < scale.length) {
-                scale[row][col] = sourcePixels[row][col * 2];
+        for (int row = 0, rowCount = 0; rowCount < scale.length; row += 2, rowCount++) {
+            for (int col = 0, colCount = 0; colCount < scale[0].length; col += 2, colCount++) {
+                if (col > sourcePixels[0].length) {
+                    scale[rowCount][colCount] = sourcePixels[row][sourcePixels[0].length - 1];
+                } else if (row > sourcePixels.length) {
+                    scale[rowCount][colCount] = sourcePixels[sourcePixels.length - 1][col];
+                } else {
+                    scale[rowCount][colCount] = sourcePixels[row][col];
                 }
             }
         }
+
         sourcePixels = scale;
 
         return sourcePixels;
@@ -293,8 +298,8 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] blur(int[][] sourcePixels) {
-        // TO DO
-        return new int[1][1];
+
+        return sourcePixels;
     }
 
     /**
