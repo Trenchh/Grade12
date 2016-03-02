@@ -264,7 +264,7 @@ public class Transformer extends Object implements ITransformations {
         }
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = sourcePixels[row].length, i = 0; col < sourcePixels[row].length * 2; col++, i++) {
-                mirror[row][col] = sourcePixels[row][sourcePixels[row].length - (1 + i)];
+                mirror[row][col] = sourcePixels[row][sourcePixels[row].length - (i + 1)];
             }
         }
         sourcePixels = mirror;
@@ -275,7 +275,16 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] scale50(int[][] sourcePixels) {
-        int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
+        int[][] scale = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
+
+        for (int row = 0; row < scale.length; row++) {
+            for (int col = 0; col < scale[row].length; col++) {
+                if (row + 1 < scale.length) {
+                scale[row][col] = sourcePixels[row][col * 2];
+                }
+            }
+        }
+        sourcePixels = scale;
 
         return sourcePixels;
     }
