@@ -303,8 +303,9 @@ public class Transformer extends Object implements ITransformations {
     private int[][] blur(int[][] sourcePixels) {
         int[][] blur = new int[sourcePixels.length][sourcePixels[0].length];
         for (int row = 1; row < sourcePixels.length - 1; row++) {
-            for (int col = 1; col < sourcePixels[row].length - 1; col += 2) {
-
+            for (int col = 1; col < sourcePixels[row].length - 1; col++) {
+                 int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row - 1][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row + 1][col - 1] + sourcePixels[row + 1][col] + sourcePixels[row + 1][col + 1]) / 9;
+            sourcePixels[row][col] = average;
             }
         }
 
