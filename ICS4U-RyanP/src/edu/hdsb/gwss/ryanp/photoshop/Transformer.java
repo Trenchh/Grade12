@@ -1,5 +1,6 @@
 /*
- * ICS4U.2015.16.S2
+ * Name: Transformer.java
+ * Author: Ryan Protheroe
  */
 package edu.hdsb.gwss.ryanp.photoshop;
 
@@ -131,7 +132,7 @@ public class Transformer extends Object implements ITransformations {
         } else if (BLUR.equals(transformationName)) {
             this.picture = blur(this.picture);
         } else if (RESET.equals(transformationName)) {
-            this.picture = this.reset(picture);
+            this.picture = copyArray(this.pictureOriginal);
         } else if (UNDO.equals(transformationName)) {
             this.picture = this.undo(this.picture);
         } else {
@@ -139,32 +140,27 @@ public class Transformer extends Object implements ITransformations {
         }
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] copyArray(int[][] sourcePixels) {
-
-        return sourcePixels;
+        int[][] copy = new int[sourcePixels.length][sourcePixels[0].length];
+        for (int row = 0; row < sourcePixels.length - 1; row++) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
+                copy[row][col] = sourcePixels[row][col];
+            }
+        }
+        return copy;
     }
 
-    private int[][] reset(int[][] sourcePixels) {
-        return this.pictureOriginal;
-    }
-
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] undo(int[][] sourcePixels) {
 
-//        this.picture.equals(previous.get(previous.size() - 1));
-//        previous.remove(previous.size() - 1);
-        return sourcePixels;
+        if (previous.size() > 0) {
+            previous.remove(previous.size() - 1);
+        }
+        int[][] undo = previous.get(previous.size() - 1);
+        return undo;
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
+
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
                 if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent) > 255) {
@@ -177,14 +173,13 @@ public class Transformer extends Object implements ITransformations {
                 }
             }
         }
+        int[][] undoIntensity = sourcePixels;
+        previous.add(undoIntensity);
 
         return sourcePixels;
 
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] invert(int[][] sourcePixels) {
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
@@ -195,9 +190,6 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] flipX(int[][] sourcePixels) {
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length - col; col++) {
@@ -209,9 +201,6 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] flipY(int[][] sourcePixels) {
         for (int row = 0; row < sourcePixels.length - row; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
@@ -223,9 +212,6 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] rotate(int[][] sourcePixels) {
         int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
         for (int row = 0; row < rotate.length; row++) {
@@ -242,13 +228,15 @@ public class Transformer extends Object implements ITransformations {
             }
         }
 
+//                for (int row = 0, i = sourcePixels.length - 1; row < sourcePixels.length; row++, i--) {
+//            for (int col = 0; col < sourcePixels[row].length; col++) {
+//                rotate[col][i] = sourcePixels[row][col];
+//            }
+//        }
         sourcePixels = rotate;
         return sourcePixels;
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] mirror(int[][] sourcePixels) {
 
         int[][] mirror = new int[sourcePixels.length][sourcePixels[0].length * 2];
@@ -268,9 +256,6 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] scale50(int[][] sourcePixels) {
         if (sourcePixels.length > 2 && sourcePixels[0].length > 2) {
 
@@ -295,9 +280,6 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     private int[][] blur(int[][] sourcePixels) {
         int[][] blur = new int[sourcePixels.length][sourcePixels[0].length];
         int corner;
@@ -342,9 +324,6 @@ public class Transformer extends Object implements ITransformations {
 
     }
 
-    /**
-     * TODO: ICS4U - TODO
-     */
     public static void main(String[] args) {
 
         int[][] myPicture = new int[4][15];
@@ -399,5 +378,4 @@ public class Transformer extends Object implements ITransformations {
         display(test.getPixels());
 
     }
-
 }
