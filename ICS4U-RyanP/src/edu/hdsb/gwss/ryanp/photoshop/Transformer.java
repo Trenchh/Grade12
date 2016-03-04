@@ -148,9 +148,7 @@ public class Transformer extends Object implements ITransformations {
     }
 
     private int[][] reset(int[][] sourcePixels) {
-
-        sourcePixels = pictureOriginal;
-        return sourcePixels;
+        return this.pictureOriginal;
     }
 
     /**
@@ -302,14 +300,46 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] blur(int[][] sourcePixels) {
         int[][] blur = new int[sourcePixels.length][sourcePixels[0].length];
+        int corner;
+
         for (int row = 1; row < sourcePixels.length - 1; row++) {
             for (int col = 1; col < sourcePixels[row].length - 1; col++) {
-                 int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row - 1][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row + 1][col - 1] + sourcePixels[row + 1][col] + sourcePixels[row + 1][col + 1]) / 9;
-            sourcePixels[row][col] = average;
+                int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row - 1][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row + 1][col - 1] + sourcePixels[row + 1][col] + sourcePixels[row + 1][col + 1]) / 9;
+                sourcePixels[row][col] = average;
+            }
+        }
+        corner = (sourcePixels[0][0] + sourcePixels[0][1] + sourcePixels[1][1] + sourcePixels[1][0]) / 4;
+        sourcePixels[0][0] = corner;
+        corner = (sourcePixels[0][sourcePixels[0].length - 1] + sourcePixels[0][sourcePixels[0].length - 2] + sourcePixels[1][sourcePixels[0].length - 2] + sourcePixels[1][sourcePixels[0].length - 1]) / 4;
+        sourcePixels[0][sourcePixels[0].length - 1] = corner;
+        corner = (sourcePixels[sourcePixels.length - 1][0] + sourcePixels[sourcePixels.length - 1][1] + sourcePixels[sourcePixels.length - 2][1] + sourcePixels[sourcePixels.length - 2][0]) / 4;
+        sourcePixels[sourcePixels.length - 1][0] = corner;
+        corner = (sourcePixels[sourcePixels.length - 1][sourcePixels[0].length - 1] + sourcePixels[sourcePixels.length - 1][sourcePixels[0].length - 2] + sourcePixels[sourcePixels.length - 2][sourcePixels[0].length - 2] + sourcePixels[sourcePixels.length - 2][sourcePixels[0].length - 1]) / 4;
+        sourcePixels[sourcePixels.length - 1][sourcePixels[0].length - 1] = corner;
+
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
+                if (row == 0 && col > 0 && col < sourcePixels[0].length - 2) {
+                    int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row + 1][col - 1] + sourcePixels[row + 1][col + 1] + sourcePixels[row + 1][col]) / 6;
+                    sourcePixels[row][col] = average;
+                }
+                if (row == sourcePixels.length - 1 && col > 0 && col < sourcePixels[0].length - 2) {
+                    int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row - 1][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row - 1][col]) / 6;
+                    sourcePixels[row][col] = average;
+                }
+                if (col == 0 && row > 0 && row < sourcePixels.length - 1) {
+                    int average = (sourcePixels[row - 1][col] + sourcePixels[row][col] + sourcePixels[row + 1][col] + sourcePixels[row - 1][col + 1] + sourcePixels[row][col + 1] + sourcePixels[row + 1][col + 1]) / 6;
+                    sourcePixels[row][col] = average;
+                }
+                if (col == sourcePixels[0].length - 1 && row > 0 && row < sourcePixels.length - 1) {
+                    int average = (sourcePixels[row - 1][col] + sourcePixels[row][col] + sourcePixels[row + 1][col] + sourcePixels[row - 1][col - 1] + sourcePixels[row][col - 1] + sourcePixels[row + 1][col - 1]) / 6;
+                    sourcePixels[row][col] = average;
+                }
             }
         }
 
         return sourcePixels;
+
     }
 
     /**
