@@ -195,9 +195,8 @@ public class Transformer extends Object implements ITransformations {
 
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length - col; col++) {
-                int swap = sourcePixels[row][col];
                 flipX[row][col] = sourcePixels[row][sourcePixels[row].length - (col + 1)];
-                flipX[row][flipX[row].length - (col + 1)] = swap;
+                flipX[row][flipX[row].length - (col + 1)] = sourcePixels[row][col];
             }
         }
         previous.add(flipX);
