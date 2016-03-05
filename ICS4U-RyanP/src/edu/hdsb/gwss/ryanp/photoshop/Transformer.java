@@ -115,9 +115,9 @@ public class Transformer extends Object implements ITransformations {
     public void performTransformation(String transformationName) {
 
         if (DARKEN.equals(transformationName)) {
-            this.picture = changeIntensity(-0.2, this.picture);
+            this.picture = changeIntensity(-10, this.picture);
         } else if (BRIGHTEN.equals(transformationName)) {
-            this.picture = changeIntensity(0.2, this.picture);
+            this.picture = changeIntensity(10, this.picture);
         } else if (INVERT.equals(transformationName)) {
             this.picture = invert(this.picture);
         } else if (FLIPX.equals(transformationName)) {
@@ -164,13 +164,11 @@ public class Transformer extends Object implements ITransformations {
 
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
-                if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent) > 255) {
+                intensity[row][col] = sourcePixels[row][col] + (int) percent;
+                if (intensity[row][col] > 255) {
                     intensity[row][col] = 255;
-                } else if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent) < 0) {
+                } else if (intensity[row][col] < 0) {
                     intensity[row][col] = 0;
-                } else {
-                    intensity[row][col] = sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent);
-
                 }
             }
         }
