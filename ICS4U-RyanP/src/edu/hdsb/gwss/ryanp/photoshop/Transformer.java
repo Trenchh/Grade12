@@ -177,7 +177,6 @@ public class Transformer extends Object implements ITransformations {
         previous.add(intensity);
         sourcePixels = intensity;
         return sourcePixels;
-
     }
 
     private int[][] invert(int[][] sourcePixels) {
@@ -188,7 +187,6 @@ public class Transformer extends Object implements ITransformations {
                 invert[row][col] = 255 - sourcePixels[row][col];
             }
         }
-
         previous.add(invert);
         sourcePixels = invert;
         return sourcePixels;
@@ -303,11 +301,11 @@ public class Transformer extends Object implements ITransformations {
 
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
-                if (row == 0 && col > 0 && col < sourcePixels[0].length - 2) {
+                if (row == 0 && col > 0 && col < sourcePixels[0].length - 1) {
                     int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row + 1][col - 1] + sourcePixels[row + 1][col + 1] + sourcePixels[row + 1][col]) / 6;
                     blur[row][col] = average;
                 }
-                if (row == sourcePixels.length - 1 && col > 0 && col < sourcePixels[0].length - 2) {
+                if (row == sourcePixels.length - 1 && col > 0 && col < sourcePixels[0].length - 1) {
                     int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row - 1][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row - 1][col]) / 6;
                     blur[row][col] = average;
                 }
