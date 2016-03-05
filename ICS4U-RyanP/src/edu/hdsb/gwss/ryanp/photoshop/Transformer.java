@@ -194,9 +194,9 @@ public class Transformer extends Object implements ITransformations {
         int[][] flipX = new int[sourcePixels.length][sourcePixels[0].length];
 
         for (int row = 0; row < sourcePixels.length; row++) {
-            for (int col = 0; col < sourcePixels[row].length - col; col++) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
                 flipX[row][col] = sourcePixels[row][sourcePixels[row].length - (col + 1)];
-                flipX[row][flipX[row].length - (col + 1)] = sourcePixels[row][col];
+
             }
         }
         previous.add(flipX);
@@ -207,10 +207,9 @@ public class Transformer extends Object implements ITransformations {
     private int[][] flipY(int[][] sourcePixels) {
         int[][] flipY = new int[sourcePixels.length][sourcePixels[0].length];
 
-        for (int row = 0; row < sourcePixels.length - row; row++) {
+        for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
                 flipY[row][col] = sourcePixels[sourcePixels.length - (row + 1)][col];
-                flipY[sourcePixels.length - (row + 1)][col] = sourcePixels[row][col];
             }
         }
         previous.add(flipY);
