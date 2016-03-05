@@ -27,7 +27,7 @@ public class Transformer extends Object implements ITransformations {
     private int[][] pictureOriginal;
     private int[][] picture;
 
-    static ArrayList<int[][]> previous = new ArrayList<int[][]>();
+    private ArrayList<int[][]> previous = new ArrayList<int[][]>();
 
     /**
      * Construct a Transformer object by setting the possible transformations
@@ -78,7 +78,8 @@ public class Transformer extends Object implements ITransformations {
     public void setPixels(int[][] newPix) {
         this.pictureOriginal = newPix;
         this.picture = this.copyArray(newPix);
-
+        //ADDS ORIGINAL PIC TO ARRAYLIST
+        previous.add(pictureOriginal);
     }
 
     /**
@@ -134,7 +135,7 @@ public class Transformer extends Object implements ITransformations {
         } else if (RESET.equals(transformationName)) {
             this.picture = copyArray(this.pictureOriginal);
         } else if (UNDO.equals(transformationName)) {
-            this.picture = this.undo(this.picture);
+            this.picture = this.undo();
         } else {
             throw new Error("Invalid transformation requested.");
         }
@@ -142,97 +143,96 @@ public class Transformer extends Object implements ITransformations {
 
     private int[][] copyArray(int[][] sourcePixels) {
         int[][] copy = new int[sourcePixels.length][sourcePixels[0].length];
-        for (int row = 0; row < sourcePixels.length - 1; row++) {
-            for (int col = 0; col < sourcePixels[row].length; col++) {
-                copy[row][col] = sourcePixels[row][col];
-            }
+
+        //REMOVES EVERYTHING IN ARRAYLIST BUT ORIGINAL
+        for (int i = previous.size() - 1; i > 1; i--) {
+            previous.remove(i);
         }
-        return copy;
+        return this.pictureOriginal;
     }
 
-    private int[][] undo(int[][] sourcePixels) {
+    private int[][] undo() {
 
-        if (previous.size() > 0) {
+        if (previous.size() - 1 > 0) {
             previous.remove(previous.size() - 1);
         }
-        int[][] undo = previous.get(previous.size() - 1);
-        return undo;
+        return previous.get(previous.size() - 1);
     }
 
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
+        int[][] intensity = new int[sourcePixels.length][sourcePixels[0].length];
 
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
                 if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent) > 255) {
-                    sourcePixels[row][col] = 255;
+                    intensity[row][col] = 255;
                 } else if (sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent) < 0) {
-                    sourcePixels[row][col] = 0;
+                    intensity[row][col] = 0;
                 } else {
-                    sourcePixels[row][col] = sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent);
+                    intensity[row][col] = sourcePixels[row][col] + (int) (sourcePixels[row][col] * percent);
 
                 }
             }
         }
-        int[][] undoIntensity = sourcePixels;
-        previous.add(undoIntensity);
-
+        previous.add(intensity);
+        sourcePixels = intensity;
         return sourcePixels;
 
     }
 
     private int[][] invert(int[][] sourcePixels) {
+        int[][] invert = new int[sourcePixels.length][sourcePixels[0].length];
+
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
-                sourcePixels[row][col] = 255 - sourcePixels[row][col];
+                invert[row][col] = 255 - sourcePixels[row][col];
             }
         }
 
+        previous.add(invert);
+        sourcePixels = invert;
         return sourcePixels;
     }
 
     private int[][] flipX(int[][] sourcePixels) {
+        int[][] flipX = new int[sourcePixels.length][sourcePixels[0].length];
+
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length - col; col++) {
                 int swap = sourcePixels[row][col];
-                sourcePixels[row][col] = sourcePixels[row][sourcePixels[row].length - (col + 1)];
-                sourcePixels[row][sourcePixels[row].length - (col + 1)] = swap;
+                flipX[row][col] = sourcePixels[row][sourcePixels[row].length - (col + 1)];
+                flipX[row][flipX[row].length - (col + 1)] = swap;
             }
         }
+        previous.add(flipX);
+        sourcePixels = flipX;
         return sourcePixels;
     }
 
     private int[][] flipY(int[][] sourcePixels) {
+        int[][] flipY = new int[sourcePixels.length][sourcePixels[0].length];
+
         for (int row = 0; row < sourcePixels.length - row; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
                 int swap = sourcePixels[row][col];
-                sourcePixels[row][col] = sourcePixels[sourcePixels.length - (row + 1)][col];
-                sourcePixels[sourcePixels.length - (row + 1)][col] = swap;
+                flipY[row][col] = sourcePixels[sourcePixels.length - (row + 1)][col];
+                flipY[sourcePixels.length - (row + 1)][col] = swap;
             }
         }
+        previous.add(flipY);
+        sourcePixels = flipY;
         return sourcePixels;
     }
 
     private int[][] rotate(int[][] sourcePixels) {
         int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
-        for (int row = 0; row < rotate.length; row++) {
-            for (int col = 0; col < rotate[row].length; col++) {
-                rotate[row][col] = sourcePixels[col][row];
+
+        for (int row = 0, i = sourcePixels.length - 1; row < sourcePixels.length; row++, i--) {
+            for (int col = 0; col < sourcePixels[row].length; col++) {
+                rotate[col][i] = sourcePixels[row][col];
             }
         }
-        for (int row = 0; row < rotate.length; row++) {
-            for (int col = 0; col < rotate[row].length - col; col++) {
-                int swap = rotate[row][col];
-                rotate[row][col] = rotate[row][rotate[row].length - (col + 1)];
-                rotate[row][rotate[row].length - (col + 1)] = swap;
-
-            }
-        }
-
-//                for (int row = 0, i = sourcePixels.length - 1; row < sourcePixels.length; row++, i--) {
-//            for (int col = 0; col < sourcePixels[row].length; col++) {
-//                rotate[col][i] = sourcePixels[row][col];
-//            }
-//        }
+        previous.add(rotate);
         sourcePixels = rotate;
         return sourcePixels;
     }
@@ -244,7 +244,6 @@ public class Transformer extends Object implements ITransformations {
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
                 mirror[row][col] = sourcePixels[row][col];
-
             }
         }
         for (int row = 0; row < sourcePixels.length; row++) {
@@ -252,6 +251,7 @@ public class Transformer extends Object implements ITransformations {
                 mirror[row][col] = sourcePixels[row][sourcePixels[row].length - (i + 1)];
             }
         }
+        previous.add(mirror);
         sourcePixels = mirror;
         return sourcePixels;
     }
@@ -273,9 +273,8 @@ public class Transformer extends Object implements ITransformations {
                 }
 
             }
-
+            previous.add(scale);
             sourcePixels = scale;
-
         }
         return sourcePixels;
     }
@@ -287,39 +286,43 @@ public class Transformer extends Object implements ITransformations {
         for (int row = 1; row < sourcePixels.length - 1; row++) {
             for (int col = 1; col < sourcePixels[row].length - 1; col++) {
                 int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row - 1][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row + 1][col - 1] + sourcePixels[row + 1][col] + sourcePixels[row + 1][col + 1]) / 9;
-                sourcePixels[row][col] = average;
+                blur[row][col] = average;
             }
         }
         corner = (sourcePixels[0][0] + sourcePixels[0][1] + sourcePixels[1][1] + sourcePixels[1][0]) / 4;
-        sourcePixels[0][0] = corner;
+        blur[0][0] = corner;
+
         corner = (sourcePixels[0][sourcePixels[0].length - 1] + sourcePixels[0][sourcePixels[0].length - 2] + sourcePixels[1][sourcePixels[0].length - 2] + sourcePixels[1][sourcePixels[0].length - 1]) / 4;
-        sourcePixels[0][sourcePixels[0].length - 1] = corner;
+        blur[0][sourcePixels[0].length - 1] = corner;
+
         corner = (sourcePixels[sourcePixels.length - 1][0] + sourcePixels[sourcePixels.length - 1][1] + sourcePixels[sourcePixels.length - 2][1] + sourcePixels[sourcePixels.length - 2][0]) / 4;
-        sourcePixels[sourcePixels.length - 1][0] = corner;
+        blur[sourcePixels.length - 1][0] = corner;
+
         corner = (sourcePixels[sourcePixels.length - 1][sourcePixels[0].length - 1] + sourcePixels[sourcePixels.length - 1][sourcePixels[0].length - 2] + sourcePixels[sourcePixels.length - 2][sourcePixels[0].length - 2] + sourcePixels[sourcePixels.length - 2][sourcePixels[0].length - 1]) / 4;
-        sourcePixels[sourcePixels.length - 1][sourcePixels[0].length - 1] = corner;
+        blur[sourcePixels.length - 1][sourcePixels[0].length - 1] = corner;
 
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
                 if (row == 0 && col > 0 && col < sourcePixels[0].length - 2) {
                     int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row + 1][col - 1] + sourcePixels[row + 1][col + 1] + sourcePixels[row + 1][col]) / 6;
-                    sourcePixels[row][col] = average;
+                    blur[row][col] = average;
                 }
                 if (row == sourcePixels.length - 1 && col > 0 && col < sourcePixels[0].length - 2) {
                     int average = (sourcePixels[row][col - 1] + sourcePixels[row][col] + sourcePixels[row][col + 1] + sourcePixels[row - 1][col + 1] + sourcePixels[row - 1][col - 1] + sourcePixels[row - 1][col]) / 6;
-                    sourcePixels[row][col] = average;
+                    blur[row][col] = average;
                 }
                 if (col == 0 && row > 0 && row < sourcePixels.length - 1) {
                     int average = (sourcePixels[row - 1][col] + sourcePixels[row][col] + sourcePixels[row + 1][col] + sourcePixels[row - 1][col + 1] + sourcePixels[row][col + 1] + sourcePixels[row + 1][col + 1]) / 6;
-                    sourcePixels[row][col] = average;
+                    blur[row][col] = average;
                 }
                 if (col == sourcePixels[0].length - 1 && row > 0 && row < sourcePixels.length - 1) {
                     int average = (sourcePixels[row - 1][col] + sourcePixels[row][col] + sourcePixels[row + 1][col] + sourcePixels[row - 1][col - 1] + sourcePixels[row][col - 1] + sourcePixels[row + 1][col - 1]) / 6;
-                    sourcePixels[row][col] = average;
+                    blur[row][col] = average;
                 }
             }
         }
-
+        previous.add(blur);
+        sourcePixels = blur;
         return sourcePixels;
 
     }
