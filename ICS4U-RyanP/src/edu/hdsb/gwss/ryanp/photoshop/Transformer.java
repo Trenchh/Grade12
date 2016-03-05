@@ -141,6 +141,7 @@ public class Transformer extends Object implements ITransformations {
         }
     }
 
+    //RESET'S PICTURE TO ORIGINAL STATE
     private int[][] copyArray(int[][] sourcePixels) {
         int[][] copy = new int[sourcePixels.length][sourcePixels[0].length];
 
@@ -151,14 +152,16 @@ public class Transformer extends Object implements ITransformations {
         return this.pictureOriginal;
     }
 
+    //UNDOES ALTERATION OF IMAGE
     private int[][] undo() {
-
+        //REMOVES THE ARRAY THAT'S UNDID FROM LIST
         if (previous.size() - 1 > 0) {
             previous.remove(previous.size() - 1);
         }
         return previous.get(previous.size() - 1);
     }
 
+    //DARKENS AND BRIGHTENS IMAGE BY A VALUE OF 10
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
         int[][] intensity = new int[sourcePixels.length][sourcePixels[0].length];
 
@@ -177,6 +180,7 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
+    //SETS EACH PIXEL VALUE TO THE OPPOSITE VALUE
     private int[][] invert(int[][] sourcePixels) {
         int[][] invert = new int[sourcePixels.length][sourcePixels[0].length];
 
@@ -190,6 +194,7 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
+    //PIXELS SWAPPED FROM LEFT TO RIGHT, THEREFORE FLIPPING IMAGE FROM LEFT TO RIGHT AND VICE VERSA
     private int[][] flipX(int[][] sourcePixels) {
         int[][] flipX = new int[sourcePixels.length][sourcePixels[0].length];
 
@@ -204,6 +209,8 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
+    //PIXELS SWAPPED FROM TOP TO BOTTOM, THEREFORE FLIPPING IMAGE FROM TOP TO BOTTOM AND VICE VERSA
+
     private int[][] flipY(int[][] sourcePixels) {
         int[][] flipY = new int[sourcePixels.length][sourcePixels[0].length];
 
@@ -216,6 +223,8 @@ public class Transformer extends Object implements ITransformations {
         sourcePixels = flipY;
         return sourcePixels;
     }
+
+    //ROTATES IMAGE CLOCKWISE BY 90 DEGREES
 
     private int[][] rotate(int[][] sourcePixels) {
         int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
@@ -230,6 +239,7 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
+    //IMAGE IS REPEATED ON OPPOSITE X AXIS 
     private int[][] mirror(int[][] sourcePixels) {
 
         int[][] mirror = new int[sourcePixels.length][sourcePixels[0].length * 2];
@@ -249,6 +259,7 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
+    //IMAGE CONDENSED TO HALF THE SIZE, SKIP EVERY OTHER PIXEL
     private int[][] scale50(int[][] sourcePixels) {
         if (sourcePixels.length > 2 && sourcePixels[0].length > 2) {
 
@@ -272,6 +283,7 @@ public class Transformer extends Object implements ITransformations {
         return sourcePixels;
     }
 
+    //AVERAGE VALUE OF PIXELS BORDERING CERTAIN PIXEL IS CALCULATED AND SET TO 'THAT' PIXEL
     private int[][] blur(int[][] sourcePixels) {
         int[][] blur = new int[sourcePixels.length][sourcePixels[0].length];
         int corner;
