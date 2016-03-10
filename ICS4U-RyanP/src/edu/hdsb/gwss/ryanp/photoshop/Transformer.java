@@ -198,7 +198,7 @@ public class Transformer extends Object implements ITransformations {
     private int[][] flipX(int[][] sourcePixels) {
         int[][] flipX = new int[sourcePixels.length][sourcePixels[0].length];
 
-        for (int row = 0; row < sourcePixels.length; row++) {
+        for (int row = 0; row < sourcePixels.length - row; row++) {
             for (int col = 0; col < sourcePixels[row].length; col++) {
                 flipX[row][col] = sourcePixels[row][sourcePixels[row].length - (col + 1)];
 
@@ -210,7 +210,6 @@ public class Transformer extends Object implements ITransformations {
     }
 
     //PIXELS SWAPPED FROM TOP TO BOTTOM, THEREFORE FLIPPING IMAGE FROM TOP TO BOTTOM AND VICE VERSA
-
     private int[][] flipY(int[][] sourcePixels) {
         int[][] flipY = new int[sourcePixels.length][sourcePixels[0].length];
 
@@ -225,7 +224,6 @@ public class Transformer extends Object implements ITransformations {
     }
 
     //ROTATES IMAGE CLOCKWISE BY 90 DEGREES
-
     private int[][] rotate(int[][] sourcePixels) {
         int[][] rotate = new int[sourcePixels[0].length][sourcePixels.length];
 
