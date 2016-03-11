@@ -30,6 +30,7 @@ public class TestReview {
         while (x.hasMoreTokens()) {
             System.out.println(x.nextToken());
         }
+
         System.out.println();
 
         System.out.println((int) dub);
@@ -90,5 +91,4 @@ public class TestReview {
         System.out.println(total);
 
     }
-
 }
