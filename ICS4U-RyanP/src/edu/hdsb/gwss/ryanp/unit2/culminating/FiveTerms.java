@@ -17,10 +17,15 @@ public class FiveTerms {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        
-        
-        
+
     }
-    
+
+    public static void SequenceOne() {
+
+    }
+
+    public static void SequenceTwo() {
+
+    }
+
 }
