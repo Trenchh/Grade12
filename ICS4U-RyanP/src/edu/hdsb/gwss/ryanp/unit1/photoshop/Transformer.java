@@ -2,7 +2,7 @@
  * Name: Transformer.java
  * Author: Ryan Protheroe
  */
-package edu.hdsb.gwss.ryanp.photoshop;
+package edu.hdsb.gwss.ryanp.unit1.photoshop;
 
 import becker.xtras.imageTransformation.ITransformations;
 import java.util.ArrayList;

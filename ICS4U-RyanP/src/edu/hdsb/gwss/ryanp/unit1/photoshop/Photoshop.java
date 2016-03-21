@@ -1,6 +1,6 @@
-package edu.hdsb.gwss.ryanp.photoshop;
+package edu.hdsb.gwss.ryanp.unit1.photoshop;
 
-import edu.hdsb.gwss.ryanp.photoshop.Transformer;
+import edu.hdsb.gwss.ryanp.unit1.photoshop.Transformer;
 import becker.xtras.imageTransformation.ITransformations;
 import becker.xtras.imageTransformation.ImageTransformerGUI;
 
