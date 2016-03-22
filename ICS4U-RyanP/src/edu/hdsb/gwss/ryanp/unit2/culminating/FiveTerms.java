@@ -20,13 +20,13 @@ public class FiveTerms {
      */
     public static void main(String[] args) {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        
+
         for (int i = 1; i <= 5; i++) {
             System.out.println("Term " + i + ": " + SequenceOne(i));
         }
-        
+
         System.out.println();
-        
+
         for (int i = 1; i <= 5; i++) {
             System.out.println("Term " + i + ": " + decimalFormat.format(SequenceTwo(i)));
         }
