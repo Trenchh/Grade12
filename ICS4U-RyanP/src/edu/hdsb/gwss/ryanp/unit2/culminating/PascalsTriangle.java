@@ -3,7 +3,7 @@
  * Date: March 23rd, 2016
  * Version: v0.1
  * Author: Ryan Protheroe
- * Description: Displays pascals triangle
+ * Description: Displays pascals triangle up decided row
  */
 package edu.hdsb.gwss.ryanp.unit2.culminating;
 
@@ -23,10 +23,8 @@ public class PascalsTriangle {
     public static int term(int row, int col) {
         if (row < 2 || col == 0 || col == row) {
             return 1;
-
         } else {
             return term(row - 1, col) + term(row - 1, col - 1);
-
         }
     }
 
@@ -35,8 +33,6 @@ public class PascalsTriangle {
             for (int col = 0; col < (k + 1); col++) {
                 System.out.print(term(k, col) + " ");
             }
-            
-
             System.out.println();
         }
 
