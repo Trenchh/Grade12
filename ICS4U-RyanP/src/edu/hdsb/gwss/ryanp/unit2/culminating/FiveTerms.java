@@ -39,9 +39,7 @@ public class FiveTerms {
             return 3;
         } else {
             return SequenceOne((t - 1)) + SequenceOne((t - 2));
-
         }
-
     }
 
     public static double SequenceTwo(int t) {
@@ -50,6 +48,5 @@ public class FiveTerms {
         } else {
             return Math.sqrt((3 * SequenceTwo(t - 1)) + 4);
         }
-
     }
 }
