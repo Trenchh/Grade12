@@ -32,12 +32,10 @@ public class LetMeOut {
      * Display the current maze.
      */
     public void findExitFrom(int row, int col) {
-        while (SUCCESSFUL == false) {
-            up(row, col, SUCCESSFUL);
-            down(row, col, SUCCESSFUL);
-            left(row, col, SUCCESSFUL);
-            right(row, col, SUCCESSFUL);
-        }
+        up(row, col, SUCCESSFUL);
+        down(row, col, SUCCESSFUL);
+        left(row, col, SUCCESSFUL);
+        right(row, col, SUCCESSFUL);
 
     }
 
@@ -88,49 +86,67 @@ public class LetMeOut {
     }
 
     public int up(int row, int col, boolean SUCCESSFUL) {
-        if ("X".equals(Integer.toString(maze[row + 1][col]))) {
-            SUCCESSFUL = true;
-            maze[row + 1][col] = GOOD_PATH;
-        }
-        else if (".".equals(Integer.toString(maze[row + 1][col]))) {
-            maze[row + 1][col] = TRIED;
-            row = row + 1;
+        if (SUCCESSFUL == false) {
+            switch (maze[row + 1][col]) {
+                case EXIT:
+                    SUCCESSFUL = true;
+                    maze[row + 1][col] = GOOD_PATH;
+                    break;
+                case OPEN:
+                    maze[row + 1][col] = TRIED;
+                    row = row + 1;
+                    break;
+            }
         }
         return row & col;
     }
 
     public int down(int row, int col, boolean SUCCESSFUL) {
-        if ("X".equals(Integer.toString(maze[row - 1][col]))) {
-            SUCCESSFUL = true;
-            maze[row - 1][col] = GOOD_PATH;
-        }
-        else if (".".equals(Integer.toString(maze[row - 1][col]))) {
-            maze[row - 1][col] = TRIED;
-            row = row - 1;
+        if (SUCCESSFUL == false) {
+            switch (maze[row - 1][col]) {
+                case EXIT:
+                    SUCCESSFUL = true;
+                    maze[row - 1][col] = GOOD_PATH;
+                    break;
+                case OPEN:
+                    maze[row - 1][col] = TRIED;
+                    row = row - 1;
+                    break;
+            }
         }
         return row & col;
     }
 
     public int left(int row, int col, boolean SUCCESSFUL) {
-        if ("X".equals(Integer.toString(maze[row][col + 1]))) {
-            SUCCESSFUL = true;
-            maze[row][col + 1] = GOOD_PATH;
+        if (SUCCESSFUL == false) {
+
+            switch (maze[row][col + 1]) {
+                case EXIT:
+                    SUCCESSFUL = true;
+                    maze[row][col + 1] = GOOD_PATH;
+                    break;
+                case OPEN:
+                    maze[row][col + 1] = TRIED;
+                    col = col + 1;
+                    break;
+            }
         }
-        else if (".".equals(Integer.toString(maze[row][col + 1]))) {
-            maze[row][col + 1] = TRIED;
-            col = col + 1;
-        }
+
         return row & col;
     }
 
     public int right(int row, int col, boolean SUCCESSFUL) {
-        if ("X".equals(Integer.toString(maze[row][col - 1]))) {
-            SUCCESSFUL = true;
-            maze[row][col - 1] = GOOD_PATH;
-        }
-        else if (".".equals(Integer.toString(maze[row][col - 1]))) {
-            maze[row][col - 1] = TRIED;
-            col = col - 1;
+        if (SUCCESSFUL == false) {
+            switch (maze[row][col - 1]) {
+                case EXIT:
+                    SUCCESSFUL = true;
+                    maze[row][col - 1] = GOOD_PATH;
+                    break;
+                case OPEN:
+                    maze[row][col - 1] = TRIED;
+                    col = col - 1;
+                    break;
+            }
         }
         return row & col;
     }
