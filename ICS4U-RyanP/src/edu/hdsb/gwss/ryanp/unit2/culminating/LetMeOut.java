@@ -82,16 +82,16 @@ public class LetMeOut {
 
     }
 
-    public boolean up(int row, int col) {
-        if (Integer.toString(row + 1) == "X") {
-            return true;
+    public int up(int row, int col) {
+        if (Integer.toString(maze[row + 1][col]) == "X") {
+            return row & col;
         } else {
-            return false;
+            return row & col;
         }
     }
 
     public boolean down(int row, int col) {
-        if (Integer.toString(row - 1) == "X") {
+        if (Integer.toString(maze[row - 1][col]) == "X") {
             return true;
         } else {
             return false;
@@ -99,7 +99,7 @@ public class LetMeOut {
     }
 
     public boolean right(int row, int col) {
-        if (Integer.toString(col + 1) == "X") {
+        if (Integer.toString(maze[row][col + 1]) == "X") {
             return true;
         } else {
             return false;
@@ -107,7 +107,7 @@ public class LetMeOut {
     }
 
     public boolean left(int row, int col) {
-        if (Integer.toString(col - 1) == "X") {
+        if (Integer.toString(maze[row][col - 1]) == "X") {
             return true;
         } else {
             return false;
