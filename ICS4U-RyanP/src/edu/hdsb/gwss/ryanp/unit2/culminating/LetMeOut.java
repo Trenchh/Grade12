@@ -82,4 +82,36 @@ public class LetMeOut {
 
     }
 
+    public boolean up(int row, int col) {
+        if (Integer.toString(row + 1) == "X") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean down(int row, int col) {
+        if (Integer.toString(row - 1) == "X") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean right(int row, int col) {
+        if (Integer.toString(col + 1) == "X") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean left(int row, int col) {
+        if (Integer.toString(col - 1) == "X") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
