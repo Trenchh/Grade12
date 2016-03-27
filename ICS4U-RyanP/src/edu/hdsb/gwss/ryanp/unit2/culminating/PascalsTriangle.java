@@ -7,6 +7,8 @@
  */
 package edu.hdsb.gwss.ryanp.unit2.culminating;
 
+import java.util.Scanner;
+
 /**
  *
  * @author 1protheroery
@@ -17,7 +19,11 @@ public class PascalsTriangle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        row(7);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter how many rows you would like to display?");
+        int display = input.nextInt();
+
+        row(display);
     }
 
     public static int term(int row, int col) {
@@ -31,7 +37,7 @@ public class PascalsTriangle {
     public static void row(int row) {
         for (int k = 0; k < row; k++) {
             for (int col = 0; col < (k + 1); col++) {
-                System.out.print(term(k, col) + " ");
+                System.out.println(term(k, col) + " ");
             }
             System.out.println();
         }
