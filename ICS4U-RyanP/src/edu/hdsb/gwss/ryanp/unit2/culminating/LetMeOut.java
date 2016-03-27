@@ -16,6 +16,7 @@ public class LetMeOut {
     private static final char OPEN = '.';
     private static final char TRIED = '-';
     private static final char GOOD_PATH = '+';
+    private static final boolean FOUND = false;
 
     private char[][] maze = {
         {'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
@@ -82,36 +83,59 @@ public class LetMeOut {
 
     }
 
-    public int up(int row, int col) {
+    public int up(int row, int col, boolean FOUND) {
         if (Integer.toString(maze[row + 1][col]) == "X") {
+            FOUND = true;
+            row = row + 1;
+            return row & col;
+        } else if (Integer.toString(maze[row + 1][col]) == "W" || Integer.toString(maze[row + 1][col]) == "-") {
             return row & col;
         } else {
+            maze[row + 1][col] = TRIED;
+            row = row + 1;
             return row & col;
         }
     }
 
-    public boolean down(int row, int col) {
+    public int down(int row, int col, boolean FOUND) {
         if (Integer.toString(maze[row - 1][col]) == "X") {
-            return true;
+            FOUND = true;
+            row = row - 1;
+            return row & col;
+        } else if (Integer.toString(maze[row - 1][col]) == "W" || Integer.toString(maze[row - 1][col]) == "-") {
+            return row & col;
         } else {
-            return false;
+            maze[row - 1][col] = TRIED;
+            row = row - 1;
+            return row & col;
         }
     }
 
-    public boolean right(int row, int col) {
+    public int right(int row, int col, boolean FOUND) {
         if (Integer.toString(maze[row][col + 1]) == "X") {
-            return true;
+            FOUND = true;
+            col = col + 1;
+            return row & col;
+        } else if (Integer.toString(maze[row][col + 1]) == "W" || Integer.toString(maze[row][col + 1]) == "-") {
+            return row & col;
         } else {
-            return false;
+            maze[row][col + 1] = TRIED;
+            col = col + 1;
+            return row & col;
         }
     }
 
-    public boolean left(int row, int col) {
+    public int left(int row, int col, boolean FOUND) {
         if (Integer.toString(maze[row][col - 1]) == "X") {
-            return true;
+            FOUND = true;
+            col = col - 1;
+            return row & col;
+        } else if (Integer.toString(maze[row][col - 1]) == "W" || Integer.toString(maze[row][col - 1]) == "-") {
+            return row & col;
         } else {
-            return false;
+            maze[row][col - 1] = TRIED;
+            col = col - 1;
+            return row & col;
         }
     }
-
 }
