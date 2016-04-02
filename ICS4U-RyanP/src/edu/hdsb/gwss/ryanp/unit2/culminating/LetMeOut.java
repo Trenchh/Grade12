@@ -56,7 +56,7 @@ public class LetMeOut {
         System.out.println("START LOCATION: (" + row + "," + col + ")");
         findExitFrom(row, col);
 
-        // SHOW EXIT
+        // SHOW EXIT  
         displayMaze();
 
     }
