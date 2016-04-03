@@ -23,6 +23,8 @@ public class PascalsTriangle {
         System.out.println("Enter how many rows you would like to display?");
         int display = input.nextInt();
 
+        System.out.println("----------------------------------------------");
+
         row(display);
     }
 
@@ -36,11 +38,17 @@ public class PascalsTriangle {
 
     public static void row(int row) {
         for (int k = 0; k < row; k++) {
+            for (int i = 0; i < row - k; i++) {
+                System.out.print(" ");
+            }
             for (int col = 0; col < (k + 1); col++) {
-                System.out.println(term(k, col) + " ");
+                if (term(k, col + 1) < 10) {
+                    System.out.print(term(k, col) + "  ");
+                } else {
+                    System.out.print(term(k, col) + " ");
+                }
             }
             System.out.println();
         }
-
     }
 }
