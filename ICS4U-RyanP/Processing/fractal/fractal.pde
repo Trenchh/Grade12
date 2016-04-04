@@ -1,18 +1,29 @@
-int hOffset = 50;
-int vOffset = 50;
+int increase = 3;
 
 void setup() {
   size(1000, 800);
   background(300);
   smooth();
-  recursion(25, 25, width - hOffset, height - vOffset, 20);
+  frameRate(60);
+  //recursion(500,400,500,400,500,400,500,400,100);
+    recursion(0,0,1000,0,1000,800,0,800,100);
 }
 
-void recursion(float a, float b, float w, float h, int i) {
+//void recursion(float a, float b, float c, float d, float e, float f, float g, float h, int i) {
+//  if (i > 0) {
+//    noFill();
+//    randomColor();
+//    quad(a, b, c, d, e, f, g, h);
+//    recursion(a - increase, b + increase, c + increase, d + increase, e + increase, f - increase, g - increase, h - increase, i-1);
+//  }
+//}
+
+void recursion(float a, float b, float c, float d, float e, float f, float g, float h, int i) {
   if (i > 0) {
     noFill();
     randomColor();
-    rect(a, b, w, h);
+    quad(a, b, c, d, e, f, g, h);
+    recursion(a - increase, b + increase, c + increase, d + increase, e + increase, f - increase, g - increase, h - increase, i-1);
   }
 }
 
