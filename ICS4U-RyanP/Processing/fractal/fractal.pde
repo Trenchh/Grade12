@@ -1,4 +1,3 @@
-int lineLength = 100;
 int increase = 3;
 
 void setup() {
