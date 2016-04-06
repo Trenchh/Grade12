@@ -22,14 +22,23 @@ public class FiveTerms {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
         for (int i = 1; i <= 5; i++) {
-            System.out.println("Term " + i + ": " + SequenceOne(i));
+            if (i < 1) {
+                System.out.println("Invalid Input");
+            } else {
+                System.out.println("Term " + i + ": " + SequenceOne(i));
+            }
         }
 
         System.out.println();
 
         for (int i = 1; i <= 5; i++) {
-            System.out.println("Term " + i + ": " + decimalFormat.format(SequenceTwo(i)));
+            if (i < 1) {
+                System.out.println("Invalid Input");
+            } else {
+                System.out.println("Term " + i + ": " + decimalFormat.format(SequenceTwo(i)));
+            }
         }
+
     }
 
     public static int SequenceOne(int t) {
