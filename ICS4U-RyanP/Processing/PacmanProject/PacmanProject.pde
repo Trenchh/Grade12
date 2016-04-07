@@ -20,4 +20,5 @@ void draw() {
   } else {
     open = true;
     msPacman.pacManRightClosed();
-  }
+  }  
+}
