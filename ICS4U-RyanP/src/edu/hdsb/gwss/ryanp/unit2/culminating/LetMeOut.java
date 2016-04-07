@@ -16,7 +16,6 @@ public class LetMeOut {
     private static final char OPEN = '.';
     private static final char TRIED = '-';
     private static final char GOOD_PATH = '+';
-    private static final boolean SUCCESSFUL = false;
 
     private char[][] maze = {
         {'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
@@ -31,12 +30,10 @@ public class LetMeOut {
     /**
      * Display the current maze.
      */
-    public void findExitFrom(int row, int col) {
-        up(row, col, SUCCESSFUL);
-        down(row, col, SUCCESSFUL);
-        left(row, col, SUCCESSFUL);
-        right(row, col, SUCCESSFUL);
+    public boolean findExitFrom(int row, int col) {
+        boolean successful = false;
 
+        return successful;
     }
 
     /**
@@ -56,7 +53,7 @@ public class LetMeOut {
         System.out.println("START LOCATION: (" + row + "," + col + ")");
         findExitFrom(row, col);
 
-        // SHOW EXIT  
+        // SHOW EXIT
         displayMaze();
 
     }
@@ -85,70 +82,4 @@ public class LetMeOut {
 
     }
 
-    public int up(int row, int col, boolean SUCCESSFUL) {
-        if (SUCCESSFUL == false) {
-            switch (maze[row + 1][col]) {
-                case EXIT:
-                    SUCCESSFUL = true;
-                    maze[row + 1][col] = GOOD_PATH;
-                    break;
-                case OPEN:
-                    maze[row + 1][col] = TRIED;
-                    row = row + 1;
-                    break;
-            }
-        }
-        return row & col;
-    }
-
-    public int down(int row, int col, boolean SUCCESSFUL) {
-        if (SUCCESSFUL == false) {
-            switch (maze[row - 1][col]) {
-                case EXIT:
-                    SUCCESSFUL = true;
-                    maze[row - 1][col] = GOOD_PATH;
-                    break;
-                case OPEN:
-                    maze[row - 1][col] = TRIED;
-                    row = row - 1;
-                    break;
-            }
-        }
-        return row & col;
-    }
-
-    public int left(int row, int col, boolean SUCCESSFUL) {
-        if (SUCCESSFUL == false) {
-
-            switch (maze[row][col + 1]) {
-                case EXIT:
-                    SUCCESSFUL = true;
-                    maze[row][col + 1] = GOOD_PATH;
-                    break;
-                case OPEN:
-                    maze[row][col + 1] = TRIED;
-                    col = col + 1;
-                    break;
-            }
-        }
-
-        return row & col;
-    }
-
-    public int right(int row, int col, boolean SUCCESSFUL) {
-        if (SUCCESSFUL == false) {
-            switch (maze[row][col - 1]) {
-                case EXIT:
-                    SUCCESSFUL = true;
-                    maze[row][col - 1] = GOOD_PATH;
-                    break;
-                case OPEN:
-                    maze[row][col - 1] = TRIED;
-                    col = col - 1;
-                    break;
-            }
-        }
-        return row & col;
-    }
 }
- 
