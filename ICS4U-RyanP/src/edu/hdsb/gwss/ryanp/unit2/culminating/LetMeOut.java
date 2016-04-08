@@ -3,7 +3,7 @@
  * Date: March 23rd, 2016
  * Version: v0.1
  * Author: Ryan Protheroe
- * Description: 
+ * Description: Locates and creates path to exit of the maze
  */
 package edu.hdsb.gwss.ryanp.unit2.culminating;
 
@@ -32,7 +32,36 @@ public class LetMeOut {
      */
     public boolean findExitFrom(int row, int col) {
         boolean successful = false;
-
+        if (maze[row][col] == EXIT) {
+            successful = true;
+            return successful;
+        }
+        if (maze[row][col] != OPEN) {
+            successful = false;
+            return successful;
+        }
+        maze[row][col] = GOOD_PATH;
+        if (findExitFrom(row + 1, col) == true) {
+            maze[row][col] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+        if (findExitFrom(row - 1, col) == true) {
+            maze[row][col] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+        if (findExitFrom(row, col + 1) == true) {
+            maze[row][col] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+        if (findExitFrom(row, col - 1) == true) {
+            maze[row][col] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+        maze[row][col] = OPEN;
         return successful;
     }
 

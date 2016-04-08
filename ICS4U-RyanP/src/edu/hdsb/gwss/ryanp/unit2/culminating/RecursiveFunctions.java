@@ -3,7 +3,7 @@
  * Date: March 23rd, 2016
  * Version: v0.1
  * Author: Ryan Protheroe
- * Description: 
+ * Description: outputs functions based on values
  */
 package edu.hdsb.gwss.ryanp.unit2.culminating;
 
