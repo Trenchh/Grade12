@@ -5,6 +5,7 @@ boolean open = true;
 void setup() {
   size(800, 800);
   smooth();
+  frameRate(8);
 }
 
 void draw() {

@@ -50,14 +50,14 @@ public class Pacman {
   }
 
   public void display() {
-    //pacman.erasePacMan();
-    //if (open) {
-    //  open = false;
-    //  pacman.pacManRightOpen();
-    //} else {
-    //  open = true;
-    //  pacman.pacManRightClosed();
-    //}
+    pacman.erasePacMan();
+    if (open) {
+     open = false;
+     pacman.pacManRightOpen();
+    } else {
+     open = true;
+     pacman.pacManRightClosed();
+    }
     rect(xLoc, yLoc, 30, 10);
     fill(colour);
   }
