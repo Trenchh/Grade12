@@ -10,6 +10,5 @@ void setup() {
 void draw() {
   background(38, 125, 180);
   msPacman.display();
-  msPacman.move();
-  
+  msPacman.moveLeft();
 }
