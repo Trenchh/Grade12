@@ -1,15 +1,14 @@
-Pacman pacman = new Pacman();
 Pacman msPacman = new Pacman( 200, 200 );
-boolean open = true;
 
 void setup() {
-  size(800, 800);
+  size(1000, 800);
   smooth();
-  frameRate(8);
+  frameRate(30);
 }
 
 void draw() {
+  delay(100);
   background(38, 125, 180);
   msPacman.display();
-  msPacman.moveLeft();
+  msPacman.move();
 }

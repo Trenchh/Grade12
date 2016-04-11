@@ -10,7 +10,10 @@ public class Pacman {
   private int lives;
   private boolean poweredUp;
   private boolean isAlive;
-
+  private boolean isOpen = true;
+  private int radians = 30;
+  private int xOff = 17;
+  private int yOff = -22;
   public Pacman() {
   }
 
@@ -20,45 +23,55 @@ public class Pacman {
     this.lives = 3;
   }
 
-
-  public void moveRight() {
-    this.xLoc = this.xLoc + 3;
-    if (this.xLoc > width) {
-      this.xLoc = 0;
-    }
-  }
-
-  public void moveLeft() {
-    this.xLoc = this.xLoc - 3;
-    if (this.xLoc < 0) {
-      this.xLoc = width;
-    }
-  }
-
-  public void moveUp() {
-    this.yLoc = this.yLoc - 3;
-    if (this.yLoc < 0) {
-      this.yLoc = height;
-    }
-  }
-
-  public void moveDown() {
-    this.yLoc = this.yLoc + 3;
-    if (this.yLoc > height) {
-      this.yLoc = 0;
+  public void move() {
+    if (key == CODED) {
+      if (keyCode == UP) {
+        this.yLoc = yLoc - 5;
+        radians = 300;
+        xOff = 19;
+        yOff = -13;
+        if (this.yLoc < 0) {
+          this.yLoc = height;
+        }
+      }
+      if (keyCode == DOWN) {
+        this.yLoc = yLoc + 5;
+        radians = 120;
+        xOff = 19;
+        yOff = 13;
+        if (this.yLoc > height) {
+          this.yLoc = 0;
+        }
+      }
+      if (keyCode == LEFT) {
+        this.xLoc = xLoc - 5;
+        radians = 210;
+        xOff = -17;
+        yOff = -22;
+        if (this.xLoc < 0) {
+          this.xLoc = width;
+        }
+      }
+      if (keyCode == RIGHT) {
+        this.xLoc = xLoc + 5;
+        radians = 30;
+        xOff = 17;
+        yOff = -22;
+        if (this.xLoc > width) {
+          this.xLoc = 0;
+        }
+      }
     }
   }
 
   public void display() {
-    pacman.erasePacMan();
-    if (open) {
-     open = false;
-     pacman.pacManRightOpen();
-    } else {
-     open = true;
-     pacman.pacManRightClosed();
+    fill(colour);  
+    if (this.isOpen) {
+      pacman.pacManOpen(xLoc, yLoc, radians, xOff, yOff );
+      this.isOpen = false;
+    } else if (this.isOpen == false) {
+      pacman.pacManClosed(xLoc, yLoc, xOff, yOff);
+      this.isOpen = true;
     }
-    rect(xLoc, yLoc, 30, 10);
-    fill(colour);
   }
 }
