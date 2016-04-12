@@ -26,7 +26,7 @@ public class Pacman {
   public void move() {
     if (key == CODED) {
       if (keyCode == UP) {
-        this.yLoc = yLoc - 5;
+        this.yLoc = yLoc - 10;
         radians = 300;
         xOff = 19;
         yOff = -13;
@@ -35,7 +35,7 @@ public class Pacman {
         }
       }
       if (keyCode == DOWN) {
-        this.yLoc = yLoc + 5;
+        this.yLoc = yLoc + 10;
         radians = 120;
         xOff = 19;
         yOff = 13;
@@ -44,7 +44,7 @@ public class Pacman {
         }
       }
       if (keyCode == LEFT) {
-        this.xLoc = xLoc - 5;
+        this.xLoc = xLoc - 10;
         radians = 210;
         xOff = -17;
         yOff = -22;
@@ -53,7 +53,7 @@ public class Pacman {
         }
       }
       if (keyCode == RIGHT) {
-        this.xLoc = xLoc + 5;
+        this.xLoc = xLoc + 10;
         radians = 30;
         xOff = 17;
         yOff = -22;
