@@ -25,7 +25,7 @@ public class Toy {
 
     private String name;
     private int ageRange;
-    private String ModelNumber;
+    private String modelNumber;
     private int storeID;
     private double price;
     private boolean sold;
@@ -37,6 +37,8 @@ public class Toy {
         this.sold = false;
         this.setPrice(NOT_SET);
         this.ageRange = KID;
+        this.setModelNumber(modelNumber);
+        System.out.println("OBJECT CREATED");
     }
 
     public Toy(String name) {
@@ -84,12 +86,12 @@ public class Toy {
     }
 
     public String getModelNumber() {
-        return ModelNumber;
+        return modelNumber;
     }
 
-    public void setModelNumber(String ModelNumber) {
+    private void setModelNumber(String ModelNumber) {
         //RANDOMIZER
-        this.ModelNumber = ModelNumber;
+        this.modelNumber = ModelNumber;
     }
 
     public double getPrice() {
@@ -104,7 +106,7 @@ public class Toy {
     public void setPrice(double price) {
         if (price == -1) {
             System.out.println("Price not set");
-        } else if (price < 0) {
+        } else if (price <= 0) {
             System.out.println("Invalid price");
         } else {
             this.price = price;
@@ -112,6 +114,7 @@ public class Toy {
     }
 
     public int getAgeRange() {
+
         return ageRange;
     }
 
@@ -149,7 +152,7 @@ public class Toy {
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.ModelNumber, other.ModelNumber)) {
+        if (!Objects.equals(this.modelNumber, other.modelNumber)) {
             return false;
         }
         if (this.storeID != other.storeID) {
@@ -164,10 +167,26 @@ public class Toy {
         return true;
     }
 
-//    public boolean isValid(Toy toy) {
-//        if () {
-//            return true;
-//        }
-//    }
+    public boolean isValid(Toy toy) {
+        if (this.name != null) {
+            return true;
+        }
+        if (this.manufacturer != null) {
+            return true;
+        }
+        if (this.price != 0) {
+            return true;
+        }
+        if (this.storeID <= storeID && this.storeID >= 0) {
+            return true;
+        }
+        if (this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() == 8) {
+            return true;
+        }
+        if (ageRange <= 4 && ageRange > 0) {
+            return true;
+        }
+        return false;
+    }
 
 }
