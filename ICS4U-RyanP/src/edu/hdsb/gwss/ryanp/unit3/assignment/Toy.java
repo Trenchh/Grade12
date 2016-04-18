@@ -5,18 +5,26 @@
  */
 package edu.hdsb.gwss.ryanp.unit3.assignment;
 
+import java.util.Objects;
+
 /**
  *
  * @author 1protheroery
  */
 public class Toy {
 
-    //CLASS CONSTANT
-    // private static final String MANUFACTURER = Manufacturer.getName();
+    //CLASS CONSTANTS
+    private static final int BABY = 1;
+    private static final int TODDLER = 2;
+    private static final int KID = 3;
+    private static final int TEEN = 4;
+    private static final int NOT_SET = -1;
+
     //CLASS VARIABLE
     private static int lastIDUsed = 0;
 
     private String name;
+    private int ageRange;
     private String ModelNumber;
     private int storeID;
     private double price;
@@ -25,9 +33,10 @@ public class Toy {
 
     public Toy() {
         this.storeID = ++lastIDUsed;
-        this.setName("Toy #" + this.storeID );
+        this.setName("Toy #" + this.storeID);
         this.sold = false;
-        this.setPrice(-1);
+        this.setPrice(NOT_SET);
+        this.ageRange = KID;
     }
 
     public Toy(String name) {
@@ -35,14 +44,22 @@ public class Toy {
         this.setName(name);
     }
 
-    public Toy(String name, double price) {
+//
+//    public Toy(String name, double price) {
+//        this(name);
+//        this.setPrice(price);
+//    }
+//
+//    public Toy(String name, int storeID, double price) {
+//        this(name, price);
+//        this.storeID = storeID;
+//    }
+    public Toy(String name, int ageRange, int storeID, double price) {
+        // this(name, storeID, price);
         this(name);
-        this.setPrice(price);
-    }
-
-    public Toy(String name, int storeID, double price) {
-        this(name, price);
         this.storeID = storeID;
+        this.price = price;
+        this.ageRange = ageRange;
     }
 
     public Manufacturer getManufacturer() {
@@ -53,8 +70,6 @@ public class Toy {
         this.manufacturer = manufacturer;
     }
 
-    
-    
     public String getName() {
         return name;
     }
@@ -89,12 +104,70 @@ public class Toy {
     public void setPrice(double price) {
         if (price == -1) {
             System.out.println("Price not set");
-        }
-        if (price < 0) {
+        } else if (price < 0) {
             System.out.println("Invalid price");
         } else {
             this.price = price;
         }
     }
+
+    public int getAgeRange() {
+        return ageRange;
+    }
+
+    public void setAgeRange(int ageRange) {
+        this.ageRange = ageRange;
+    }
+
+    public boolean isSold() {
+        return sold;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
+
+    @Override
+    public String toString() {
+        return "test";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    public boolean equals(Toy toy) {
+        if (toy == null) {
+            return false;
+        }
+        if (getClass() != toy.getClass()) {
+            return false;
+        }
+        final Toy other = (Toy) toy;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.ModelNumber, other.ModelNumber)) {
+            return false;
+        }
+        if (this.storeID != other.storeID) {
+            return false;
+        }
+        if (this.sold != other.sold) {
+            return false;
+        }
+        if (!Objects.equals(this.manufacturer, other.manufacturer)) {
+            return false;
+        }
+        return true;
+    }
+
+//    public boolean isValid(Toy toy) {
+//        if () {
+//            return true;
+//        }
+//    }
 
 }

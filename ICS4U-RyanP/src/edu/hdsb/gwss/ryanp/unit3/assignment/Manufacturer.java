@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class Manufacturer {
 
     //private static final int  = 0;
-
     private static int locationNumber = 0;
 
     private String name;
@@ -22,14 +21,13 @@ public class Manufacturer {
     private double sales;
     private boolean inBusiness;
     private ArrayList<Toy> products;
-    //public ArrayList<String[][]> products = new ArrayList<String[][]>();
 
     public Manufacturer() {
         this.products = new ArrayList<Toy>();
         this.inBusiness = true;
         this.location = locationNumber++;
         this.sales = 0;
-        this.name = "Toy Store #" + locationNumber;
+        this.name = "Manufacturer #" + locationNumber;
     }
 
     public Manufacturer(String name) {
@@ -54,15 +52,13 @@ public class Manufacturer {
         return products;
     }
 
-    
-    public void add( Toy toy ) {
-        
+    public void add(Toy toy) {
         // ADD TOY IF:
         //  - not null
         //  - is valid
         //  - doesn't alreay exist;
         this.products.add(toy);
-        
+
     }
-    
+
 }

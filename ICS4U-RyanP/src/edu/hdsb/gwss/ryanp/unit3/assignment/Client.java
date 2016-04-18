@@ -16,24 +16,23 @@ public class Client {
      */
     public static void main(String[] args) {
 
-        Manufacturer matel = new Manufacturer( "Matel" );
-        
-        Toy nerfGun = new Toy( "Nerf Gun" );          
-        nerfGun.setManufacturer( matel );
-        Toy barbieDoll = new Toy( "Barnie Doll" );
-        barbieDoll.setManufacturer( matel );
-        
-        System.out.println( nerfGun.getManufacturer().getName() );
-        System.out.println( barbieDoll.getManufacturer().getName() );
-        
-        
+        Manufacturer matel = new Manufacturer("Matel");
+
+        Toy nerfGun = new Toy("Nerf Gun");
+        nerfGun.setManufacturer(matel);
+        Toy barbieDoll = new Toy("Barnie Doll");
+        barbieDoll.setManufacturer(matel);
+
+        System.out.println(nerfGun.getManufacturer().getName());
+        System.out.println(barbieDoll.getManufacturer().getName());
+
         matel.add(nerfGun);
         matel.add(barbieDoll);
         matel.add(barbieDoll);
         matel.add(barbieDoll);
-        System.out.println( matel.getProducts().size() );
-        
-        
+        System.out.println(matel.getProducts().size());
+        System.out.println(nerfGun.toString());
+
     }
-    
+
 }
