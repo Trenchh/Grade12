@@ -23,20 +23,20 @@ public class Toy {
     private boolean sold;
 
     public Toy() {
-        this.name = "Toy #" + lastIDUsed++;
+        this.setName("Toy #" + lastIDUsed++);
         this.sold = false;
         this.storeID = lastIDUsed;
-        this.price = 19.99;
+        this.setPrice(19.99);
     }
 
     public Toy(String name) {
         this();
-        this.name = name;
+        this.setName(name);
     }
 
     public Toy(String name, double price) {
         this(name);
-        this.price = price;
+        this.setPrice(price);
     }
 
     public Toy(String name, int storeID, double price) {
