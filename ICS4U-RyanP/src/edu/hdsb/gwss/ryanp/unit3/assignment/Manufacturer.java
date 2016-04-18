@@ -21,9 +21,11 @@ public class Manufacturer {
     private int location;
     private double sales;
     private boolean inBusiness;
-    public ArrayList<String[][]> products = new ArrayList<String[][]>();
+    private ArrayList<Toy> products;
+    //public ArrayList<String[][]> products = new ArrayList<String[][]>();
 
     public Manufacturer() {
+        this.products = new ArrayList<Toy>();
         this.inBusiness = true;
         this.location = locationNumber++;
         this.sales = 0;
@@ -48,4 +50,19 @@ public class Manufacturer {
         this.name = name;
     }
 
+    public ArrayList<Toy> getProducts() {
+        return products;
+    }
+
+    
+    public void add( Toy toy ) {
+        
+        // ADD TOY IF:
+        //  - not null
+        //  - is valid
+        //  - doesn't alreay exist;
+        this.products.add(toy);
+        
+    }
+    
 }

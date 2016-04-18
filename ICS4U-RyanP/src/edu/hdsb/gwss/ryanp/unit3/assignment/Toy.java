@@ -21,12 +21,13 @@ public class Toy {
     private int storeID;
     private double price;
     private boolean sold;
+    private Manufacturer manufacturer;
 
     public Toy() {
-        this.setName("Toy #" + lastIDUsed++);
+        this.storeID = ++lastIDUsed;
+        this.setName("Toy #" + this.storeID );
         this.sold = false;
-        this.storeID = lastIDUsed;
-        this.setPrice(19.99);
+        this.setPrice(-1);
     }
 
     public Toy(String name) {
@@ -44,12 +45,22 @@ public class Toy {
         this.storeID = storeID;
     }
 
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    
+    
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        if (name == null || name.length() > 50) {
+        if (name == null || name.length() > 25) {
             System.out.println("Invalid name");
         } else {
             this.name = name;
@@ -67,10 +78,18 @@ public class Toy {
     }
 
     public double getPrice() {
-        return price;
+        if (price < 0) {
+            System.out.println("Price not set");
+            return -1;
+        } else {
+            return price;
+        }
     }
 
     public void setPrice(double price) {
+        if (price == -1) {
+            System.out.println("Price not set");
+        }
         if (price < 0) {
             System.out.println("Invalid price");
         } else {

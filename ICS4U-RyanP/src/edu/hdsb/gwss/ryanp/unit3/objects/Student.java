@@ -24,7 +24,6 @@ public class Student {
     private int oen;
 
     public Student() {
-
         this.setOen(lastIDUsed++);
         this.oen = lastIDUsed;
     }
