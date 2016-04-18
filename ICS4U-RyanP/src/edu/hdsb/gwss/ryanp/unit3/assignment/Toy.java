@@ -11,10 +11,16 @@ package edu.hdsb.gwss.ryanp.unit3.assignment;
  */
 public class Toy {
 
+    //CLASS CONSTANT
+    private static final String MANUFACTURER = Manufacturer.getName();
+
+    //CLASS VARIABLE
+    private static int lastIDUsed = 0;
+
     private String name;
-    private String manufacturer;
     private String genre;
     private String modelNumber;
     private int price;
+    private boolean sold;
 
 }
