@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Manufacturer {
 
-    private static final int = 0;
-    
+    //private static final int  = 0;
+
     private static int locationNumber = 0;
 
     private String name;
@@ -47,6 +47,5 @@ public class Manufacturer {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

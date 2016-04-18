@@ -12,15 +12,36 @@ package edu.hdsb.gwss.ryanp.unit3.assignment;
 public class Toy {
 
     //CLASS CONSTANT
-    private static final String MANUFACTURER = Manufacturer.getName();
+   // private static final String MANUFACTURER = Manufacturer.getName();
 
     //CLASS VARIABLE
     private static int lastIDUsed = 0;
 
     private String name;
-    private String genre;
-    private String modelNumber;
-    private int price;
+    private int storeID;
+    private double price;
     private boolean sold;
+
+    public Toy() {
+        this.name = "Toy #" + lastIDUsed++;
+        this.sold = false;
+        this.storeID = lastIDUsed;
+        this.price = 19.99;
+    }
+
+    public Toy(String name) {
+        this();
+        this.name = name;
+    }
+
+    public Toy(String name, double price) {
+        this(name);
+        this.price = price;
+    }
+
+    public Toy(String name, int storeID, double price) {
+        this(name, price);
+        this.storeID = storeID;
+    }
 
 }
