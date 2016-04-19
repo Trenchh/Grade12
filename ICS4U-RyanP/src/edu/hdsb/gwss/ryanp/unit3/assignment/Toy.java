@@ -35,11 +35,11 @@ public class Toy {
     private Manufacturer manufacturer;
 
     public Toy() {
-        this.toyID = ++lastIDUsed;
+        this.setToyID(toyID);
         this.setName("Toy #" + this.toyID);
         this.sold = false;
         this.setPrice(NOT_SET);
-        this.ageRange = NOT_SET;
+        this.setAgeRange(ageRange);
         this.setModelNumber(modelNumber);
         System.out.println("OBJECT CREATED");
     }
@@ -52,8 +52,8 @@ public class Toy {
     public Toy(String name, int ageRange, int toyID, double price) {
         this(name);
         this.toyID = toyID;
-        this.price = price;
-        this.ageRange = ageRange;
+        this.setPrice(price);
+        this.setAgeRange(ageRange);
     }
 
     public Manufacturer getManufacturer() {
@@ -81,6 +81,11 @@ public class Toy {
         return modelNumber;
     }
 
+    private int setToyID(int ToyID) {
+        this.toyID = ++lastIDUsed;
+        return toyID;
+    }
+
     public int getToyID() {
         return toyID;
     }
@@ -95,7 +100,7 @@ public class Toy {
     }
 
     public double getPrice() {
-        if (price <= 0) {
+        if (price <= 0 && price != -1) {
             System.out.println("Price not set");
             return NOT_SET;
         } else {
@@ -106,6 +111,7 @@ public class Toy {
     public void setPrice(double price) {
         if (price == NOT_SET) {
             System.out.println("Price not set");
+            this.price = NOT_SET;
         } else if (price <= 0) {
             System.out.println("Invalid price");
         } else {
@@ -158,7 +164,7 @@ public class Toy {
     }
 
     public boolean equals(Toy toy) {
-        if (toy.isValid(toy)) {
+        if (toy.isValid()) {
             if (toy == null) {
                 return false;
             }
@@ -183,22 +189,25 @@ public class Toy {
         return false;
     }
 
-    public boolean isValid(Toy toy) {
-        if (this.name != null) {
-            return true;
+    public boolean isValid() {
+        if (this.name == null || this.name.length() == 0) {
+            System.out.println("Set Name");
+            return false;
         }
-//        if (this.manufacturer != null) {
-//            return true;
-//        }
-//        if (this.price != 0) {
-//            return true;
-//        }
-        if (this.toyID <= toyID && this.toyID >= 0) {
-            return true;
+        if (this.manufacturer == null) {
+            System.out.println("Set Manufacturer");
+            return false;
         }
-        if (this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() == 11) {
-            return true;
+        if (this.price <= 0 && this.price != -1) {
+            System.out.println("Set Price");
+            return false;
         }
-        return false;
+        if (this.toyID <= 0) {
+            return false;
+        }
+        if (!this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() != 11) {
+            return false;
+        }
+        return true;
     }
 }

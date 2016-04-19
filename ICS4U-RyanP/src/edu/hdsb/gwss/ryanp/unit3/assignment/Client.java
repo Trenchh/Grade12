@@ -18,10 +18,12 @@ public class Client {
 
         Manufacturer matel = new Manufacturer("Matel");
 
+        Toy computer = new Toy("Toy");
+
         Toy nerfGun = new Toy("Nerf Gun");
         nerfGun.setManufacturer(matel);
         nerfGun.setAgeRange(3);
-        
+
         Toy barbieDoll = new Toy("Barnie Doll");
         barbieDoll.setManufacturer(matel);
 
@@ -30,11 +32,14 @@ public class Client {
 
         matel.add(nerfGun);
         matel.add(barbieDoll);
-        matel.add(barbieDoll);
-        matel.add(barbieDoll);
-        
+
         System.out.println(matel.getProducts().size());
         System.out.println(nerfGun.toString());
+
+        matel.remove(barbieDoll);
+        System.out.println(matel.getProducts().size());
+
+        matel.get(nerfGun);
 
     }
 

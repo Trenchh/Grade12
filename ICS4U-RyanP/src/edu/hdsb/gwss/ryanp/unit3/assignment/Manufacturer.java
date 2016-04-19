@@ -76,11 +76,30 @@ public class Manufacturer {
     }
 
     public void add(Toy toy) {
-        if (toy.isValid(toy)) {
-            if (products.contains(toy)) {
-            } else {
+        if (toy.isValid()) {
+            if (!products.contains(toy)) {
                 this.products.add(toy);
+                System.out.println("Toy Added");
+
             }
         }
+    }
+
+    public void remove(Toy toy) {
+        if (toy.isValid()) {
+            if (products.contains(toy)) {
+                this.products.remove(toy);
+                System.out.println("Toy Removed");
+            }
+        }
+    }
+
+    public String get(Toy toy) {
+        if (toy.isValid()) {
+            if (products.contains(toy)) {
+                return toy.toString();
+            }
+        }
+        return "NOT FOUND";
     }
 }
