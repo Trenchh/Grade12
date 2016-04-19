@@ -5,6 +5,7 @@
  */
 package edu.hdsb.gwss.ryanp.unit3.assignment;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 /**
@@ -13,9 +14,22 @@ import java.util.ArrayList;
  */
 public class Manufacturer {
 
-    private static int locationNumber = 0;
+    NumberFormat money = NumberFormat.getCurrencyInstance();
+
+    //CLASS CONSTANTS
+    private static final int NORTH_AMERICA = 1;
+    private static final int SOUTH_AMERICA = 2;
+    private static final int EUROPE = 3;
+    private static final int ASIA = 4;
+    private static final int ANTARCTICA = 5;
+    private static final int AFRICA = 6;
+    private static final int AUSTRALIA = 7;
+    private static final int NOT_SET = -1;
+
+    private static int lastIDUsed = 0;
 
     private String name;
+    private int factoryID;
     private int location;
     private double sales;
     private boolean inBusiness;
@@ -24,9 +38,10 @@ public class Manufacturer {
     public Manufacturer() {
         this.products = new ArrayList<Toy>();
         this.inBusiness = true;
-        this.location = locationNumber++;
+        this.factoryID = ++lastIDUsed;
+        this.location = NOT_SET;
         this.sales = 0;
-        this.name = "Manufacturer #" + locationNumber;
+        this.name = "Manufacturer #" + lastIDUsed;
     }
 
     public Manufacturer(String name) {
@@ -51,13 +66,21 @@ public class Manufacturer {
         return products;
     }
 
-    public void add(Toy toy) {
-        // ADD TOY IF:
-        //  - not null
-        //  - is valid
-        //  - doesn't alreay exist;
-        this.products.add(toy);
+    @Override
+    public String toString() {
+        return getName() + " is a toy manufacturer ";
+    }
 
+    public void add(Toy toy) {
+        if (toy.isValid(toy)) {
+            if (products.contains(toy)) {
+
+            }
+
+            {
+                this.products.add(toy);
+            }
+        }
     }
 
 }

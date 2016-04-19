@@ -29,14 +29,14 @@ public class Toy {
     private String name;
     private int ageRange;
     private String modelNumber = "AE";
-    private int storeID;
+    private int toyID;
     private double price;
     private boolean sold;
     private Manufacturer manufacturer;
 
     public Toy() {
-        this.storeID = ++lastIDUsed;
-        this.setName("Toy #" + this.storeID);
+        this.toyID = ++lastIDUsed;
+        this.setName("Toy #" + this.toyID);
         this.sold = false;
         this.setPrice(NOT_SET);
         this.ageRange = NOT_SET;
@@ -49,9 +49,9 @@ public class Toy {
         this.setName(name);
     }
 
-    public Toy(String name, int ageRange, int storeID, double price) {
+    public Toy(String name, int ageRange, int toyID, double price) {
         this(name);
-        this.storeID = storeID;
+        this.toyID = toyID;
         this.price = price;
         this.ageRange = ageRange;
     }
@@ -79,6 +79,10 @@ public class Toy {
 
     public String getModelNumber() {
         return modelNumber;
+    }
+
+    public int getToyID() {
+        return toyID;
     }
 
     private void setModelNumber(String modelNumber) {
@@ -123,7 +127,11 @@ public class Toy {
     }
 
     public void setAgeRange(int ageRange) {
-        this.ageRange = ageRange;
+        if (ageRange > 0 && ageRange <= 4) {
+            this.ageRange = ageRange;
+        } else {
+            this.ageRange = NOT_SET;
+        }
     }
 
     public boolean isSold() {
@@ -160,7 +168,7 @@ public class Toy {
             if (!Objects.equals(this.modelNumber, other.modelNumber)) {
                 return false;
             }
-            if (this.storeID != other.storeID) {
+            if (this.toyID != other.toyID) {
                 return false;
             }
             if (!Objects.equals(this.manufacturer, other.manufacturer)) {
@@ -181,7 +189,7 @@ public class Toy {
         if (this.price != 0) {
             return true;
         }
-        if (this.storeID <= storeID && this.storeID >= 0) {
+        if (this.toyID <= toyID && this.toyID >= 0) {
             return true;
         }
         if (this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() == 11) {
