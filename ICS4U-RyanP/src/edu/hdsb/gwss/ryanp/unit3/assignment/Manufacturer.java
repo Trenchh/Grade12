@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class Manufacturer {
 
-
     private static int locationNumber = 0;
 
     private String name;

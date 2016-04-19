@@ -5,6 +5,7 @@
  */
 package edu.hdsb.gwss.ryanp.unit3.assignment;
 
+import java.text.NumberFormat;
 import java.util.Objects;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Objects;
  * @author 1protheroery
  */
 public class Toy {
+
+    NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
     private static final int BABY = 1;
@@ -36,7 +39,7 @@ public class Toy {
         this.setName("Toy #" + this.storeID);
         this.sold = false;
         this.setPrice(NOT_SET);
-        this.ageRange = KID;
+        this.ageRange = NOT_SET;
         this.setModelNumber(modelNumber);
         System.out.println("OBJECT CREATED");
     }
@@ -45,19 +48,8 @@ public class Toy {
         this();
         this.setName(name);
     }
-//
-//    public Toy(String name, double price) {
-//        this(name);
-//        this.setPrice(price);
-//    }
-//
-//    public Toy(String name, int storeID, double price) {
-//        this(name, price);
-//        this.storeID = storeID;
-//    }
 
     public Toy(String name, int ageRange, int storeID, double price) {
-        // this(name, storeID, price);
         this(name);
         this.storeID = storeID;
         this.price = price;
@@ -94,21 +86,21 @@ public class Toy {
             int r = (int) (Math.random() * 9);
             modelNumber = modelNumber.concat(Integer.toString(r));
         }
-        System.out.println(modelNumber);
+        //System.out.println(modelNumber);
         this.modelNumber = modelNumber;
     }
 
     public double getPrice() {
-        if (price < 0) {
+        if (price <= 0) {
             System.out.println("Price not set");
-            return -1;
+            return NOT_SET;
         } else {
             return price;
         }
     }
 
     public void setPrice(double price) {
-        if (price == -1) {
+        if (price == NOT_SET) {
             System.out.println("Price not set");
         } else if (price <= 0) {
             System.out.println("Invalid price");
@@ -127,7 +119,7 @@ public class Toy {
         } else if (this.ageRange == 1) {
             return "TEEN";
         }
-        return "INVALID";
+        return "/NOT SET/";
     }
 
     public void setAgeRange(int ageRange) {
@@ -144,7 +136,7 @@ public class Toy {
 
     @Override
     public String toString() {
-        return "The " + name + " is appropriate for " + getAgeRange() + ", it is manufactured by " + manufacturer + " under the model number of " + modelNumber + "and has a price of " + price;
+        return "The " + getName() + " is appropriate for " + getAgeRange() + ", it is manufactured by " + getManufacturer() + " under the model number of " + getModelNumber() + " and has a price of " + money.format(getPrice());
     }
 
     @Override
@@ -154,29 +146,29 @@ public class Toy {
     }
 
     public boolean equals(Toy toy) {
-        if (toy == null) {
-            return false;
+        if (toy.isValid(toy)) {
+            if (toy == null) {
+                return false;
+            }
+            if (getClass() != toy.getClass()) {
+                return false;
+            }
+            final Toy other = (Toy) toy;
+            if (!Objects.equals(this.name, other.name)) {
+                return false;
+            }
+            if (!Objects.equals(this.modelNumber, other.modelNumber)) {
+                return false;
+            }
+            if (this.storeID != other.storeID) {
+                return false;
+            }
+            if (!Objects.equals(this.manufacturer, other.manufacturer)) {
+                return false;
+            }
+            return true;
         }
-        if (getClass() != toy.getClass()) {
-            return false;
-        }
-        final Toy other = (Toy) toy;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.modelNumber, other.modelNumber)) {
-            return false;
-        }
-        if (this.storeID != other.storeID) {
-            return false;
-        }
-        if (this.sold != other.sold) {
-            return false;
-        }
-        if (!Objects.equals(this.manufacturer, other.manufacturer)) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public boolean isValid(Toy toy) {
@@ -193,9 +185,6 @@ public class Toy {
             return true;
         }
         if (this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() == 11) {
-            return true;
-        }
-        if (ageRange <= 4 && ageRange > 0) {
             return true;
         }
         return false;
