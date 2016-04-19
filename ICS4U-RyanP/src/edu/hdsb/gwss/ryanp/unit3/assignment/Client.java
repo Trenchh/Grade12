@@ -32,6 +32,7 @@ public class Client {
         matel.add(barbieDoll);
         matel.add(barbieDoll);
         matel.add(barbieDoll);
+        
         System.out.println(matel.getProducts().size());
         System.out.println(nerfGun.toString());
 
