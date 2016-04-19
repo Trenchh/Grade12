@@ -114,13 +114,17 @@ public class Toy {
     }
 
     public String getAgeRange() {
+        return getAgeRangeName();
+    }
+
+    public String getAgeRangeName() {
         if (this.ageRange == 1) {
             return "BABY";
-        } else if (this.ageRange == 1) {
+        } else if (this.ageRange == 2) {
             return "TODDLER";
-        } else if (this.ageRange == 1) {
+        } else if (this.ageRange == 3) {
             return "KID";
-        } else if (this.ageRange == 1) {
+        } else if (this.ageRange == 4) {
             return "TEEN";
         }
         return "/NOT SET/";
@@ -183,12 +187,12 @@ public class Toy {
         if (this.name != null) {
             return true;
         }
-        if (this.manufacturer != null) {
-            return true;
-        }
-        if (this.price != 0) {
-            return true;
-        }
+//        if (this.manufacturer != null) {
+//            return true;
+//        }
+//        if (this.price != 0) {
+//            return true;
+//        }
         if (this.toyID <= toyID && this.toyID >= 0) {
             return true;
         }

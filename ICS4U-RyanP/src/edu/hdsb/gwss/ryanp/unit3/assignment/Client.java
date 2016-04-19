@@ -20,6 +20,8 @@ public class Client {
 
         Toy nerfGun = new Toy("Nerf Gun");
         nerfGun.setManufacturer(matel);
+        nerfGun.setAgeRange(3);
+        
         Toy barbieDoll = new Toy("Barnie Doll");
         barbieDoll.setManufacturer(matel);
 

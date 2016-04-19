@@ -58,6 +58,10 @@ public class Manufacturer {
         return name;
     }
 
+    public int getFactoryID() {
+        return factoryID;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
