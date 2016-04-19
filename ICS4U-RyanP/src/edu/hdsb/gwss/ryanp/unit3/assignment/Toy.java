@@ -25,7 +25,7 @@ public class Toy {
 
     private String name;
     private int ageRange;
-    private String modelNumber;
+    private String modelNumber = "AE";
     private int storeID;
     private double price;
     private boolean sold;
@@ -45,7 +45,6 @@ public class Toy {
         this();
         this.setName(name);
     }
-
 //
 //    public Toy(String name, double price) {
 //        this(name);
@@ -56,6 +55,7 @@ public class Toy {
 //        this(name, price);
 //        this.storeID = storeID;
 //    }
+
     public Toy(String name, int ageRange, int storeID, double price) {
         // this(name, storeID, price);
         this(name);
@@ -89,9 +89,13 @@ public class Toy {
         return modelNumber;
     }
 
-    private void setModelNumber(String ModelNumber) {
-        //RANDOMIZER
-        this.modelNumber = ModelNumber;
+    private void setModelNumber(String modelNumber) {
+        for (int i = 0; i < 9; i++) {
+            int r = (int) (Math.random() * 9);
+            modelNumber = modelNumber.concat(Integer.toString(r));
+        }
+        System.out.println(modelNumber);
+        this.modelNumber = modelNumber;
     }
 
     public double getPrice() {
@@ -113,9 +117,17 @@ public class Toy {
         }
     }
 
-    public int getAgeRange() {
-
-        return ageRange;
+    public String getAgeRange() {
+        if (this.ageRange == 1) {
+            return "BABY";
+        } else if (this.ageRange == 1) {
+            return "TODDLER";
+        } else if (this.ageRange == 1) {
+            return "KID";
+        } else if (this.ageRange == 1) {
+            return "TEEN";
+        }
+        return "INVALID";
     }
 
     public void setAgeRange(int ageRange) {
@@ -132,7 +144,7 @@ public class Toy {
 
     @Override
     public String toString() {
-        return "test";
+        return "The " + name + " is appropriate for " + getAgeRange() + ", it is manufactured by " + manufacturer + " under the model number of " + modelNumber + "and has a price of " + price;
     }
 
     @Override
@@ -180,7 +192,7 @@ public class Toy {
         if (this.storeID <= storeID && this.storeID >= 0) {
             return true;
         }
-        if (this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() == 8) {
+        if (this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() == 11) {
             return true;
         }
         if (ageRange <= 4 && ageRange > 0) {
