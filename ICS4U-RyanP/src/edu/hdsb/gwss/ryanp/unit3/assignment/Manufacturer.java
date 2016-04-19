@@ -40,7 +40,7 @@ public class Manufacturer {
         this.inBusiness = true;
         this.factoryID = ++lastIDUsed;
         this.location = NOT_SET;
-        this.sales = 0;
+        this.sales = NOT_SET;
         this.name = "Manufacturer #" + lastIDUsed;
     }
 
@@ -78,13 +78,9 @@ public class Manufacturer {
     public void add(Toy toy) {
         if (toy.isValid(toy)) {
             if (products.contains(toy)) {
-
-            }
-
-            {
+            } else {
                 this.products.add(toy);
             }
         }
     }
-
 }
