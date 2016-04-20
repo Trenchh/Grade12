@@ -119,8 +119,8 @@ public class Toy {
         }
     }
 
-    public String getAgeRange() {
-        return getAgeRangeName();
+    public int getAgeRange() {
+        return ageRange;
     }
 
     public String getAgeRangeName() {
@@ -148,13 +148,13 @@ public class Toy {
         return sold;
     }
 
-    public void setSold(boolean sold) {
+    public void setSold(boolean sold, Manufacturer m) {
         this.sold = sold;
     }
 
     @Override
     public String toString() {
-        return "The " + getName() + " is appropriate for " + getAgeRange() + ", it is manufactured by " + getManufacturer() + " under the model number of " + getModelNumber() + " and has a price of " + money.format(getPrice());
+        return "The " + name + " is appropriate for " + getAgeRangeName() + ", it is manufactured by " + manufacturer.getName() + " under the model number of " + getModelNumber() + " and has a price of " + money.format(getPrice());
     }
 
     @Override

@@ -17,14 +17,13 @@ public class Client {
     public static void main(String[] args) {
 
         Manufacturer matel = new Manufacturer("Matel");
-
-        Toy computer = new Toy("Toy");
+        Manufacturer yeet = new Manufacturer();
 
         Toy nerfGun = new Toy("Nerf Gun");
         nerfGun.setManufacturer(matel);
         nerfGun.setAgeRange(3);
 
-        Toy barbieDoll = new Toy("Barnie Doll");
+        Toy barbieDoll = new Toy("Barbie Doll");
         barbieDoll.setManufacturer(matel);
 
         System.out.println(nerfGun.getManufacturer().getName());
@@ -39,7 +38,9 @@ public class Client {
         matel.remove(barbieDoll);
         System.out.println(matel.getProducts().size());
 
-        matel.get(nerfGun);
+        System.out.println(matel.get(nerfGun));
+
+        System.out.println(yeet.getName());
 
     }
 
