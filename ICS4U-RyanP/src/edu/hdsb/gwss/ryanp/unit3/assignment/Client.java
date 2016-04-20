@@ -41,6 +41,8 @@ public class Client {
         System.out.println(matel.get(nerfGun));
 
         System.out.println(yeet.getName());
+        matel.setLocation(4);
+        System.out.println(matel.toString());
 
     }
 

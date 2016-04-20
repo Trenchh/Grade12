@@ -18,6 +18,7 @@ public class Manufacturer {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
+    private static final String[] CONTINENTS = {"NORTH AMERICA", "SOUTH AMERICA", "EUROPE", "ASIA", "ANTARCTICA", "AFRICA", "AUSTRALIA"};
     private static final int NORTH_AMERICA = 1;
     private static final int SOUTH_AMERICA = 2;
     private static final int EUROPE = 3;
@@ -79,22 +80,11 @@ public class Manufacturer {
     }
 
     public String locationName() {
-        if (this.location == 1) {
-            return "NORTH AMERICA";
-        } else if (this.location == 2) {
-            return "SOUTH AMERICA";
-        } else if (this.location == 3) {
-            return "EUROPE";
-        } else if (this.location == 4) {
-            return "ASIA";
-        } else if (this.location == 5) {
-            return "ANTARCTICA";
-        } else if (this.location == 6) {
-            return "AFRICA";
-        } else if (this.location == 7) {
-            return "AUSTRALIA";
+        if (this.location > 0 && this.location < 8) {
+            return CONTINENTS[location - 1];
+        } else {
+            return "/NOT SET/";
         }
-        return "/NOT SET/";
     }
 
     public boolean isInBusiness() {
@@ -127,7 +117,7 @@ public class Manufacturer {
         if (toy.isValid()) {
             if (!products.contains(toy)) {
                 this.products.add(toy);
-                System.out.println("Toy Added");
+                System.out.println(toy.getName() + " Added");
 
             }
         }
@@ -137,7 +127,7 @@ public class Manufacturer {
         if (toy.isValid()) {
             if (products.contains(toy)) {
                 this.products.remove(toy);
-                System.out.println("Toy Removed");
+                System.out.println(toy.getName() + " Removed");
 
             }
         }

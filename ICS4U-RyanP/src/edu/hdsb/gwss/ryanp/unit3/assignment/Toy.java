@@ -17,6 +17,7 @@ public class Toy {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
+    private static final String[] AGE = {"BABY", "TODDLER", "KID", "TEEN"};
     private static final int BABY = 1;
     private static final int TODDLER = 2;
     private static final int KID = 3;
@@ -124,16 +125,11 @@ public class Toy {
     }
 
     public String getAgeRangeName() {
-        if (this.ageRange == 1) {
-            return "BABY";
-        } else if (this.ageRange == 2) {
-            return "TODDLER";
-        } else if (this.ageRange == 3) {
-            return "KID";
-        } else if (this.ageRange == 4) {
-            return "TEEN";
+        if (this.ageRange > 0 && this.ageRange < 5) {
+            return AGE[ageRange - 1];
+        } else {
+            return "/NOT SET/";
         }
-        return "/NOT SET/";
     }
 
     public void setAgeRange(int ageRange) {
@@ -154,7 +150,7 @@ public class Toy {
 
     @Override
     public String toString() {
-        return "The " + name + " is appropriate for " + getAgeRangeName() + ", it is manufactured by " + manufacturer.getName() + " under the model number of " + getModelNumber() + " and has a price of " + money.format(getPrice());
+        return "The " + name + " is appropriate for " + getAgeRangeName() + ", it is manufactured by " + manufacturer.getName() + " under the model number " + getModelNumber() + " and has a price of " + money.format(getPrice());
     }
 
     @Override
