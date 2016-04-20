@@ -38,11 +38,24 @@ public class Client {
         matel.remove(barbieDoll);
         System.out.println(matel.getProducts().size());
 
-        System.out.println(matel.get(nerfGun));
+        System.out.println(matel.get("Nerf Gun"));
 
         System.out.println(yeet.getName());
         matel.setLocation(4);
         System.out.println(matel.toString());
+
+        // TEST #1: Empty Constructor
+        // PRE-CONDTION:
+        //      - none
+        // POST-CONDTION:
+        //      - side lengths are all zero
+        //      - colour is null
+        System.out.println("-------------------");
+        System.out.println("Test #1 - Empty Constructor");
+        Toy gun = new Toy();
+        assert (gun.getToyID() == 1);
+
+        Manufacturer matel2 = matel;
 
     }
 

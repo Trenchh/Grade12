@@ -128,18 +128,17 @@ public class Manufacturer {
             if (products.contains(toy)) {
                 this.products.remove(toy);
                 System.out.println(toy.getName() + " Removed");
-
             }
         }
     }
 
-    public String get(Toy toy) {
-        if (toy.isValid()) {
-            if (products.contains(toy)) {
-                return toy.toString();
+    public Toy get(String name) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getName().equals(name.toUpperCase())) {
+                return products.get(i);
             }
         }
-        return "NOT FOUND";
+        return null;
     }
 
     @Override

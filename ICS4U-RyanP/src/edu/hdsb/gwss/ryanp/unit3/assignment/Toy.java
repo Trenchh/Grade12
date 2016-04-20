@@ -42,7 +42,7 @@ public class Toy {
         this.setPrice(NOT_SET);
         this.setAgeRange(ageRange);
         this.setModelNumber(modelNumber);
-        System.out.println("OBJECT CREATED");
+        System.out.println(name + " CREATED");
     }
 
     public Toy(String name) {
@@ -73,7 +73,7 @@ public class Toy {
         if (name == null || name.length() > 25) {
             System.out.println("Invalid name");
         } else {
-            this.name = name;
+            this.name = name.toUpperCase();
 
         }
     }
