@@ -114,7 +114,7 @@ public class Manufacturer {
     }
 
     public void add(Toy toy) {
-        if (toy.isValid()) {
+        if (toy.isValid() == true) {
             if (!products.contains(toy)) {
                 this.products.add(toy);
                 System.out.println(toy.getName() + " Added");
@@ -124,7 +124,7 @@ public class Manufacturer {
     }
 
     public void remove(Toy toy) {
-        if (toy.isValid()) {
+        if (toy.isValid() == true) {
             if (products.contains(toy)) {
                 this.products.remove(toy);
                 System.out.println(toy.getName() + " Removed");

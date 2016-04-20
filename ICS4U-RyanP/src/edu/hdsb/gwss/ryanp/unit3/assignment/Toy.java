@@ -40,9 +40,9 @@ public class Toy {
         this.setName("Toy #" + this.toyID);
         this.sold = false;
         this.setPrice(NOT_SET);
-        this.setAgeRange(ageRange);
+        this.setAgeRange(NOT_SET);
         this.setModelNumber(modelNumber);
-        System.out.println(name + " CREATED");
+        System.out.println("TOY CREATED");
     }
 
     public Toy(String name) {
@@ -50,9 +50,8 @@ public class Toy {
         this.setName(name);
     }
 
-    public Toy(String name, int ageRange, int toyID, double price) {
+    public Toy(String name, int ageRange, double price) {
         this(name);
-        this.toyID = toyID;
         this.setPrice(price);
         this.setAgeRange(ageRange);
     }
@@ -74,7 +73,6 @@ public class Toy {
             System.out.println("Invalid name");
         } else {
             this.name = name.toUpperCase();
-
         }
     }
 
@@ -101,7 +99,7 @@ public class Toy {
     }
 
     public double getPrice() {
-        if (price <= 0 && price != -1) {
+        if (price <= 0) {
             System.out.println("Price not set");
             return NOT_SET;
         } else {
@@ -111,7 +109,6 @@ public class Toy {
 
     public void setPrice(double price) {
         if (price == NOT_SET) {
-            System.out.println("Price not set");
             this.price = NOT_SET;
         } else if (price <= 0) {
             System.out.println("Invalid price");
