@@ -99,12 +99,12 @@ public class Toy {
     }
 
     public double getPrice() {
-        if (price <= 0) {
-            System.out.println("Price not set");
+        if (price == NOT_SET) {
+            System.out.println("SET PRICE");
             return NOT_SET;
-        } else {
-            return price;
         }
+        return price;
+
     }
 
     public void setPrice(double price) {
@@ -118,6 +118,10 @@ public class Toy {
     }
 
     public int getAgeRange() {
+        if (ageRange == NOT_SET) {
+            System.out.println("SET AGE RANGE");
+
+        }
         return ageRange;
     }
 

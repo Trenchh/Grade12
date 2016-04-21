@@ -68,6 +68,10 @@ public class Manufacturer {
     }
 
     public int getLocation() {
+        if (location == NOT_SET) {
+            System.out.println("SET LOCATION");
+
+        }
         return location;
     }
 

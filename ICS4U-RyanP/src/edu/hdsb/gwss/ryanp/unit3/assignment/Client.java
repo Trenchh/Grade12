@@ -73,6 +73,8 @@ public class Client {
         assert (gun.getAgeRangeName().equals("KID"));
 
         //MANUFACTURER CLASS
+        
+        
         // TEST #1: Empty Constructor
         // PRE-CONDTION:
         //      - none
@@ -90,5 +92,4 @@ public class Client {
         assert (matel.getLocation() == -1);
 
     }
-
 }
