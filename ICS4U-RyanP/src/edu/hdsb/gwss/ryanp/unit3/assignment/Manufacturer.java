@@ -41,25 +41,24 @@ public class Manufacturer {
         this.inBusiness = true;
         this.setFactoryID(factoryID);
         this.setLocation(NOT_SET);
-        this.setName("Manufacturer #" + lastIDUsed);
+        this.setName("MANUFACTURER #" + lastIDUsed);
     }
 
     public Manufacturer(String name) {
         this();
-        this.name = name;
+        this.setName(name);
     }
 
-    public Manufacturer(String name, int location, int factoryID) {
+    public Manufacturer(String name, int location) {
         this(name);
-        this.location = location;
-        this.factoryID = factoryID;
+        this.setLocation(location);
     }
 
     public void setName(String name) {
         if (name == null || name.length() > 25) {
             System.out.println("Invalid name");
         } else {
-            this.name = name;
+            this.name = name.toUpperCase();
         }
     }
 
@@ -176,16 +175,17 @@ public class Manufacturer {
 
     public boolean isValid() {
         if (this.name == null || this.name.length() == 0) {
-            System.out.println("Set Name");
+            System.out.println("SET NAME");
             return false;
         }
-        if (this.location <= 0 && this.location != -1) {
-            System.out.println("Set Location");
+        if (this.location <= 0 || this.location > CONTINENTS.length - 1 && this.location != -1) {
+            System.out.println("SET LOCATION");
             return false;
         }
         if (this.factoryID <= 0) {
             return false;
         }
+        System.out.println("VALID OBJECT");
         return true;
     }
 }

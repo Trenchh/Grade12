@@ -36,7 +36,7 @@ public class Toy {
     private Manufacturer manufacturer;
 
     public Toy() {
-        this.setToyID(toyID);
+        this.setToyID();
         this.setName("Toy #" + this.toyID);
         this.sold = false;
         this.setPrice(NOT_SET);
@@ -70,7 +70,7 @@ public class Toy {
 
     public void setName(String name) {
         if (name == null || name.length() > 25) {
-            System.out.println("Invalid name");
+            System.out.println("INVALID NAME");
         } else {
             this.name = name.toUpperCase();
         }
@@ -80,7 +80,7 @@ public class Toy {
         return modelNumber;
     }
 
-    private int setToyID(int ToyID) {
+    private int setToyID() {
         this.toyID = ++lastIDUsed;
         return toyID;
     }
@@ -111,7 +111,7 @@ public class Toy {
         if (price == NOT_SET) {
             this.price = NOT_SET;
         } else if (price <= 0) {
-            System.out.println("Invalid price");
+            System.out.println("INVALID PRICE");
         } else {
             this.price = price;
         }
@@ -120,7 +120,6 @@ public class Toy {
     public int getAgeRange() {
         if (ageRange == NOT_SET) {
             System.out.println("SET AGE RANGE");
-
         }
         return ageRange;
     }
@@ -137,6 +136,7 @@ public class Toy {
         if (ageRange > 0 && ageRange <= 4) {
             this.ageRange = ageRange;
         } else {
+            System.out.println("INVALID AGE RANGE");
             this.ageRange = NOT_SET;
         }
     }
@@ -193,6 +193,9 @@ public class Toy {
         }
         if (this.manufacturer == null) {
             System.out.println("Set Manufacturer");
+            return false;
+        }
+        if (this.ageRange == NOT_SET) {
             return false;
         }
         if (this.price <= 0 && this.price != -1) {
