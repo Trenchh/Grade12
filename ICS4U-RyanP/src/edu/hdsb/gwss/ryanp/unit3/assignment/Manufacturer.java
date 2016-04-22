@@ -118,7 +118,7 @@ public class Manufacturer {
     }
 
     public void add(Toy toy) {
-        if (toy.isValid() == true) {
+        if (toy.isValid() == true && inBusiness == true && toy.isSold() == false) {
             if (!products.contains(toy)) {
                 this.products.add(toy);
                 System.out.println(toy.getName() + " Added");
@@ -139,7 +139,7 @@ public class Manufacturer {
     public Toy get(String name) {
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getName().equals(name.toUpperCase())) {
-                return products.get(i);
+                return this.products.get(i);
             }
         }
         return null;

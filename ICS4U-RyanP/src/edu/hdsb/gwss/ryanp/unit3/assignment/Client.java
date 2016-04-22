@@ -159,7 +159,7 @@ public class Client {
         mattel.add(lego);
         assert (mattel.getProducts().size() == 1);
 
-        // TEST #6: remove()
+        // TEST #6: remove() valid object
         // PRE-CONDTION:
         //      - valid object
         // POST-CONDTION:
@@ -170,7 +170,7 @@ public class Client {
         mattel.remove(boat);
         assert (mattel.getProducts().isEmpty());
 
-        // TEST #7: remove()
+        // TEST #7: remove() invald object
         // PRE-CONDTION:
         //      - re-add boat
         //      - try to remove invalid object
@@ -183,5 +183,25 @@ public class Client {
         mattel.remove(lego);
         assert (mattel.getProducts().size() == 1);
         assert (mattel.getProducts().contains(boat));
+
+        // TEST #8: get() valid object
+        // PRE-CONDTION:
+        //      - none
+        // POST-CONDTION:
+        //      - name of toy is returned as whole object
+        System.out.println("-------------------");
+        System.out.println("Test #8 - get() valid object");
+        System.out.println(mattel.getProducts().get(0).getName());
+        assert (mattel.get("boat").equals(boat));
+
+        // TEST #9: get() invalid object
+        // PRE-CONDTION:
+        //      - none
+        // POST-CONDTION:
+        //      - name of toy is returned as whole object
+        System.out.println("-------------------");
+        System.out.println("Test #8 - get() valid object");
+        System.out.println(mattel.getProducts().get(0).getName());
+        assert (mattel.get("ball").equals(boat));
     }
 }
