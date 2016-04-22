@@ -139,7 +139,7 @@ public class Manufacturer {
     public Toy get(String name) {
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getName().equals(name.toUpperCase())) {
-                return this.products.get(i);
+                return products.get(i);
             }
         }
         return null;

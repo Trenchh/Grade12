@@ -192,6 +192,7 @@ public class Client {
         System.out.println("-------------------");
         System.out.println("Test #8 - get() valid object");
         System.out.println(mattel.getProducts().get(0).getName());
+        System.out.println(mattel.get("boat"));
         assert (mattel.get("boat").equals(boat));
 
         // TEST #9: get() invalid object
