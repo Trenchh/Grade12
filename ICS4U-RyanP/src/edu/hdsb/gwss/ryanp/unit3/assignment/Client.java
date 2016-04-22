@@ -89,8 +89,8 @@ public class Client {
         // PRE-CONDTION:
         //      - none
         // POST-CONDTION:
-        //      - object equals the same object
-        //      - returns true
+        //      - object doesnt equal the other object
+        //      - returns false
         System.out.println("-------------------");
         System.out.println("Test #5 - equals() different object");
         assert (!boat.equals(car));
@@ -250,14 +250,15 @@ public class Client {
         //      - returns true
         System.out.println("-------------------");
         System.out.println("Test #11 - equals() same object");
+        mattel.setLocation(3);
         assert (mattel.equals(mattel));
 
         // TEST #12: equals() different object
         // PRE-CONDTION:
         //      - none
         // POST-CONDTION:
-        //      - object equals the same object
-        //      - returns true
+        //      - object doesnt equal other object
+        //      - returns false
         System.out.println("-------------------");
         System.out.println("Test #12 - equals() different object");
         assert (!mattel.equals(tonka));

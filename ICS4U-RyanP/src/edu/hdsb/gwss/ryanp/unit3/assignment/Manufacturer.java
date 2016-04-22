@@ -5,7 +5,6 @@
  */
 package edu.hdsb.gwss.ryanp.unit3.assignment;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -14,8 +13,6 @@ import java.util.Objects;
  * @author 1protheroery
  */
 public class Manufacturer {
-
-    NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
     private static final String[] CONTINENTS = {"NORTH AMERICA", "SOUTH AMERICA", "EUROPE", "ASIA", "ANTARCTICA", "AFRICA", "AUSTRALIA"};
@@ -28,14 +25,16 @@ public class Manufacturer {
     private static final int AUSTRALIA = 7;
     private static final int NOT_SET = -1;
 
+    //CLASS VARIABLE
     private static int lastIDUsed = 0;
 
     private String name;
     private int factoryID;
     private int location;
     private boolean inBusiness;
-    private ArrayList<Toy> products = new ArrayList<Toy>();
+    private ArrayList<Toy> products;
 
+    //EVERY VARIABLE IS INITIALIZED
     public Manufacturer() {
         this.products = new ArrayList<Toy>();
         this.inBusiness = true;
@@ -152,28 +151,36 @@ public class Manufacturer {
     }
 
     public boolean equals(Manufacturer man) {
-        if (man == null) {
-            return false;
+        if (man.isValid() == true) {
+            if (man == null) {
+                return false;
+            }
+            if (getClass() != man.getClass()) {
+                return false;
+            }
+            final Manufacturer other = (Manufacturer) man;
+            if (!Objects.equals(this.name, other.name)) {
+                return false;
+            }
+            if (this.factoryID != other.factoryID) {
+                return false;
+            }
+            if (this.location != other.location) {
+                return false;
+            }
+            if (this.inBusiness != other.inBusiness) {
+                return false;
+            }
+            if (!Objects.equals(this.products, other.products)) {
+                return false;
+            }
+            System.out.println("SAME MANUFACTURER");
+            return true;
         }
-        if (getClass() != man.getClass()) {
-            return false;
-        }
-        final Manufacturer other = (Manufacturer) man;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (this.factoryID != other.factoryID) {
-            return false;
-        }
-        if (this.location != other.location) {
-            return false;
-        }
-        if (!Objects.equals(this.products, other.products)) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
+    //TELLS USER WHAT TO SET IF OBJECT ISNT VALID
     public boolean isValid() {
         if (this.name == null || this.name.length() == 0) {
             System.out.println("SET NAME");

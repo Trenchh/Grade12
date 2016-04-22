@@ -35,6 +35,7 @@ public class Toy {
     private boolean sold;
     private Manufacturer manufacturer;
 
+    //EVERY VARIABLE IS INITIALIZED
     public Toy() {
         this.setToyID();
         this.setName("Toy #" + this.toyID);
@@ -190,11 +191,13 @@ public class Toy {
             if (!Objects.equals(this.manufacturer, other.manufacturer)) {
                 return false;
             }
+            System.out.println("SAME TOY");
             return true;
         }
         return false;
     }
 
+    //TELLS USER WHAT TO SET IF OBJECT ISNT VALID
     public boolean isValid() {
         if (this.name == null || this.name.length() == 0) {
             System.out.println("SET NAME");
