@@ -136,7 +136,6 @@ public class Toy {
         if (ageRange > 0 && ageRange <= 4) {
             this.ageRange = ageRange;
         } else {
-            System.out.println("INVALID AGE RANGE");
             this.ageRange = NOT_SET;
         }
     }
@@ -161,7 +160,7 @@ public class Toy {
     }
 
     public boolean equals(Toy toy) {
-        if (toy.isValid()) {
+        if (toy.isValid() == false) {
             if (toy == null) {
                 return false;
             }
@@ -188,18 +187,18 @@ public class Toy {
 
     public boolean isValid() {
         if (this.name == null || this.name.length() == 0) {
-            System.out.println("Set Name");
+            System.out.println("SET NAME");
             return false;
         }
         if (this.manufacturer == null) {
-            System.out.println("Set Manufacturer");
+            System.out.println("SET MANUFACTURER");
             return false;
         }
         if (this.ageRange == NOT_SET) {
             return false;
         }
         if (this.price <= 0 && this.price != -1) {
-            System.out.println("Set Price");
+            System.out.println("SET PRICE");
             return false;
         }
         if (this.toyID <= 0) {

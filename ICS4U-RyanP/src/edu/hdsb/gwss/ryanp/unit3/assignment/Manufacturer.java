@@ -42,6 +42,7 @@ public class Manufacturer {
         this.setFactoryID(factoryID);
         this.setLocation(NOT_SET);
         this.setName("MANUFACTURER #" + lastIDUsed);
+        System.out.println("MANUFACTURER CREATED");
     }
 
     public Manufacturer(String name) {
@@ -56,7 +57,7 @@ public class Manufacturer {
 
     public void setName(String name) {
         if (name == null || name.length() > 25) {
-            System.out.println("Invalid name");
+            System.out.println("INVALID NAME");
         } else {
             this.name = name.toUpperCase();
         }

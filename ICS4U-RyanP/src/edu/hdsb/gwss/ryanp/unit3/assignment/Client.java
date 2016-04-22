@@ -29,7 +29,6 @@ public class Client {
         System.out.println("-------------------");
         System.out.println("Test #1 - Empty Constructor");
         Toy gun = new Toy();
-        System.out.println(gun.getToyID());
         assert (gun.getToyID() == 1);
         assert (gun.getName().equals("TOY #1"));
         assert (gun.isSold() == false);
@@ -47,7 +46,6 @@ public class Client {
         System.out.println("-------------------");
         System.out.println("Test #2 - Constructor w/ Name");
         Toy car = new Toy("car");
-        System.out.println(car.getToyID());
         assert (car.getToyID() == 2);
         assert (car.getName().equals("CAR"));
         assert (car.isSold() == false);
@@ -143,10 +141,11 @@ public class Client {
         // POST-CONDTION:
         //      - adds toy to list
         System.out.println("-------------------");
-        System.out.println("Test #5 - add()");
+        System.out.println("Test #5 - add() valid object");
         boat.setManufacturer(mattel);
         mattel.add(boat);
         assert (mattel.getProducts().size() == 1);
+        assert (mattel.getProducts().contains(boat));
 
         // TEST #5: add()
         // PRE-CONDTION:
@@ -154,7 +153,7 @@ public class Client {
         // POST-CONDTION:
         //      - doesn't add toy to list
         System.out.println("-------------------");
-        System.out.println("Test #5 - add()");
+        System.out.println("Test #5 - add() invalid object");
         Toy lego = new Toy("lego", 7, 19.99);
         lego.setManufacturer(mattel);
         mattel.add(lego);
@@ -165,10 +164,24 @@ public class Client {
         //      - valid object
         // POST-CONDTION:
         //      - removes toy
+        //      - empty array
         System.out.println("-------------------");
-        System.out.println("Test #6 - remove()");
-        lego.setManufacturer(mattel);
-        mattel.add(lego);
+        System.out.println("Test #6 - remove() valid object");
+        mattel.remove(boat);
+        assert (mattel.getProducts().isEmpty());
+
+        // TEST #7: remove()
+        // PRE-CONDTION:
+        //      - re-add boat
+        //      - try to remove invalid object
+        // POST-CONDTION:
+        //      - doesn't remove toy
+        //      - array size is 1 and contains boat
+        System.out.println("-------------------");
+        System.out.println("Test #7 - remove() invalid object");
+        mattel.add(boat);
+        mattel.remove(lego);
         assert (mattel.getProducts().size() == 1);
+        assert (mattel.getProducts().contains(boat));
     }
 }
