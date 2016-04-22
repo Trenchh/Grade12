@@ -34,7 +34,7 @@ public class Manufacturer {
     private int factoryID;
     private int location;
     private boolean inBusiness;
-    private ArrayList<Toy> products;
+    private ArrayList<Toy> products = new ArrayList<Toy>();
 
     public Manufacturer() {
         this.products = new ArrayList<Toy>();
@@ -186,7 +186,7 @@ public class Manufacturer {
         if (this.factoryID <= 0) {
             return false;
         }
-        System.out.println("VALID OBJECT");
+        System.out.println("VALID MANUFACTURER");
         return true;
     }
 }

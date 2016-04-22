@@ -160,7 +160,8 @@ public class Toy {
     }
 
     public boolean equals(Toy toy) {
-        if (toy.isValid() == false) {
+        if (toy.isValid() == true) {
+
             if (toy == null) {
                 return false;
             }
@@ -171,10 +172,19 @@ public class Toy {
             if (!Objects.equals(this.name, other.name)) {
                 return false;
             }
+            if (this.ageRange != other.ageRange) {
+                return false;
+            }
             if (!Objects.equals(this.modelNumber, other.modelNumber)) {
                 return false;
             }
             if (this.toyID != other.toyID) {
+                return false;
+            }
+            if (Double.doubleToLongBits(this.price) != Double.doubleToLongBits(other.price)) {
+                return false;
+            }
+            if (this.sold != other.sold) {
                 return false;
             }
             if (!Objects.equals(this.manufacturer, other.manufacturer)) {
@@ -207,6 +217,8 @@ public class Toy {
         if (!this.modelNumber.substring(0, 2).toLowerCase().equals("ae") && this.modelNumber.length() != 11) {
             return false;
         }
+        System.out.println("VALID TOY");
+
         return true;
     }
 }

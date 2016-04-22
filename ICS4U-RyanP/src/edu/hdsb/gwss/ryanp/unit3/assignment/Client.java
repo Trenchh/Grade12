@@ -191,18 +191,30 @@ public class Client {
         //      - name of toy is returned as whole object
         System.out.println("-------------------");
         System.out.println("Test #8 - get() valid object");
-        System.out.println(mattel.getProducts().get(0).getName());
-        System.out.println(mattel.get("boat"));
         assert (mattel.get("boat").equals(boat));
 
-        // TEST #9: get() invalid object
+        // TEST #9: equals() same object
         // PRE-CONDTION:
         //      - none
         // POST-CONDTION:
-        //      - name of toy is returned as whole object
+        //      - object equals the same object
+        //      - returns true
         System.out.println("-------------------");
-        System.out.println("Test #8 - get() valid object");
-        System.out.println(mattel.getProducts().get(0).getName());
-        assert (mattel.get("ball").equals(boat));
+        System.out.println("Test #9 - equals() same object");
+        assert (mattel.equals(mattel));
+        
+        // TEST #10: equals() different object
+        // PRE-CONDTION:
+        //      - none
+        // POST-CONDTION:
+        //      - object equals the same object
+        //      - returns true
+        System.out.println("-------------------");
+        System.out.println("Test #10 - equals() different object");
+        assert (!mattel.equals(tonka));
+        
+        
+        
+
     }
 }
