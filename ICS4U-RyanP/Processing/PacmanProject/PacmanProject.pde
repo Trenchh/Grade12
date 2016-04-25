@@ -7,7 +7,7 @@ Clyde clyde = new Clyde();
 void setup() {
   size(1000, 800);
   smooth();
-  frameRate(1000);
+  frameRate(100);
 }
 
 void draw() {
