@@ -1,20 +1,19 @@
-Pacman msPacman = new Pacman( 200, 200 );
-Blinky blinky = new Blinky();
-Inky inky = new Inky();
-Pinky pinky = new Pinky();
-Clyde clyde = new Clyde();
+Pacman pacman = new Pacman( 200, 200 );
+Ghost blinky = new Ghost(#FF0015);
+Ghost pinky = new Ghost(#FF81F3);
+Ghost inky = new Ghost(#34FFDB);
+Ghost clyde = new Ghost(#FFA91F);
 
 void setup() {
   size(1000, 800);
   smooth();
-  frameRate(100);
+  frameRate(50);
 }
 
 void draw() {
-  //delay(100);
-  background(38, 125, 180);
-  msPacman.display();
-  msPacman.move();
+  background(#0C1939);
+  pacman.display();
+  pacman.control();
   blinky.display();
   blinky.moveDown();
   inky.display();

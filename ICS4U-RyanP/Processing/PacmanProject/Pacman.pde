@@ -4,26 +4,23 @@ public class Pacman extends PacmanCharacter {
 
   //Properties
   private int colour = #FFF703;
-  private int xLoc;
-  private int yLoc;
   private int score;
-  private int lives;
+  private int lives = 3;
   private boolean poweredUp;
-  private boolean isAlive;
   private boolean isOpen = true;
   private int radians = 30;
   private int xOff = 17;
   private int yOff = -22;
+
   public Pacman() {
   }
 
   public Pacman( int xLoc, int yLoc) {
     this.xLoc = xLoc;
     this.yLoc = yLoc;
-    this.lives = 3;
   }
 
-  public void move() {
+  public void control() {
     if (key == CODED) {
       if (keyCode == UP) {
         this.yLoc = yLoc - 10;
