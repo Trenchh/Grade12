@@ -16,11 +16,11 @@ void draw() {
   msPacman.display();
   msPacman.move();
   blinky.display();
-  blinky.move();
+  blinky.moveDown();
   inky.display();
-  inky.move();
+  inky.moveDown();
   pinky.display();
-  pinky.move();
+  pinky.moveDown();
   clyde.display();
-  clyde.move();
+  clyde.moveDown();
 }

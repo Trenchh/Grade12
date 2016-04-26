@@ -1,4 +1,4 @@
-public class Pinky {
+public class Pinky extends PacmanCharacter{
 
   int look = 0;
   int pinky = #FF81F3;
@@ -31,7 +31,28 @@ public class Pinky {
     ellipse(xLoc + 20, yLoc - 10, 10, 10);
   }
 
-  public void move() {
+  public void moveDown() {
+    if (yLoc > 800 ) {
+      yLoc = 0;
+    }
+    this.yLoc = yLoc + 10;
+  }
+  
+    public void moveUp() {
+    if (yLoc < 0 ) {
+      yLoc = 800;
+    }
+    this.yLoc = yLoc - 10;
+  }
+  
+    public void moveRight() {
+    if (xLoc > 1000 ) {
+      xLoc = 0;
+    }
+    this.xLoc = xLoc + 10;
+  }
+  
+    public void moveLeft() {
     if (xLoc < 0 ) {
       xLoc = 1000;
     }

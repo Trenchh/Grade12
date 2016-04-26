@@ -1,4 +1,4 @@
-public class Pacman {
+public class Pacman extends PacmanCharacter {
 
   AnimatedPacman pacman = new AnimatedPacman();
 
