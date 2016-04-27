@@ -35,42 +35,41 @@ public abstract class PacmanCharacter {
     return this.yLoc;
   }
 
-  public int setXLoc() {
-    return this.xLoc;
+  public void setXLoc() {
+    this.xLoc = xLoc;
   }
 
-  public int setYLoc() {
-    return this.yLoc;
+  public void setYLoc() {
+    this.yLoc = yLoc;
   }
 
   public void moveDown() {
     if (yLoc > 800 ) {
-      yLoc = 0;
+      this.yLoc = 0;
     }
     this.yLoc = yLoc + 10;
   }
 
   public void moveUp() {
     if (yLoc < 0 ) {
-      yLoc = 800;
+      this.yLoc = height;
     }
     this.yLoc = yLoc - 10;
   }
 
   public void moveRight() {
     if (xLoc > 1000 ) {
-      xLoc = 0;
+      this.xLoc = 0;
     }
     this.xLoc = xLoc + 10;
   }
 
   public void moveLeft() {
     if (xLoc < 0 ) {
-      xLoc = 1000;
+      this.xLoc = width;
     }
     this.xLoc = xLoc - 10;
   }
   public void stop() {
-    //CODE THIS
   }
 }

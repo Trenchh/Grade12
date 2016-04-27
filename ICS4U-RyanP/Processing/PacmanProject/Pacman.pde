@@ -20,45 +20,19 @@ public class Pacman extends PacmanCharacter {
     this.yLoc = yLoc;
   }
 
-  public void control() {
-    if (key == CODED) {
-      if (keyCode == UP) {
-        this.yLoc = yLoc - 10;
-        radians = 300;
-        xOff = 19;
-        yOff = -13;
-        if (this.yLoc < 0) {
-          this.yLoc = height;
-        }
-      }
-      if (keyCode == DOWN) {
-        this.yLoc = yLoc + 10;
-        radians = 120;
-        xOff = 19;
-        yOff = 13;
-        if (this.yLoc > height) {
-          this.yLoc = 0;
-        }
-      }
-      if (keyCode == LEFT) {
-        this.xLoc = xLoc - 10;
-        radians = 210;
-        xOff = -17;
-        yOff = -22;
-        if (this.xLoc < 0) {
-          this.xLoc = width;
-        }
-      }
-      if (keyCode == RIGHT) {
-        this.xLoc = xLoc + 10;
-        radians = 30;
-        xOff = 17;
-        yOff = -22;
-        if (this.xLoc > width) {
-          this.xLoc = 0;
-        }
-      }
-    }
+  public void setRadians(int r) {
+    this.radians = r;
+  }
+
+  public void setOffset(int x, int y) {
+    this.xOff = x;
+    this.yOff = y;
+  }
+
+  public void moveRight() {
+     super.moveRight();
+      this.setRadians(30);
+      this.setOffset(17, -22);
   }
 
   public void display() {
