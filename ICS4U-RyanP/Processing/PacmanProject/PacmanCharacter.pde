@@ -3,6 +3,7 @@ public abstract class PacmanCharacter {
   protected int xLoc;
   protected int yLoc;
   protected boolean alive;
+  protected color c;
 
   public PacmanCharacter() {
     this.alive = true;

@@ -1,5 +1,4 @@
-public class Ghost extends PacmanCharacter {
-  private color c; 
+public class Ghost extends PacmanCharacter { 
 
   public Ghost() {
     this.xLoc = (int) (Math.random() * 800);

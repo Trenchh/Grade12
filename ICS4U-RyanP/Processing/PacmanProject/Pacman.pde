@@ -3,7 +3,6 @@ public class Pacman extends PacmanCharacter {
   AnimatedPacman pacman = new AnimatedPacman();
 
   //Properties
-  private int colour = #FFF703;
   private int score;
   private int lives = 3;
   private boolean poweredUp;
@@ -64,7 +63,7 @@ public class Pacman extends PacmanCharacter {
 
 
   public void display() {
-    fill(colour);  
+    fill(c);  
     if (this.isOpen) {
       pacman.pacManOpen(xLoc, yLoc, radians, xOff, yOff );
       this.isOpen = false;
