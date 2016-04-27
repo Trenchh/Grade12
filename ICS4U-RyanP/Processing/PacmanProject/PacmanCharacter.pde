@@ -18,13 +18,16 @@ public abstract class PacmanCharacter {
     return this.alive;
   }
 
-  public void setAlive(boolean c) {
-    this.alive = c;
+  public boolean hitbox(Pacman p, Ghost g) {
+    if (g.getXLoc() - 50 < p.getXLoc() && p.getXLoc() < g.getXLoc() + 40 && g.getYLoc() - 30 < p.getYLoc() && p.getYLoc() < g.getYLoc() + 30) {
+      return true;
+    }
+    return false;
   }
 
   public void reset() {
-    this.yLoc = 400;
-    this.xLoc = 500;
+    this.yLoc = height / 2;
+    this.xLoc = width / 2;
   }
 
   public int getXLoc() {
@@ -35,12 +38,16 @@ public abstract class PacmanCharacter {
     return this.yLoc;
   }
 
-  public void setXLoc() {
-    this.xLoc = xLoc;
+  public void setXLoc(int xLoc) {
+    if (xLoc <= width && xLoc >=0 ) {
+      this.xLoc = xLoc;
+    }
   }
 
-  public void setYLoc() {
-    this.yLoc = yLoc;
+  public void setYLoc(int yLoc) {
+    if (yLoc <= height && yLoc >=0 ) {
+      this.yLoc = yLoc;
+    }
   }
 
   public void moveDown() {
@@ -70,6 +77,17 @@ public abstract class PacmanCharacter {
     }
     this.xLoc = xLoc - 10;
   }
-  public void stop() {
+
+  public void endGame() {
+    background(#FAFF00);
+    textSize(100);
+    text("GAME OVER", width / 6, height / 2);
+    textSize(50);
+    text("press e to exit", width / 4, (height / 2) + 100);
+    if (keyPressed) {
+      if (key == 'e' || key == 'E') {
+        exit();
+      }
+    }
   }
 }

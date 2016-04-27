@@ -20,6 +20,15 @@ public class Pacman extends PacmanCharacter {
     this.yLoc = yLoc;
   }
 
+  public int getLives() {
+    return this.lives;
+  }
+
+  public void reset() {
+    super.reset();
+    this.lives--;
+  } 
+
   public void setRadians(int r) {
     this.radians = r;
   }
@@ -30,10 +39,29 @@ public class Pacman extends PacmanCharacter {
   }
 
   public void moveRight() {
-     super.moveRight();
-      this.setRadians(30);
-      this.setOffset(17, -22);
+    super.moveRight();
+    this.setRadians(30);
+    this.setOffset(17, -22);
   }
+
+  public void moveLeft() {
+    super.moveLeft();
+    this.setRadians(210);
+    this.setOffset(-17, -22);
+  }
+
+  public void moveUp() {
+    super.moveUp();
+    this.setRadians(300);
+    this.setOffset(19, -13);
+  }
+
+  public void moveDown() {
+    super.moveDown();
+    this.setRadians(120);
+    this.setOffset(19, 13);
+  }
+
 
   public void display() {
     fill(colour);  
