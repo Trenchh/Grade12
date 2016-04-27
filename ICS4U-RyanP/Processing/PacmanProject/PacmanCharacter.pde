@@ -4,17 +4,27 @@ public abstract class PacmanCharacter {
   protected int yLoc;
   protected boolean alive;
 
-  public PacmanCharacter() {    
-  }
-
-  public PacmanCharacter(int xLoc, int yLoc) {
-    this.xLoc = xLoc;
-    this.yLoc = yLoc;
+  public PacmanCharacter() {
     this.alive = true;
   }
 
+  public PacmanCharacter(int xLoc, int yLoc) {
+    this();
+    this.xLoc = xLoc;
+    this.yLoc = yLoc;
+  }
+
   public boolean isAlive() {
-     return this.alive; 
+    return this.alive;
+  }
+
+  public void setAlive(boolean c) {
+    this.alive = c;
+  }
+
+  public void reset() {
+    this.yLoc = 400;
+    this.xLoc = 500;
   }
 
   public int getXLoc() {
@@ -25,7 +35,13 @@ public abstract class PacmanCharacter {
     return this.yLoc;
   }
 
+  public int setXLoc() {
+    return this.xLoc;
+  }
 
+  public int setYLoc() {
+    return this.yLoc;
+  }
 
   public void moveDown() {
     if (yLoc > 800 ) {
@@ -53,5 +69,8 @@ public abstract class PacmanCharacter {
       xLoc = 1000;
     }
     this.xLoc = xLoc - 10;
+  }
+  public void stop() {
+    //CODE THIS
   }
 }

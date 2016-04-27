@@ -12,6 +12,12 @@ void setup() {
 
 void draw() {
   background(#0C1939);
+  //MAKE UNIVERSAL???
+  if (blinky.getXLoc() - 25 < pacman.getXLoc() && pacman.getXLoc() < blinky.getXLoc() + 25 && blinky.getYLoc() - 20 < pacman.getYLoc() && pacman.getYLoc() < blinky.getYLoc() + 20) {
+    pacman.reset();
+    pacman.stop();
+  }
+  
   pacman.display();
   pacman.control();
   blinky.display();
