@@ -10,11 +10,6 @@ public class Ghost extends PacmanCharacter {
     this.c = c;
   }
 
-  //public boolean isAlive() {
-  //  if (xLoc == pacman.getXLoc() && yLoc == pacman.getYLoc()) {
-      
-  //}
-
   public void display() {
     fill(c);
     //BODY
@@ -29,5 +24,9 @@ public class Ghost extends PacmanCharacter {
     fill(#051EA7);
     ellipse(xLoc - 20, yLoc - 10, 10, 10);
     ellipse(xLoc + 20, yLoc - 10, 10, 10);
+  }
+  
+    public String toString() {
+      return "This ghost is located on (" + this.getXLoc() + ", " + this.getYLoc() + ") and has the colour " + this.getColour();
   }
 }

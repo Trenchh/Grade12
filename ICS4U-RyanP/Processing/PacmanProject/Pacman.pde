@@ -23,6 +23,11 @@ public class Pacman extends PacmanCharacter {
     return this.lives;
   }
 
+  @Override
+    public String toString() {
+    return "Pacman is located at (" + this.getXLoc() + ", " + this.getYLoc() + ") and has the colour " + this.getColour();
+  }
+
   public void reset() {
     super.reset();
     this.lives--;
@@ -71,5 +76,9 @@ public class Pacman extends PacmanCharacter {
       pacman.pacManClosed(xLoc, yLoc, xOff, yOff);
       this.isOpen = true;
     }
+  }
+  public void displayLives() {
+    textSize(25);
+    text("LIVES: " + this.getLives(), 10, height - 10);
   }
 }

@@ -13,6 +13,7 @@ void setup() {
 
 void draw() {
   background(#0C1939);
+  pacman.displayLives();
   if (pacman.getLives() > 0 ) {
     if (pacman.hitbox(pacman, blinky) == true || pacman.hitbox(pacman, pinky) == true || pacman.hitbox(pacman, clyde) == true || pacman.hitbox(pacman, inky) == true) {
       pacman.reset();
@@ -46,5 +47,5 @@ void draw() {
     clyde.moveDown();
   } else {
     pacman.endGame();
-    }
   }
+}

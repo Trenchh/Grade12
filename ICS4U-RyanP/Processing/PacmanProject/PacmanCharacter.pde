@@ -18,6 +18,10 @@ public abstract class PacmanCharacter {
   public boolean isAlive() {
     return this.alive;
   }
+  
+    public color getColour() {
+    return this.c;
+  }
 
   public boolean hitbox(Pacman p, Ghost g) {
     if (g.getXLoc() - 50 < p.getXLoc() && p.getXLoc() < g.getXLoc() + 40 && g.getYLoc() - 30 < p.getYLoc() && p.getYLoc() < g.getYLoc() + 30) {
@@ -91,4 +95,5 @@ public abstract class PacmanCharacter {
       }
     }
   }
+  abstract String toString();
 }
