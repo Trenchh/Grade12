@@ -12,20 +12,20 @@ public class Pacman extends PacmanCharacter {
   private int yOff = -22;
 
   public Pacman() {
+    super();
   }
 
   public Pacman( int xLoc, int yLoc) {
-    this.xLoc = xLoc;
-    this.yLoc = yLoc;
+    super(xLoc, yLoc);
   }
 
   public int getLives() {
     return this.lives;
   }
 
-  @Override
-    public String toString() {
-    return "Pacman is located at (" + this.getXLoc() + ", " + this.getYLoc() + ") and has the colour " + this.getColour();
+  public String toString() {
+    System.out.println("Pacman is located at (" + this.getXLoc() + ", " + this.getYLoc() + ") and has " + this.getLives() + " lives");
+    return "Pacman is located at (" + this.getXLoc() + ", " + this.getYLoc() + ") and has " + this.getLives() + " lives";
   }
 
   public void reset() {

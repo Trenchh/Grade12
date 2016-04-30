@@ -1,12 +1,13 @@
-public abstract class PacmanCharacter {
+public abstract class PacmanCharacter implements Interface {
 
-  protected int xLoc;
-  protected int yLoc;
+  protected int xLoc = width/2;
+  protected int yLoc = height/2;
   protected boolean alive;
   protected color c;
 
   public PacmanCharacter() {
     this.alive = true;
+    this.c = color(random(255), random(255), random(255));
   }
 
   public PacmanCharacter(int xLoc, int yLoc) {
@@ -18,13 +19,15 @@ public abstract class PacmanCharacter {
   public boolean isAlive() {
     return this.alive;
   }
-  
-    public color getColour() {
+
+  public color getColour() {
     return this.c;
   }
 
-  public boolean hitbox(Pacman p, Ghost g) {
-    if (g.getXLoc() - 50 < p.getXLoc() && p.getXLoc() < g.getXLoc() + 40 && g.getYLoc() - 30 < p.getYLoc() && p.getYLoc() < g.getYLoc() + 30) {
+  public boolean hitCharacter(PacmanCharacter character) {
+    if (character.getXLoc() - 50 < this.getXLoc() && this.getXLoc() < character.getXLoc() + 50 && character.getYLoc() - 50 < this.getYLoc() && this.getYLoc() < character.getYLoc() + 50) {
+      this.reset();
+      hasMoved = false;
       return true;
     }
     return false;
@@ -95,5 +98,6 @@ public abstract class PacmanCharacter {
       }
     }
   }
-  abstract String toString();
+  public abstract String toString();
+  public abstract void display();
 }

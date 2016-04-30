@@ -1,8 +1,7 @@
 public class Ghost extends PacmanCharacter { 
 
   public Ghost() {
-    this.xLoc = (int) (Math.random() * 800);
-    this.yLoc = (int) (Math.random() * 800);
+    super((int) (Math.random() * 1000), (int) (Math.random() * 800));
   }
 
   public Ghost( color c ) {
@@ -25,8 +24,9 @@ public class Ghost extends PacmanCharacter {
     ellipse(xLoc - 20, yLoc - 10, 10, 10);
     ellipse(xLoc + 20, yLoc - 10, 10, 10);
   }
-  
-    public String toString() {
-      return "This ghost is located on (" + this.getXLoc() + ", " + this.getYLoc() + ") and has the colour " + this.getColour();
+
+  public String toString() {
+    System.out.println("This ghost is located on (" + this.getXLoc() + ", " + this.getYLoc() + ") and has the colour " + this.getColour());
+    return "This ghost is located on (" + this.getXLoc() + ", " + this.getYLoc() + ") and has the colour " + this.getColour();
   }
 }
