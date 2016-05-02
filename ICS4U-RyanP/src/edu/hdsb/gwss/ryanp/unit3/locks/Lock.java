@@ -18,6 +18,7 @@ public abstract class Lock {
     private int serialNumber;
     private boolean lockValid;
     private boolean open;
+    protected int maxNumber;
     protected boolean canSet;
     protected ArrayList<Integer> combonation = new ArrayList<Integer>();
     private int counter = 0;
@@ -26,6 +27,7 @@ public abstract class Lock {
     public Lock() {
         this.lockValid = true;
         this.open = false;
+        this.canSet = true;
         this.serialNumber = ++lastIDUsed;
         this.name = "LOCK #" + this.serialNumber;
         System.out.println(this.name + " created");
@@ -54,12 +56,15 @@ public abstract class Lock {
         return this.name;
     }
 
-    public void setCombo(int num1, int num2, int num3, int maxNumber) {
+    public void setCombo(int num1, int num2, int num3) {
         if (this.canSet == true) {
-            if (num1 < maxNumber && num1 >= 0 && num2 < maxNumber && num2 >= 0 && num3 < maxNumber && num3 >= 0) {
+            if (num1 <= this.maxNumber && num1 >= 0 && num2 <= this.maxNumber && num2 >= 0 && num3 <= this.maxNumber && num3 >= 0) {
+                this.resetCombo();
                 this.combonation.add(num1);
                 this.combonation.add(num2);
                 this.combonation.add(num3);
+            } else {
+                System.out.println("INVALID NUMBERS");
             }
         } else {
             System.out.println("You can not change the combonation on this lock");
@@ -67,8 +72,19 @@ public abstract class Lock {
         }
     }
 
-//    public void open(int num1, int num2, int num3) {
-//        
-//        
-//    }
+    public void resetCombo() {
+        this.combonation.removeAll(this.combonation);
+    }
+
+    public void setName(String name) {
+        if (name == null || name.length() > 25) {
+            System.out.println("INVALID NAME");
+        } else {
+            this.name = name.toUpperCase();
+        }
+    }
+
+    public void open(int num1, int num2, int num3) {
+
+    }
 }

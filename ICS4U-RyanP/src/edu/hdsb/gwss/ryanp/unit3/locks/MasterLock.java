@@ -16,16 +16,11 @@ public class MasterLock extends Lock {
 
     public MasterLock() {
         super(3, 39);
+        this.canSet = false;
     }
-    
+
     public MasterLock(String name) {
         this();
-        this.name = name;
+        this.setName(name);
     }
-
-    public MasterLock(int num1, int num2, int num3, String name) {
-        this(name);
-        this.setCombo(num1, num2, num3, maxNumber);
-    }
-
 }

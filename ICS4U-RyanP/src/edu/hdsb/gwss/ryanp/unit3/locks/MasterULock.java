@@ -20,16 +20,17 @@ public class MasterULock extends Lock {
 
     public MasterULock(String name) {
         this();
-        this.name = name;
+        this.setName(name);
     }
 
     public MasterULock(int num1, int num2, int num3, int num4, String name) {
         this(name);
-        this.setCombo(num1, num2, num3, num4);
+        this.maxNumber = 9;
+        this.setCombo(num1, num2, num3, num4, this.maxNumber);
     }
 
-    public void setCombo(int num1, int num2, int num3, int num4) {
-        if (num1 < maxNumber && num1 >= 0 && num2 < maxNumber && num2 >= 0 && num3 < maxNumber && num3 >= 0 && num4 < maxNumber && num4 >= 0) {
+    public void setCombo(int num1, int num2, int num3, int num4, int maxNumber) {
+        if (num1 <= maxNumber && num1 >= 0 && num2 <= maxNumber && num2 >= 0 && num3 <= maxNumber && num3 >= 0 && num4 <= maxNumber && num4 >= 0) {
             this.combonation.add(num1);
             this.combonation.add(num2);
             this.combonation.add(num3);

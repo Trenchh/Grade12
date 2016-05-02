@@ -15,14 +15,17 @@ public class LockClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MasterLock masterLock = new MasterLock();
+        MasterLock masterLock = new MasterLock("MasterLock");
         DudleyLock dudley = new DudleyLock();
-        Android android = new Android("android");
+        Android android = new Android(3, 8, 5, "android");
         MasterULock masterULock = new MasterULock();
 
         dudley.getCombonation();
         dudley.getCombonation();
         dudley.getName();
-
+        masterLock.getCombonation();
+        android.getCombonation();
+        android.setCombo(2, 3, 4);
+        android.getCombonation();
     }
 }
