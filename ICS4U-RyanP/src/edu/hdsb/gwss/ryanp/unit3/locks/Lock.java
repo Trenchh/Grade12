@@ -84,6 +84,9 @@ public class Lock implements LockInterface {
         }
     }
 
+    //so much duplicate code, tried reducing it for masterlock but it got too inefficient
+    //I'm sure theres a really easy way to do so.
+    
     public void setCombo(int num1, int num2, int num3, int num4) {
         if (this.bricked == false) {
             // this.canSet = true;
@@ -160,7 +163,7 @@ public class Lock implements LockInterface {
                 }
 
             } else {
-            System.out.println("ALREADY UNLOCKED");
+                System.out.println("ALREADY UNLOCKED");
 
             }
         } else {

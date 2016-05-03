@@ -122,6 +122,5 @@ public class LockClient {
         a.unlock(3, 5, 6);
         a.unlock(3, 5, 6);
         a.lock();
-
     }
 }
