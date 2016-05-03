@@ -11,80 +11,192 @@ import java.util.ArrayList;
  *
  * @author Swag God
  */
-public abstract class Lock {
+public class Lock {
 
-    protected String name;
     private static int lastIDUsed = 0;
     private int serialNumber;
-    private boolean lockValid;
-    private boolean open;
+    private boolean locked;
     protected int maxNumber;
-    protected boolean canSet;
-    protected ArrayList<Integer> combonation = new ArrayList<Integer>();
-    private int counter = 0;
+    protected ArrayList<Integer> combination = new ArrayList<Integer>();
+    private boolean canGet;
     private int attempts;
+//    protected boolean canSet;
+    private boolean bricked;
 
     public Lock() {
-        this.lockValid = true;
-        this.open = false;
-        this.canSet = true;
+        this.locked = true;
         this.serialNumber = ++lastIDUsed;
-        this.name = "LOCK #" + this.serialNumber;
-        System.out.println(this.name + " created");
+        this.canGet = true;
+        this.bricked = false;
     }
 
     public Lock(int numberCount, int maxNumber) {
         this();
+        this.maxNumber = maxNumber;
         for (int i = 0; i < numberCount; i++) {
-            this.combonation.add((int) (Math.random() * maxNumber));
+            this.combination.add((int) (Math.random() * maxNumber));
         }
-        System.out.println("Combonation set");
+        System.out.println("Combination set: " + this.combination);
     }
 
     public ArrayList<Integer> getCombonation() {
-        if (this.counter == 0) {
-            this.counter++;
-            System.out.println(this.combonation);
-            return this.combonation;
+        if (this.bricked == false) {
+            if (this.canGet == true) {
+                this.canGet = false;
+                System.out.println(this.combination);
+                return this.combination;
+            }
+            System.out.println("Combination can't be retrieved again");
+            return null;
+        } else {
+            System.out.println("LOCK IS BRICKED");
+
         }
-        System.out.println("Combonation can't be retrieved again");
         return null;
     }
 
-    public String getName() {
-        System.out.println("The name of this lock is " + this.name);
-        return this.name;
-    }
-
     public void setCombo(int num1, int num2, int num3) {
-        if (this.canSet == true) {
-            if (num1 <= this.maxNumber && num1 >= 0 && num2 <= this.maxNumber && num2 >= 0 && num3 <= this.maxNumber && num3 >= 0) {
-                this.resetCombo();
-                this.combonation.add(num1);
-                this.combonation.add(num2);
-                this.combonation.add(num3);
+        if (this.bricked == false) {
+            //this.canSet = true;
+            if (this instanceof Android) {
+                if (num1 <= this.maxNumber && num1 >= 0 && num2 <= this.maxNumber && num2 >= 0 && num3 <= this.maxNumber && num3 >= 0) {
+                    this.clearCombo();
+                    this.combination.add(num1);
+                    this.combination.add(num2);
+                    this.combination.add(num3);
+                    System.out.println("combination set");
+                } else {
+                    // this.canSet = false;
+                    System.out.println("INVALID INPUT");
+                }
             } else {
-                System.out.println("INVALID NUMBERS");
+                if (this instanceof MasterULock) {
+                    System.out.println("Use the 4 number setter");
+
+                } else {
+                    System.out.println("You can not change the combination on this lock");
+                }
+
             }
         } else {
-            System.out.println("You can not change the combonation on this lock");
+            System.out.println("LOCK IS BRICKED");
 
         }
     }
 
-    public void resetCombo() {
-        this.combonation.removeAll(this.combonation);
-    }
+    public void setCombo(int num1, int num2, int num3, int num4) {
+        if (this.bricked == false) {
+            // this.canSet = true;
+            if (this instanceof MasterULock) {
+                if (num1 <= this.maxNumber && num1 >= 0 && num2 <= this.maxNumber && num2 >= 0 && num3 <= this.maxNumber && num3 >= 0 && num4 <= this.maxNumber && num4 >= 0) {
+                    this.clearCombo();
+                    this.combination.add(num1);
+                    this.combination.add(num2);
+                    this.combination.add(num3);
+                    this.combination.add(num4);
+                    System.out.println("combination set");
+                } else {
+                    //  this.canSet = false;
+                    System.out.println("INVALID INPUT");
+                }
+            } else {
+                if (this instanceof Android) {
+                    System.out.println("Use the 3 number setter");
 
-    public void setName(String name) {
-        if (name == null || name.length() > 25) {
-            System.out.println("INVALID NAME");
+                } else {
+                    System.out.println("You can not change the combination on this lock");
+                }
+            }
         } else {
-            this.name = name.toUpperCase();
+            System.out.println("LOCK IS BRICKED");
         }
     }
 
-    public void open(int num1, int num2, int num3) {
+    public int getSerialNumber() {
+        System.out.println("The serial number of this lock is :" + this.serialNumber);
+        return this.serialNumber;
+    }
 
+    private void clearCombo() {
+        System.out.println("combination cleared");
+        this.combination.removeAll(this.combination);
+    }
+
+    public void lock() {
+        if (this.bricked == false) {
+            if (this.locked == false) {
+                this.attempts = 0;
+                this.locked = true;
+                System.out.println("The lock is now locked");
+            } else {
+                System.out.println("The lock is already locked");
+            }
+        } else {
+            System.out.println("LOCK IS BRICKED");
+
+        }
+    }
+
+    public void unlock(int num1, int num2, int num3) {
+        if (this.bricked == false) {
+            if (this.locked == true) {
+                if (this instanceof Android || this instanceof MasterLock || this instanceof DudleyLock) {
+                    this.attempts++;
+                    if (this.attempts <= 3) {
+                        if (this.combination.get(0).equals(num1) && this.combination.get(1).equals(num2) && this.combination.get(2).equals(num3)) {
+                            System.out.println("The lock is now unlocked");
+                            this.locked = false;
+                            this.attempts = 0;
+                        } else {
+                            System.out.println("WRONG COMBINATION");
+                        }
+                    } else {
+                        this.bricked = true;
+                        System.out.println("TOO MANY ATTEMPTS, LOCK IS BRICKED");
+                    }
+                } else {
+                    System.out.println("Use the 4 number setter");
+
+                }
+
+            } else {
+            System.out.println("ALREADY UNLOCKED");
+
+            }
+        } else {
+            System.out.println("LOCK IS BRICKED");
+
+        }
+    }
+
+    public void unlock(int num1, int num2, int num3, int num4) {
+        if (this.bricked == false) {
+            if (this.locked == true) {
+                if (this instanceof MasterULock) {
+                    this.attempts++;
+                    if (this.attempts <= 3) {
+                        if (this.combination.get(0).equals(num1) && this.combination.get(1).equals(num2) && this.combination.get(2).equals(num3) && this.combination.get(3).equals(num4)) {
+                            System.out.println("The lock is now unlocked");
+                            this.locked = false;
+                            this.attempts = 0;
+                        } else {
+                            System.out.println("WRONG COMBINATION");
+                        }
+                    } else {
+                        this.bricked = true;
+                        System.out.println("TOO MANY ATTEMPTS, LOCK IS BRICKED");
+                    }
+                } else {
+                    System.out.println("Use the 3 number setter");
+
+                }
+
+            } else {
+                System.out.println("ALREADY UNLOCKED");
+
+            }
+        } else {
+            System.out.println("LOCK IS BRICKED");
+        }
     }
 }
