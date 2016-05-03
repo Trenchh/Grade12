@@ -9,16 +9,16 @@ package edu.hdsb.gwss.ryanp.unit5;
  *
  * @author Swag God
  */
-public class Stacks implements StackInterface {
+public class Stack implements StackInterface {
 
     private int[] stack;
     private int top;
 
-    public Stacks() {
+    public Stack() {
         
     }
 
-    public Stacks(int length) {
+    public Stack(int length) {
         
     }
 
