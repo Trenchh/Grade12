@@ -11,9 +11,8 @@ package edu.hdsb.gwss.ryanp.unit5;
  */
 public class Stack implements StackInterface {
 
-    private static final int DEFAULT_SIZE = 25;
+    public static final int DEFAULT_SIZE = 25;
     private static final int EMPTY = -1;
-
     private int[] stack;
     private int top;
 
@@ -36,7 +35,8 @@ public class Stack implements StackInterface {
 
     public int pop() {
         if (this.isEmpty() == false) {
-            return this.stack[top];
+            this.top--;
+            return this.stack[top + 1];
         } else {
             return EMPTY;
         }
@@ -76,4 +76,17 @@ public class Stack implements StackInterface {
     public void makeEmpty() {
         this.top = EMPTY;
     }
+
+    @Override
+    public String toString() {
+        String s = "BOTTOM --> ";
+        for( int i = 0; i <= this.top; i++ ) {
+            s = s + this.stack[i] + "-->";
+        }
+        s = s + "TOP";
+        return s;
+    }
+    
+    
+    
 }
