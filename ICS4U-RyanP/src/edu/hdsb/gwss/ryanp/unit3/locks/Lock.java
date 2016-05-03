@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Swag God
  */
-public class Lock {
+public class Lock implements LockInterface {
 
     private static int lastIDUsed = 0;
     private int serialNumber;

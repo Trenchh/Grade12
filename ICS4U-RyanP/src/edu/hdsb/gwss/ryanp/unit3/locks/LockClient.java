@@ -23,7 +23,7 @@ public class LockClient {
         //      - its locked
         //      - has serialnumber 1
         //      - has preset combo
-        System.out.println("-------------------");
+        System.out.println("----------------------------------------------------");
         System.out.println("Test #1 - DudleyLock");
         //combo prints when instantiated
         DudleyLock dudley = new DudleyLock();
@@ -38,7 +38,7 @@ public class LockClient {
         //      - its locked
         //      - has serialnumber 2
         //      - has preset combo
-        System.out.println("-------------------");
+        System.out.println("----------------------------------------------------");
         System.out.println("Test #2 - MasterLock");
         //combo prints when instantiated
         MasterLock masterLock = new MasterLock();
@@ -52,7 +52,7 @@ public class LockClient {
         // POST-CONDTION:
         //      - retrieve combination once
         //      - wil not retrieve a 2nd time
-        System.out.println("-------------------");
+        System.out.println("----------------------------------------------------");
         System.out.println("Test #3 - Retrieving/setting combination");
         dudley.getCombonation();
         //should print "can not retrieve again"
@@ -70,7 +70,7 @@ public class LockClient {
         //      - can't unlock because the combo is random everytime(its possible i get the numbers right
         //      - lock will brick after 3 attempts
         //      - nothing else will work
-        System.out.println("-------------------");
+        System.out.println("----------------------------------------------------");
         System.out.println("Test #4 - Unlock");
         dudley.unlock(1, 2, 3);
         dudley.unlock(5, 19, 21);
@@ -87,7 +87,7 @@ public class LockClient {
         //      - will set combo
         //      - shouldnt set when using set(int,int,int);
         //      - shouldnt unlock when using unlock(int,int,int);
-        System.out.println("-------------------");
+        System.out.println("----------------------------------------------------");
         System.out.println("Test #5 - MasterULock");
         MasterULock masterULock = new MasterULock();
         masterULock.setCombo(1, 2, 3);
@@ -109,7 +109,7 @@ public class LockClient {
         //      - will set combo
         //      - shouldnt set when using set(int,int,int,int);
         //      - shouldnt unlock when using unlock(int,int,int,int);
-        System.out.println("-------------------");
+        System.out.println("----------------------------------------------------");
         System.out.println("Test #5 - Android");
         Android android = new Android();
         android.setCombo(1, 2, 3);
