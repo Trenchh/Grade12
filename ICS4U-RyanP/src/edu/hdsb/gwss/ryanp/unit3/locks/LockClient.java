@@ -15,7 +15,6 @@ public class LockClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         // TEST #1: DudleyLock
         // PRE-CONDTION:
         //      - none
