@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hdsb.gwss.ryanp.unit5;
+package edu.hdsb.gwss.ryanp.unit5.dataStructures;
 
 /**
  *
@@ -25,6 +25,7 @@ public class Stack implements StackInterface {
         this.top = EMPTY;
     }
 
+    @Override
     public int top() {
         if (this.isEmpty() == false) {
             return this.stack[top];
@@ -33,6 +34,7 @@ public class Stack implements StackInterface {
         }
     }
 
+    @Override
     public int pop() {
         if (this.isEmpty() == false) {
             this.top--;
@@ -42,6 +44,7 @@ public class Stack implements StackInterface {
         }
     }
 
+    @Override
     public void push(int value) {
         if (this.isFull() == false) {
             this.top++;
@@ -49,30 +52,27 @@ public class Stack implements StackInterface {
         }
     }
 
+    @Override
     public int size() {
         return top + 1;
     }
 
+    @Override
     public int capacity() {
         return stack.length;
     }
 
+    @Override
     public boolean isEmpty() {
-        if (top == EMPTY) {
-            return true;
-        } else {
-            return false;
-        }
+        return top == EMPTY;
     }
 
+    @Override
     public boolean isFull() {
-        if (this.size() == this.capacity()) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.size() == this.capacity();
     }
 
+    @Override
     public void makeEmpty() {
         this.top = EMPTY;
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hdsb.gwss.ryanp.unit5;
+package edu.hdsb.gwss.ryanp.unit5.dataStructures;
 
 /**
  *
@@ -77,7 +77,7 @@ public class StackTest {
 
         Stack stack2 = new Stack(15);
 
-        // SETS CAPACITY TO 25
+        // SETS CAPACITY TO 15
         assert (stack2.top() == -1);
         assert (stack2.size() == 0);
         assert (stack2.capacity() == 15);

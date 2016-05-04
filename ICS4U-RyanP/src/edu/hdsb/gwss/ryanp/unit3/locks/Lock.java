@@ -6,6 +6,7 @@
 package edu.hdsb.gwss.ryanp.unit3.locks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Lock implements LockInterface {
     private boolean locked;
     protected int maxNumber;
     protected ArrayList<Integer> combination = new ArrayList<Integer>();
+    //private ArrayList<Integer> aCopy = new ArrayList<Integer>();
     private boolean canGet;
     private int attempts;
 //    protected boolean canSet;
@@ -43,7 +45,9 @@ public class Lock implements LockInterface {
         if (this.bricked == false) {
             if (this.canGet == true) {
                 this.canGet = false;
+                //this.aCopy = Arrays.copyOf(this.combination, this.combination.size());
                 System.out.println(this.combination);
+                //return this.aCopy;
                 return this.combination;
             }
             System.out.println("Combination can't be retrieved again");

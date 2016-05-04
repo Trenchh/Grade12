@@ -1,4 +1,4 @@
-package edu.hdsb.gwss.ryanp.unit5;
+package edu.hdsb.gwss.ryanp.unit5.dataStructures;
 
 /**
  * Lesson: 6.01 - Stacks
