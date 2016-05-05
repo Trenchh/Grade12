@@ -54,17 +54,17 @@ public class Stack implements StackInterface {
 
     @Override
     public int size() {
-        return top + 1;
+        return this.top + 1;
     }
 
     @Override
     public int capacity() {
-        return stack.length;
+        return this.stack.length;
     }
 
     @Override
     public boolean isEmpty() {
-        return top == EMPTY;
+        return this.top == EMPTY;
     }
 
     @Override

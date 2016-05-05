@@ -15,7 +15,71 @@ public class QueueTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Queue queue = new Queue();
+
+        // EMPTY
+        assert (queue.back() == 0);
+        assert (queue.front() == 0);
+        assert (queue.size() == 0);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == true);
+        assert (queue.isFull() == false);
+
+        // ENQUEUE
+        queue.enqueue(1);
+        assert (queue.back() == 1);
+        assert (queue.front() == 0);
+        assert (queue.size() == 1);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == false);
+        assert (queue.isFull() == false);
+
+        // DEQUEUE
+        queue.dequeue();
+        assert (queue.back() == 0);
+        assert (queue.front() == 0);
+        assert (queue.size() == 0);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == true);
+        assert (queue.isFull() == false);
+
+        // FILL QUEUE
+        for (int i = 0; i < queue.capacity(); i++) {
+            queue.enqueue(i);
+        }
+        assert (queue.back() == 24);
+        assert (queue.front() == 0);
+        assert (queue.size() == 25);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == false);
+        assert (queue.isFull() == true);
+
+        // ENQUEUE WHEN FULL
+        queue.enqueue(25);
+        assert (queue.back() == 24);
+        assert (queue.front() == 0);
+        assert (queue.size() == 25);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == false);
+        assert (queue.isFull() == true);
+
+        // MAKE EMPTY
+        queue.makeEmpty();
+        assert (queue.back() == -1);
+        assert (queue.front() == 0);
+        assert (queue.size() == 0);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == true);
+        assert (queue.isFull() == false);
+
+        // POP WHEN EMPTY
+        queue.dequeue();
+        assert (queue.back() == -1);
+        assert (queue.front() == 0);
+        assert (queue.size() == 0);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == true);
+        assert (queue.isFull() == false);
     }
-    
+
 }

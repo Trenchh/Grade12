@@ -12,7 +12,7 @@ package edu.hdsb.gwss.ryanp.unit5.dataStructures;
 public class Queue implements QueueInterface {
 
     public static final int DEFAULT_SIZE = 25;
-    private static final int EMPTY = -1;
+    private static final int EMPTY = 0;
     private int[] queue;
     private int front;
     private int back;
@@ -30,7 +30,7 @@ public class Queue implements QueueInterface {
     @Override
     public int front() {
         if (this.isEmpty() == false) {
-            return this.queue[front];
+            return this.queue[this.front];
         }
         return EMPTY;
     }
@@ -38,7 +38,7 @@ public class Queue implements QueueInterface {
     @Override
     public int back() {
         if (this.isEmpty() == false) {
-            return this.queue[back];
+            return this.queue[this.back];
         }
         return EMPTY;
 
@@ -47,8 +47,8 @@ public class Queue implements QueueInterface {
     @Override
     public void enqueue(int value) {
         if (this.isFull() == false) {
-            this.back++;
-            this.queue[back] = value;
+            this.back = (this.back + 1) % this.capacity();
+            this.queue[this.back] = value;
         }
     }
 
@@ -56,7 +56,7 @@ public class Queue implements QueueInterface {
     public int dequeue() {
         if (this.isEmpty() == false) {
             this.front++;
-            return this.queue[front - 1];
+            return this.queue[this.front];
         } else {
             return EMPTY;
 
@@ -65,21 +65,25 @@ public class Queue implements QueueInterface {
 
     @Override
     public int size() {
+        if (this.back == this.front) {
+            return 0;
+        }
         return this.back - this.front;
     }
 
     @Override
     public int capacity() {
-
+        return this.queue.length;
     }
 
     @Override
     public boolean isEmpty() {
-
+        return this.back == this.front;
     }
 
     @Override
     public boolean isFull() {
+        return this.size() == this.capacity();
 
     }
 
