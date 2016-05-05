@@ -83,7 +83,7 @@ public class Queue implements QueueInterface {
 
     @Override
     public boolean isFull() {
-        return this.size() == this.capacity();
+        return this.size() + 1 == this.capacity();
 
     }
 
@@ -93,4 +93,13 @@ public class Queue implements QueueInterface {
         this.back = EMPTY;
     }
 
+    @Override
+    public String toString() {
+        String s = "BOTTOM --> ";
+        for( int i = 0; i <= this.back; i++ ) {
+            s = s + this.queue[i] + "-->";
+        }
+        s = s + "TOP";
+        return s;
+    }
 }
