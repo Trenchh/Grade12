@@ -65,7 +65,7 @@ public class Queue implements QueueInterface {
 
     @Override
     public int size() {
-
+        return this.back - this.front;
     }
 
     @Override
@@ -85,7 +85,8 @@ public class Queue implements QueueInterface {
 
     @Override
     public void makeEmpty() {
-
+        this.front = EMPTY;
+        this.back = EMPTY;
     }
 
 }
