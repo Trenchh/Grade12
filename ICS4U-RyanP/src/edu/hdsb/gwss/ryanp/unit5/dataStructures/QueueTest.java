@@ -18,9 +18,9 @@ public class QueueTest {
         Queue queue = new Queue();
 
         // EMPTY
-        assert (queue.back() == 0);
-        assert (queue.front() == 0);
-        assert (queue.size() == 0);
+        assert (queue.back() == -1);
+        assert (queue.front() == -1);
+        assert (queue.size() == -1);
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == true);
         assert (queue.isFull() == false);
@@ -28,7 +28,7 @@ public class QueueTest {
         // ENQUEUE
         queue.enqueue(1);
         assert (queue.back() == 1);
-        assert (queue.front() == 0);
+        assert (queue.front() == 1);
         assert (queue.size() == 1);
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == false);
@@ -36,9 +36,9 @@ public class QueueTest {
 
         // DEQUEUE
         queue.dequeue();
-        assert (queue.back() == 0);
-        assert (queue.front() == 0);
-        assert (queue.size() == 0);
+        assert (queue.back() == -1);
+        assert (queue.front() == -1);
+        assert (queue.size() == -1);
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == true);
         assert (queue.isFull() == false);
@@ -50,7 +50,16 @@ public class QueueTest {
             System.out.println(queue.toString());
         }
         assert (queue.back() == 24);
-        assert (queue.front() == 0);
+        assert (queue.front() == 1);
+        assert (queue.size() == 24);
+        assert (queue.capacity() == Queue.DEFAULT_SIZE);
+        assert (queue.isEmpty() == false);
+        assert (queue.isFull() == true);
+
+        // ENQUEUE WHEN FULL
+        queue.enqueue(25);
+        assert (queue.back() == 24);
+        assert (queue.front() == 1);
         assert (queue.size() == 24);
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == false);
@@ -58,20 +67,12 @@ public class QueueTest {
 
         // DEQUEUE THEN ENQUEUE
         queue.dequeue();
+        assert (queue.isFull() == false);
         queue.enqueue(99);
         System.out.println(queue.toString());
-        assert (queue.back() == 99);
-        assert (queue.front() == 1);
-        assert (queue.size() == 0);
-        assert (queue.capacity() == Queue.DEFAULT_SIZE);
-        assert (queue.isEmpty() == false);
-        assert (queue.isFull() == true);
-        
-        // ENQUEUE WHEN FULL
-        queue.enqueue(25);
         assert (queue.back() == 24);
-        assert (queue.front() == 0);
-        assert (queue.size() == 24);
+        assert (queue.front() == 2);
+        assert (queue.size() == 0);
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == false);
         assert (queue.isFull() == true);

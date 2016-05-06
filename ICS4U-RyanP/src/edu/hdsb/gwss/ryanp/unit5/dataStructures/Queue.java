@@ -12,7 +12,7 @@ package edu.hdsb.gwss.ryanp.unit5.dataStructures;
 public class Queue implements QueueInterface {
 
     public static final int DEFAULT_SIZE = 25;
-    private static final int EMPTY = 0;
+    private static final int EMPTY = -1;
     private int[] queue;
     private int front;
     private int back;
@@ -29,15 +29,15 @@ public class Queue implements QueueInterface {
 
     @Override
     public int front() {
-        if (this.isEmpty() == false) {
-            return this.queue[this.front];
+        if (!this.isEmpty()) {
+            return this.queue[this.front + 1];
         }
         return EMPTY;
     }
 
     @Override
     public int back() {
-        if (this.isEmpty() == false) {
+        if (!this.isEmpty()) {
             return this.queue[this.back];
         }
         return EMPTY;
@@ -46,7 +46,7 @@ public class Queue implements QueueInterface {
 
     @Override
     public void enqueue(int value) {
-        if (this.isFull() == false) {
+        if (!this.isFull()) {
             this.back = (this.back + 1) % this.capacity();
             this.queue[this.back] = value;
         }
@@ -54,21 +54,21 @@ public class Queue implements QueueInterface {
 
     @Override
     public int dequeue() {
-        if (this.isEmpty() == false) {
-            this.front++;
-            return this.queue[this.front - 1];
-        } else {
-            return EMPTY;
-
+        int value = EMPTY;
+        if ( !this.isEmpty() ) {
+            value = this.queue[this.front];
+            this.front = ( this.front++ ) % this.capacity();
+            return value;
         }
+        return value;
     }
 
     @Override
     public int size() {
-        if (this.back == this.front) {
-            return 0;
-        }
-        return this.back - this.front;
+        
+        
+        //REDO
+        return EMPTY;
     }
 
     @Override
