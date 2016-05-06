@@ -56,7 +56,7 @@ public class Queue implements QueueInterface {
     public int dequeue() {
         if (this.isEmpty() == false) {
             this.front++;
-            return this.queue[this.front];
+            return this.queue[this.front - 1];
         } else {
             return EMPTY;
 
@@ -96,7 +96,7 @@ public class Queue implements QueueInterface {
     @Override
     public String toString() {
         String s = "BOTTOM --> ";
-        for( int i = 0; i <= this.back; i++ ) {
+        for (int i = 0; i <= this.back; i++) {
             s = s + this.queue[i] + "-->";
         }
         s = s + "TOP";
