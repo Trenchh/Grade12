@@ -27,7 +27,7 @@ public class Stack implements StackInterface {
 
     @Override
     public int top() {
-        if (this.isEmpty() == false) {
+        if (!this.isEmpty()) {
             return this.stack[top];
         } else {
             return EMPTY;
@@ -36,7 +36,7 @@ public class Stack implements StackInterface {
 
     @Override
     public int pop() {
-        if (this.isEmpty() == false) {
+        if (!this.isEmpty()) {
             this.top--;
             return this.stack[top + 1];
         } else {
@@ -46,7 +46,7 @@ public class Stack implements StackInterface {
 
     @Override
     public void push(int value) {
-        if (this.isFull() == false) {
+        if (!this.isFull()) {
             this.top++;
             this.stack[top] = value;
         }
@@ -80,13 +80,11 @@ public class Stack implements StackInterface {
     @Override
     public String toString() {
         String s = "BOTTOM --> ";
-        for( int i = 0; i <= this.top; i++ ) {
+        for (int i = 0; i <= this.top; i++) {
             s = s + this.stack[i] + "-->";
         }
         s = s + "TOP";
         return s;
     }
-    
-    
-    
+
 }

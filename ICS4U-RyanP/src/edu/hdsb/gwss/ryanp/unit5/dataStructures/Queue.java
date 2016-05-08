@@ -5,6 +5,8 @@
  */
 package edu.hdsb.gwss.ryanp.unit5.dataStructures;
 
+import java.util.Arrays;
+
 /**
  *
  * @author 1protheroery
@@ -30,7 +32,7 @@ public class Queue implements QueueInterface {
     @Override
     public int front() {
         if (!this.isEmpty()) {
-            return this.queue[this.front + 1];
+            return this.queue[this.front];
         }
         return EMPTY;
     }
@@ -46,7 +48,11 @@ public class Queue implements QueueInterface {
 
     @Override
     public void enqueue(int value) {
-        if (!this.isFull()) {
+        if (this.front == EMPTY && this.back == EMPTY) {
+            this.front = 0;
+            this.back = 0;
+            this.queue[this.back] = value;
+        } else if (!this.isFull()) {
             this.back = (this.back + 1) % this.capacity();
             this.queue[this.back] = value;
         }
@@ -54,21 +60,33 @@ public class Queue implements QueueInterface {
 
     @Override
     public int dequeue() {
-        int value = EMPTY;
-        if ( !this.isEmpty() ) {
-            value = this.queue[this.front];
-            this.front = ( this.front++ ) % this.capacity();
-            return value;
+        if (!this.isEmpty()) {
+            if (this.back == 0 && this.front == 0) {
+                this.back = -1;
+                this.front = -1;
+            } else {
+                int value = this.queue[this.front];
+                this.front = (this.front + 1) % this.capacity();
+                return value;
+            }
         }
-        return value;
+        return EMPTY;
     }
 
     @Override
     public int size() {
-        
-        
-        //REDO
-        return EMPTY;
+        if (!this.isEmpty()) {
+            if (this.back == 0 && this.front == 0) {
+                return 1;
+            } else if (this.back > this.front) {
+                return this.back + 1 - this.front;
+            } else if (this.back < this.front) {
+                int sum = this.back + this.front;
+                return this.capacity() + 1 - sum;
+            }
+        }
+        return 0;
+
     }
 
     @Override
@@ -78,12 +96,18 @@ public class Queue implements QueueInterface {
 
     @Override
     public boolean isEmpty() {
-        return this.back == this.front;
+        if (this.front == 0 && this.back == 0) {
+            return false;
+        } else if (this.front == this.back) {
+            return true;
+        }
+        return false;
+
     }
 
     @Override
     public boolean isFull() {
-        return this.size() + 1 == this.capacity();
+        return this.size() == this.capacity();
 
     }
 
@@ -95,11 +119,22 @@ public class Queue implements QueueInterface {
 
     @Override
     public String toString() {
-        String s = "BOTTOM --> ";
-        for (int i = 0; i <= this.back; i++) {
-            s = s + this.queue[i] + "-->";
-        }
-        s = s + "TOP";
-        return s;
+        System.out.println(this.front);
+        System.out.println(this.back);
+        return Arrays.toString(this.queue);
+//        String s = "BOTTOM --> ";
+//        if (!this.isEmpty()) {
+//            if (this.front == 0 && this.back == 0) {
+//                return "BOTTOM -->" + this.queue[this.back] + "--> TOP";
+//            } else {
+//                for (int i = this.front; i % this.capacity() != this.back; i++) {
+//                    s = s + this.queue[i % this.capacity()] + "-->";
+//                }
+//                s = s + "TOP";
+//                return s;
+//            }
+//        }
+//        return "BOTTOM --> TOP";
+
     }
 }
