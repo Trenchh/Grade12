@@ -8,7 +8,7 @@ public class Node implements NodeInterface {
     private String data;
     private Node next;
 
-    public Node( String newData ) {
+    public Node(String newData) {
         this.data = newData;
         this.next = null;
     }
@@ -19,13 +19,13 @@ public class Node implements NodeInterface {
     }
 
     @Override
-    public void setNext( Node nextNode ) {
+    public void setNext(Node nextNode) {
         this.next = nextNode;
     }
 
     @Override
     public String getData() {
         return this.data;
-    }     
+    }
 
 }
