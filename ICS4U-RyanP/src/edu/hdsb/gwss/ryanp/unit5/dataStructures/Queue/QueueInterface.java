@@ -1,4 +1,4 @@
-package edu.hdsb.gwss.ryanp.unit5.dataStructures;
+package edu.hdsb.gwss.ryanp.unit5.dataStructures.Queue;
 
 /**
  * Lesson: 6.02 - Queue
