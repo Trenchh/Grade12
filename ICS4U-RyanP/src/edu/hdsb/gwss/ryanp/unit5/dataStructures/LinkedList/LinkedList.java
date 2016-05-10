@@ -11,8 +11,8 @@ package edu.hdsb.gwss.ryanp.unit5.dataStructures.LinkedList;
  */
 public class LinkedList implements LinkListInterface {
 
-    Node head;
-    Node tail;
+    private Node head;
+    private Node tail;
 
     @Override
     public int size() {
@@ -34,7 +34,10 @@ public class LinkedList implements LinkListInterface {
         Node tmp = n;
         while (n.getNext() != null) {
             // FIX, IT WILL ERASE BEFORE GETTING NEXT tmp = n.getNext();
-            //  n.setNext(null);
+            tmp = n.getNext();
+            n.setNext(null);
+            n = tmp;
+
         }
     }
 
@@ -45,6 +48,12 @@ public class LinkedList implements LinkListInterface {
 
     @Override
     public void addAtFront(String str) {
+        Node front = new Node(str);
+        front.setNext(head);
+        this.head = front;
+        if (this.isEmpty()) {
+            this.tail = front;
+        }
 
     }
 
