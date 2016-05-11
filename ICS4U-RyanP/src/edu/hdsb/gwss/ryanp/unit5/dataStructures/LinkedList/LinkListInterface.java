@@ -26,13 +26,16 @@ public interface LinkListInterface {
     public void addAtEnd( String str );
     
     /**
-     * Deletes a node in the linked list.
+     * Removes a node in the linked list
      *
      * @param str
      */
     public void remove( String str );
-    public String removeFromEnd();
-    public String removeFromFront();
+    public String removeHead();
+    public String removeTail();
+    
+    public String head();
+    public String tail();
     
     /**
      * Creates a string that lists the nodes of the linked list.

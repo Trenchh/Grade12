@@ -16,6 +16,15 @@ public class LinkedListTest {
      */
     public static void main(String[] args) {
 
+        LinkedList list = new LinkedList();
+        
+        //BASE CASE
+        assert(list.head() == null);
+        assert(list.tail() == null);
+        assert(list.size() == 0);
+        assert(list.isEmpty() == true);
+        
+        
     }
     
 }

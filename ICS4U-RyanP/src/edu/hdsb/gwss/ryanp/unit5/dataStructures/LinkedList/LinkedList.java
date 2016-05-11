@@ -14,6 +14,11 @@ public class LinkedList implements LinkListInterface {
     private Node head;
     private Node tail;
 
+    public LinkedList() {
+        tail = null;
+        head = null;
+    }
+
     @Override
     public int size() {
         if (!this.isEmpty()) {
@@ -77,24 +82,70 @@ public class LinkedList implements LinkListInterface {
                 }
             }
         }
-
     }
 
     @Override
-    public String removeFromEnd() {
-
+    public String removeTail() {
+        if (!this.isEmpty()) {
+            if (this.size() == 1) {
+                this.tail.setNext(null);
+                this.tail = null;
+                this.head = null;
+            } else {
+                removeTailRecursion(this.head);
+            }
+        }
+//        Node n = this.head;
+//        Node tmp = n;
+//        while (n.getNext() != null) {
+//            if (n.getNext() == this.tail) {
+//                tmp = this.tail;
+//                this.tail = n;
+//                tmp.setNext(null);
+//                return tmp.getData();
+//            }
+//            n = n.getNext();
+//        }
+        return null;
     }
 
     @Override
-    public String removeFromFront() {
+    public String removeHead() {
         if (!this.isEmpty()) {
             Node n = this.head;
             Node tmp = n;
             this.head = n.getNext();
-            n.setNext(null);
+            tmp.setNext(null);
             return tmp.getData();
         }
         return null;
     }
 
+    @Override
+    public String head() {
+        if (!this.isEmpty()) {
+            return this.head.getData();
+        }
+        return null;
+    }
+
+    @Override
+    public String tail() {
+        if (!this.isEmpty()) {
+            return this.tail.getData();
+        }
+        return null;
+    }
+
+    public String removeTailRecursion(Node next) {
+        if (next.getNext() == this.tail) {
+            Node tmp = this.tail;
+            this.tail = next;
+            tmp.setNext(null);
+            return tmp.getData();
+        } else {
+            removeTailRecursion(next.getNext());
+        }
+        return null;
+    }
 }
