@@ -22,6 +22,9 @@ public class LinkedList implements LinkListInterface {
     @Override
     public int size() {
         if (!this.isEmpty()) {
+            if (this.head == this.tail) {
+                return 1;
+            }
             int size = 0;
             Node n = this.head;
             while (n.getNext() != null) {
@@ -88,9 +91,11 @@ public class LinkedList implements LinkListInterface {
     public String removeTail() {
         if (!this.isEmpty()) {
             if (this.size() == 1) {
-                this.tail.setNext(null);
+                Node tmp = this.tail;
+                tmp.setNext(null);
                 this.tail = null;
                 this.head = null;
+                return tmp.getData();
             } else {
                 removeTailRecursion(this.head);
             }
@@ -137,7 +142,7 @@ public class LinkedList implements LinkListInterface {
         return null;
     }
 
-    public String removeTailRecursion(Node next) {
+    private String removeTailRecursion(Node next) {
         if (next.getNext() == this.tail) {
             Node tmp = this.tail;
             this.tail = next;
