@@ -20,57 +20,53 @@ public class LinkedList implements LinkListInterface {
     }
 
     @Override
-    public int size() {
-        if (!this.isEmpty()) {
-            if (this.head == this.tail) {
-                return 1;
-            }
-            int size = 1;
+    public int size() {        
+        int size = 0;
+        if ( !this.isEmpty() ) {
             Node n = this.head;
+            size = 1;
             while (n.getNext() != null) {
-                size++;
                 n = n.getNext();
-            }
-            return size;
+                size++;
+            }     
         }
-        return 0;
+        return size;
     }
 
     @Override
     public void makeEmpty() {
-        Node n = this.head;
-        Node tmp = n;
-        while (n.getNext() != null) {
-            tmp = n.getNext();
-            n.setNext(null);
-            n = tmp;
-        }
+        this.tail = null;
+        this.head = null;
     }
 
     @Override
     public boolean isEmpty() {
-        return this.head == null || this.tail == null;
+        return this.head == null && this.tail == null;
     }
 
     @Override
-    public void addAtFront(String str) {
+    public void addAtFront(String str) {        
         Node front = new Node(str);
         front.setNext(this.head);
-        this.head = front;
-        if (this.isEmpty()) {
+        if( isEmpty() ) {
             this.tail = front;
         }
+        this.head = front;        
     }
 
     @Override
     public void addAtEnd(String str) {
         Node end = new Node(str);
-        if (!this.isEmpty()) {
-            this.tail.setNext(end);
-            this.tail = end;
-        } else {
+        if (this.isEmpty()) {
             this.head = end;
             this.tail = end;
+            System.out.println("added at end when empty");
+
+        } else {
+            this.tail.setNext(end);
+            this.tail = end;
+            System.out.println("added at end");
+
         }
     }
 
@@ -144,4 +140,17 @@ public class LinkedList implements LinkListInterface {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        Node n = this.head;
+        String print = "HEAD --> ";
+        while (n != null) {
+            print = print + n.getData() + " --> ";
+            n = n.getNext();
+        }
+        print = print + "TAIL";
+        return print;
+    }
+
 }

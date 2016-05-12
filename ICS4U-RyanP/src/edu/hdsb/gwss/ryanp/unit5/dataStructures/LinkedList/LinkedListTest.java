@@ -28,6 +28,7 @@ public class LinkedListTest {
 
         //ADD ONE
         list.addAtEnd("Hello");
+        System.out.println(list.toString());
         assert (list.tail() == "Hello");
         assert (list.head() == "Hello");
         assert (list.size() == 1);
@@ -35,22 +36,29 @@ public class LinkedListTest {
 
         //REMOVE ONE
         assert (list.removeTail() == "Hello");
+        System.out.println(list.toString());
         assert (list.size() == 0);
         assert (list.isEmpty() == true);
-
         list.addAtEnd("Hello");
+        System.out.println(list.toString());
         assert (list.removeHead() == "Hello");
+        System.out.println(list.toString());
         assert (list.size() == 0);
         assert (list.isEmpty() == true);
 
         //ADD AT FRONT
         list.addAtFront("Hello");
+        System.out.println(list.toString());
         list.addAtFront("Bye");
+        System.out.println(list.toString());
         list.addAtFront("SHALOM");
+        System.out.println(list.toString());
         assert (list.head() == "SHALOM");
         assert (list.tail() == "Hello");
         assert (list.size() == 3);
         assert (list.isEmpty() == false);
+
+        System.out.println(list.toString());
 
         //ADD AT END
         list.addAtEnd("bowbowbow");
@@ -58,8 +66,14 @@ public class LinkedListTest {
         list.addAtEnd("flocka");
         assert (list.head() == "SHALOM");
         assert (list.tail() == "flocka");
+        System.out.println(list.toString());
         assert (list.size() == 6);
         assert (list.isEmpty() == false);
+
+        //MAKE EMPTY
+        list.makeEmpty();
+        System.out.println(list.toString());
+        assert (list.size() == 0);
 
     }
 
