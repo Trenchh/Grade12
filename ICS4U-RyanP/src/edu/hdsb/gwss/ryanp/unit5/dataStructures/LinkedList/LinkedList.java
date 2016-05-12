@@ -25,7 +25,7 @@ public class LinkedList implements LinkListInterface {
             if (this.head == this.tail) {
                 return 1;
             }
-            int size = 0;
+            int size = 1;
             Node n = this.head;
             while (n.getNext() != null) {
                 size++;
@@ -49,7 +49,7 @@ public class LinkedList implements LinkListInterface {
 
     @Override
     public boolean isEmpty() {
-        return this.head == null;
+        return this.head == null || this.tail == null;
     }
 
     @Override
@@ -65,10 +65,12 @@ public class LinkedList implements LinkListInterface {
     @Override
     public void addAtEnd(String str) {
         Node end = new Node(str);
-        end.setNext(this.tail);
-        this.tail = end;
-        if (this.isEmpty()) {
+        if (!this.isEmpty()) {
+            this.tail.setNext(end);
+            this.tail = end;
+        } else {
             this.head = end;
+            this.tail = end;
         }
     }
 
@@ -100,17 +102,6 @@ public class LinkedList implements LinkListInterface {
                 removeTailRecursion(this.head);
             }
         }
-//        Node n = this.head;
-//        Node tmp = n;
-//        while (n.getNext() != null) {
-//            if (n.getNext() == this.tail) {
-//                tmp = this.tail;
-//                this.tail = n;
-//                tmp.setNext(null);
-//                return tmp.getData();
-//            }
-//            n = n.getNext();
-//        }
         return null;
     }
 
