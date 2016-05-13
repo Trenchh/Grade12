@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hdsb.gwss.ryanp.unit5.dataStructures.Queue;
+package edu.hdsb.gwss.ryanp.unit5.dataStructures.Queues;
 
 /**
  *
@@ -100,5 +100,6 @@ public class QueueTest {
         assert (queue2.capacity() == 15);
         assert (queue2.isEmpty() == true);
         assert (queue2.isFull() == false);
+
     }
 }

@@ -20,15 +20,15 @@ public class LinkedList implements LinkListInterface {
     }
 
     @Override
-    public int size() {        
+    public int size() {
         int size = 0;
-        if ( !this.isEmpty() ) {
+        if (!this.isEmpty()) {
             Node n = this.head;
             size = 1;
             while (n.getNext() != null) {
                 n = n.getNext();
                 size++;
-            }     
+            }
         }
         return size;
     }
@@ -45,13 +45,13 @@ public class LinkedList implements LinkListInterface {
     }
 
     @Override
-    public void addAtFront(String str) {        
+    public void addAtFront(String str) {
         Node front = new Node(str);
         front.setNext(this.head);
-        if( isEmpty() ) {
+        if (isEmpty()) {
             this.tail = front;
         }
-        this.head = front;        
+        this.head = front;
     }
 
     @Override
@@ -72,16 +72,19 @@ public class LinkedList implements LinkListInterface {
 
     @Override
     public void remove(String str) {
-        if (!this.isEmpty()) {
+        if (this.head.getData() == str) {
+            this.removeHead();
+        } else if (this.tail.getData() == str) {
+            this.removeTail();
+
+        } else if (!this.isEmpty()) {
             Node n = this.head;
-            while (n.getNext() != null) {
-                if (n.getNext().getData() == str) {
-                    n.getNext().setNext(null);
-                    n.setNext(n.getNext().getNext());
-                } else {
-                    n = n.getNext();
-                }
+            while (!n.getNext().getData().equals(str)) {
+                n = n.getNext();
             }
+            Node tmp = n.getNext();
+            n.setNext(n.getNext().getNext());
+            tmp = null;
         }
     }
 
@@ -90,9 +93,7 @@ public class LinkedList implements LinkListInterface {
         if (!this.isEmpty()) {
             if (this.size() == 1) {
                 Node tmp = this.tail;
-                tmp.setNext(null);
-                this.tail = null;
-                this.head = null;
+                this.makeEmpty();
                 return tmp.getData();
             } else {
                 removeTailRecursion(this.head);
@@ -104,11 +105,17 @@ public class LinkedList implements LinkListInterface {
     @Override
     public String removeHead() {
         if (!this.isEmpty()) {
-            Node n = this.head;
-            Node tmp = n;
-            this.head = n.getNext();
-            tmp.setNext(null);
-            return tmp.getData();
+            if (this.size() == 1) {
+                Node tmp = this.tail;
+                this.makeEmpty();
+                return tmp.getData();
+            } else {
+                Node n = this.head;
+                Node tmp = n;
+                this.head = n.getNext();
+                tmp.setNext(null);
+                return tmp.getData();
+            }
         }
         return null;
     }
