@@ -35,7 +35,7 @@ public class LinkedListTest {
         assert (list.isEmpty() == false);
 
         //REMOVE ONE
-        assert (list.removeTail() == "Hello");
+        assert (list.removeHead() == "Hello");
         System.out.println(list.toString());
         assert (list.size() == 0);
         assert (list.isEmpty() == true);
