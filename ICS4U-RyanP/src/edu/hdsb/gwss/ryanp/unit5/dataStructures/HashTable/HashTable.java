@@ -94,7 +94,7 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public void put(int key, Student value) {
-
+        this.hashTable[this.hash(key)] = value;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public int hash(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return key % this.capacity();
     }
 
     public String toString() {

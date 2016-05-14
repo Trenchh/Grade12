@@ -26,7 +26,11 @@ public class HashTableTest {
         // SIZE IS ALWAYS A PRIME NUMBER
         HashTable table2 = new HashTable(34);
         assert (table2.capacity() == 37);
-        
-        
+
+        //ADDING TO TABLE
+        Student ryan = new Student(7, "Ryan", "Protheroe");
+        table.put((int) ryan.getStudentID(), ryan);
+        System.out.println(table.toString());
+
     }
 }
