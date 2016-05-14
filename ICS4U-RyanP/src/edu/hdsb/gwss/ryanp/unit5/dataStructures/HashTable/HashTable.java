@@ -5,6 +5,8 @@
  */
 package edu.hdsb.gwss.ryanp.unit5.dataStructures.HashTable;
 
+import java.util.Arrays;
+
 /**
  *
  * @author 1protheroery
@@ -14,21 +16,25 @@ public class HashTable implements HashTableInterface {
     //SIZES HAV TO BE PRIME NUMBER
     //WHEN USER SETS CAPACITY, IT HAS TO BE THE NEXT PRIME NUMBER
     private Student[] hashTable;
-    public static final int DEFAULT_SIZE = 25;
+    public static final int DEFAULT_SIZE = 13;
 
     public HashTable() {
-
+        this(DEFAULT_SIZE);
     }
 
     public HashTable(int size) {
-
+        this.hashTable = new Student[nextPrime(size)];
     }
 
     @Override
     public int size() {
-
-        //LOOP THROUGH ARRAY; COUNT NON NULL ITEMS
-        //TODO: DELETED ITEMS????
+        int counter = 0;
+        for (int i = 0; i < this.capacity(); i++) {
+            if (this.hashTable[i] != null) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
     @Override
@@ -38,20 +44,21 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public double loadFactor() {
-        //HOW FULL IS THE TABLE
         return this.size() / this.capacity();
     }
 
     @Override
     public void makeEmpty() {
-        //LOOP THROUGH, MAKE THEM NULL
-
+        for (int i = 0; i < this.capacity(); i++) {
+            if (this.hashTable[i] != null) {
+                this.hashTable[i] = null;
+            }
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        //ONCE YOU FIND ONE THAT ISNT NULL, IT ISNT EMPTY
-
+        return this.size() == 0;
     }
 
     @Override
@@ -61,7 +68,7 @@ public class HashTable implements HashTableInterface {
         //4/5 IS FILED, RESIZE WILL MAKE IT 4/16
         //DENOMINATOR HAS TO BE A PRIME NUMBER... SO ITS 4/17
         //NOT A DIRECT COPY, HAVE TO REHASH
-        if (this.loadFactor() >= .075) {
+        if (this.loadFactor() >= .75) {
 
         }
     }
@@ -73,6 +80,7 @@ public class HashTable implements HashTableInterface {
         //IS IT THE RIGH STUDENT?
         //IS IT THE ONE BELOW OR ABOVE? 
         //ITLL STOP WHEN IT HITS A NULL
+        return null;
     }
 
     @Override
@@ -80,6 +88,7 @@ public class HashTable implements HashTableInterface {
         //LEAVE TO THE END
         //IF YOU REMOVE, IT WILL MAKE IT NULL, THEN OTHER FUNCTIONS WILL SCREW UP    
         //YOU HAVE TO MOVE EVERYTHING ELSE DOWN/UP THAT WAS SUPPOSED TO GO IN THAT SPOT
+        return null;
 
     }
 
@@ -103,8 +112,13 @@ public class HashTable implements HashTableInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public String toString() {
+        return Arrays.toString(this.hashTable);
+    }
+
     public static int nextPrime(int x) {
         boolean primeFound = false;
+        x = x - 1;
         while (!primeFound) {
             x++;
             primeFound = true;
@@ -117,5 +131,4 @@ public class HashTable implements HashTableInterface {
         }
         return x;
     }
-
 }
