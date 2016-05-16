@@ -79,8 +79,13 @@ public class HashTable implements HashTableInterface {
         //IS IT THE RIGHT STUDENT?
         //IS IT THE ONE BELOW OR ABOVE? 
         //ITLL STOP WHEN IT HITS A NULL
-
+        if (!this.isEmpty()) {
+            for (int i = 0; i < this.capacity(); i++) {
+                
+            }
+        }
         return null;
+
     }
 
     @Override
@@ -94,16 +99,16 @@ public class HashTable implements HashTableInterface {
     }
 
     @Override
-    public void put(int key, Student value) {
+    public void put(int key, Student student) {
         if (this.loadFactor() < 0.75) {
             int index = this.hash(key);
             while (this.hashTable[index] == null) {
                 index++;
             }
-            this.hashTable[index] = value;
+            this.hashTable[index] = student;
         } else {
             this.resize();
-            this.put(key, value);
+            this.put(key, student);
         }
     }
 
@@ -122,7 +127,8 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public boolean containsKey(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return false;
     }
 
     @Override
