@@ -31,6 +31,5 @@ public class HashTableTest {
         Student ryan = new Student(7, "Ryan", "Protheroe");
         table.put((int) ryan.getStudentID(), ryan);
         System.out.println(table.toString());
-
     }
 }

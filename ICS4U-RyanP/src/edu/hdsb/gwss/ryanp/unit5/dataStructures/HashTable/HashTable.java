@@ -75,11 +75,11 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public Student get(int key) {
-
         //FIND @ HASHVALUE
-        //IS IT THE RIGH STUDENT?
+        //IS IT THE RIGHT STUDENT?
         //IS IT THE ONE BELOW OR ABOVE? 
         //ITLL STOP WHEN IT HITS A NULL
+
         return null;
     }
 
@@ -88,18 +88,36 @@ public class HashTable implements HashTableInterface {
         //LEAVE TO THE END
         //IF YOU REMOVE, IT WILL MAKE IT NULL, THEN OTHER FUNCTIONS WILL SCREW UP    
         //YOU HAVE TO MOVE EVERYTHING ELSE DOWN/UP THAT WAS SUPPOSED TO GO IN THAT SPOT
-        return null;
+        //REHASH
 
+        return null;
     }
 
     @Override
     public void put(int key, Student value) {
-        this.hashTable[this.hash(key)] = value;
+        if (this.loadFactor() < 0.75) {
+            int index = this.hash(key);
+            while (this.hashTable[index] == null) {
+                index++;
+            }
+            this.hashTable[index] = value;
+        } else {
+            this.resize();
+            this.put(key, value);
+        }
     }
 
     @Override
     public boolean contains(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!this.isEmpty()) {
+            for (int i = 0; i < this.capacity(); i++) {
+                if (this.hashTable[i].getKey() == key) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
