@@ -28,8 +28,18 @@ public class HashTableTest {
         assert (table2.capacity() == 37);
 
         //ADDING TO TABLE
-        Student ryan = new Student(7, "Ryan", "Protheroe");
-        table.put((int) ryan.getStudentID(), ryan);
+        Student ryan = new Student(1, "Ryan", "Protheroe");
+        table.put((int) ryan.getKey(), ryan);
         System.out.println(table.toString());
+        assert (table.contains(ryan));
+        assert (table.containsKey(1));
+
+        //ADDING KEY WITH SAME HASH VALUE
+        Student coolerRyan = new Student(14, "CoolerRyan", "Protheroe");
+        table.put((int) coolerRyan.getKey(), coolerRyan);
+        System.out.println(table.toString());
+        assert (table.contains(coolerRyan));
+        assert (table.containsKey(14));
+
     }
 }

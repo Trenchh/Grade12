@@ -80,9 +80,13 @@ public class HashTable implements HashTableInterface {
         //IS IT THE ONE BELOW OR ABOVE? 
         //ITLL STOP WHEN IT HITS A NULL
         if (!this.isEmpty()) {
-            for (int i = 0; i < this.capacity(); i++) {
-                
+            int index = this.hash(key);
+            while (this.hashTable[index] != null) {
+                if (this.hashTable[index].getKey() == key) {
+                    return this.hashTable[index];
+                }
             }
+            return null;
         }
         return null;
 
@@ -102,21 +106,22 @@ public class HashTable implements HashTableInterface {
     public void put(int key, Student student) {
         if (this.loadFactor() < 0.75) {
             int index = this.hash(key);
-            while (this.hashTable[index] == null) {
-                index++;
+            while (this.hashTable[index] != null) {
+                index = (index + 1) % this.capacity();
             }
             this.hashTable[index] = student;
         } else {
             this.resize();
             this.put(key, student);
         }
+
     }
 
     @Override
-    public boolean contains(int key) {
+    public boolean contains(Student student) {
         if (!this.isEmpty()) {
-            for (int i = 0; i < this.capacity(); i++) {
-                if (this.hashTable[i].getKey() == key) {
+            for (int i = this.hash((int) student.getKey()); this.hashTable[i] != null; i++) {
+                if (this.hashTable[i] == student) {
                     return true;
                 }
             }
@@ -127,7 +132,14 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public boolean containsKey(int key) {
-
+        if (!this.isEmpty()) {
+            for (int i = this.hash(key); this.hashTable[i] != null; i++) {
+                if (this.hashTable[i].getKey() == key) {
+                    return true;
+                }
+            }
+            return false;
+        }
         return false;
     }
 
