@@ -40,8 +40,10 @@ public class HashTableTest {
         System.out.println(table.toString());
         assert (table.contains(coolerRyan));
         assert (table.containsKey(14));
-        
-        //
 
+        System.out.println(table.remove((int) coolerRyan.getKey()));
+        System.out.println(table.toString());
+
+        //
     }
 }
