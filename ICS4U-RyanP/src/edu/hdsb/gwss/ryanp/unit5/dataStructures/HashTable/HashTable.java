@@ -98,7 +98,26 @@ public class HashTable implements HashTableInterface {
         //IF YOU REMOVE, IT WILL MAKE IT NULL, THEN OTHER FUNCTIONS WILL SCREW UP    
         //YOU HAVE TO MOVE EVERYTHING ELSE DOWN/UP THAT WAS SUPPOSED TO GO IN THAT SPOT
         //REHASH
-
+        if (this.containsKey(key)) {
+            //Student[] tableCopy = this.hashTable;
+            int index = this.hash(key);
+            boolean found = false;
+            Student removed = null;
+            while (this.hashTable[index] != null && found == false) {
+                if (this.hashTable[index].getKey() == key) {
+                    removed = this.hashTable[index];
+                    this.hashTable[index] = null;
+                    found = true;
+                }
+                index++;
+            }
+            for (int i = 0; i < this.capacity(); i++) {
+                if (this.hashTable[i] != null) {
+                    this.hash((int) this.hashTable[i].getKey());
+                }
+            }
+            return removed;
+        }
         return null;
     }
 
