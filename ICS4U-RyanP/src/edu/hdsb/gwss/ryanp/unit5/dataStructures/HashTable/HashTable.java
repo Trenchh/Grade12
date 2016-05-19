@@ -69,6 +69,15 @@ public class HashTable implements HashTableInterface {
         //DENOMINATOR HAS TO BE A PRIME NUMBER... SO ITS 4/17
         //NOT A DIRECT COPY, HAVE TO REHASH
         if (this.loadFactor() >= .75) {
+            int newCap = this.capacity() * 4;
+            Student[] newTable = new Student[newCap];
+            for (int i = 0; i < this.capacity(); i++) {
+                if (this.hashTable[i] != null) {
+                    Student student = this.hashTable[i];
+                    newTable[this.hash((int) student.getKey())] = student;
+                }
+            }
+            this.hashTable = newTable;
 
         }
     }
@@ -111,11 +120,7 @@ public class HashTable implements HashTableInterface {
                 }
                 index++;
             }
-            for (int i = 0; i < this.capacity(); i++) {
-                if (this.hashTable[i] != null) {
-                    this.hash((int) this.hashTable[i].getKey());
-                }
-            }
+            rehash();
             return removed;
         }
         return null;
@@ -186,4 +191,15 @@ public class HashTable implements HashTableInterface {
         }
         return x;
     }
+
+    public void rehash() {
+        for (int i = 0; i < this.capacity(); i++) {
+            if (this.hashTable[i] != null) {
+                Student tmp = this.hashTable[i];
+                this.hashTable[i] = null;
+                this.hashTable[this.hash((int) tmp.getKey())] = tmp;
+            }
+        }
+    }
+
 }

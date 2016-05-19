@@ -41,9 +41,12 @@ public class HashTableTest {
         assert (table.contains(coolerRyan));
         assert (table.containsKey(14));
 
-        System.out.println(table.remove((int) coolerRyan.getKey()));
+        //REMOVING STUDENT AT IMPORPER INDEX//COLLSIONS
+        System.out.println(table.remove((int) ryan.getKey()));
         System.out.println(table.toString());
+        assert (!table.isEmpty());
+        assert (table.size() == 1);
 
-        //
+        //RESIZE
     }
 }
