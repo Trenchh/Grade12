@@ -69,17 +69,25 @@ public class HashTable implements HashTableInterface {
         //DENOMINATOR HAS TO BE A PRIME NUMBER... SO ITS 4/17
         //NOT A DIRECT COPY, HAVE TO REHASH
         if (this.loadFactor() >= .75) {
-            int newCap = this.capacity() * 4;
-            Student[] newTable = new Student[newCap];
+            Student[] newTable = new Student[nextPrime(this.capacity() * 4)];
             for (int i = 0; i < this.capacity(); i++) {
                 if (this.hashTable[i] != null) {
                     Student student = this.hashTable[i];
-                    newTable[this.hash((int) student.getKey())] = student;
+                    newTable[hash((int) student.getKey())] = student;
                 }
             }
             this.hashTable = newTable;
-
         }
+//        if (this.loadFactor() >= .75) {
+//            Student[] newTable = this.hashTable;
+//            Student[] hashTable = new Student[newTable.length * 4];
+//            for (int i = 0; i < newTable.length; i++) {
+//                if (newTable[i] != null) {
+//                    Student student = newTable[i];
+//                    this.put((int) student.getKey(), student);
+//                }
+//            }
+//        }
     }
 
     @Override
@@ -108,7 +116,6 @@ public class HashTable implements HashTableInterface {
         //YOU HAVE TO MOVE EVERYTHING ELSE DOWN/UP THAT WAS SUPPOSED TO GO IN THAT SPOT
         //REHASH
         if (this.containsKey(key)) {
-            //Student[] tableCopy = this.hashTable;
             int index = this.hash(key);
             boolean found = false;
             Student removed = null;
@@ -120,7 +127,7 @@ public class HashTable implements HashTableInterface {
                 }
                 index++;
             }
-            rehash();
+            this.rehash();
             return removed;
         }
         return null;
@@ -176,7 +183,7 @@ public class HashTable implements HashTableInterface {
         return Arrays.toString(this.hashTable);
     }
 
-    public static int nextPrime(int x) {
+    private static int nextPrime(int x) {
         boolean primeFound = false;
         x = x - 1;
         while (!primeFound) {
@@ -192,7 +199,7 @@ public class HashTable implements HashTableInterface {
         return x;
     }
 
-    public void rehash() {
+    private void rehash() {
         for (int i = 0; i < this.capacity(); i++) {
             if (this.hashTable[i] != null) {
                 Student tmp = this.hashTable[i];

@@ -48,5 +48,24 @@ public class HashTableTest {
         assert (table.size() == 1);
 
         //RESIZE
+        HashTable table3 = new HashTable(3);
+        System.out.println(table3.toString());
+
+        Student fill1 = new Student(14, "CoolerRyan", "Protheroe");
+        table3.put((int) fill1.getKey(), fill1);
+        System.out.println(table3.toString());
+
+        Student fill2 = new Student(14, "BLOOP", "Protheroe");
+        table3.put((int) fill2.getKey(), fill2);
+        System.out.println(table3.toString());
+
+        Student fill3 = new Student(14, "POW", "Protheroe");
+        table3.put((int) fill3.getKey(), fill3);
+        System.out.println(table3.toString());
+
+        Student fill4 = new Student(14, "SQUAAAD", "Protheroe");
+        table3.put((int) fill4.getKey(), fill4);
+        System.out.println(table3.toString());
+
     }
 }
