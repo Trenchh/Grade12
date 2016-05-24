@@ -16,7 +16,7 @@ public class HashTable implements HashTableInterface {
     //SIZES HAV TO BE PRIME NUMBER
     //WHEN USER SETS CAPACITY, IT HAS TO BE THE NEXT PRIME NUMBER
     private Student[] hashTable;
-    public static final int DEFAULT_SIZE = 13;
+    public static final int DEFAULT_SIZE = 50;
 
     public HashTable() {
         this(DEFAULT_SIZE);
@@ -68,26 +68,18 @@ public class HashTable implements HashTableInterface {
         //4/5 IS FILED, RESIZE WILL MAKE IT 4/16
         //DENOMINATOR HAS TO BE A PRIME NUMBER... SO ITS 4/17
         //NOT A DIRECT COPY, HAVE TO REHASH
-        if (this.loadFactor() >= .75) {
-            Student[] newTable = new Student[nextPrime(this.capacity() * 4)];
-            for (int i = 0; i < this.capacity(); i++) {
-                if (this.hashTable[i] != null) {
-                    Student student = this.hashTable[i];
-                    newTable[hash((int) student.getKey())] = student;
-                }
+        
+        Student[] newTable = this.hashTable;
+        System.out.println("SIZE " + this.size());
+        this.hashTable = new Student[nextPrime(this.size() * 4)];
+        System.out.println("SIZE " + this.size());
+
+        for (Student newTable1 : newTable) {
+            if (newTable1 != null) {
+                this.put((int) newTable1.getKey(), newTable1);
             }
-            this.hashTable = newTable;
+            System.out.println(" HASHTABLE " + Arrays.toString(hashTable));
         }
-//        if (this.loadFactor() >= .75) {
-//            Student[] newTable = this.hashTable;
-//            Student[] hashTable = new Student[newTable.length * 4];
-//            for (int i = 0; i < newTable.length; i++) {
-//                if (newTable[i] != null) {
-//                    Student student = newTable[i];
-//                    this.put((int) student.getKey(), student);
-//                }
-//            }
-//        }
     }
 
     @Override

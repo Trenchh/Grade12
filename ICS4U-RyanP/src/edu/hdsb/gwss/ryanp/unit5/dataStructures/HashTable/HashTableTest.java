@@ -21,7 +21,7 @@ public class HashTableTest {
         assert (table.size() == 0);
         assert (table.isEmpty());
         System.out.println(table.capacity());
-        assert (table.capacity() == 13);
+        assert (table.capacity() == 53);
 
         // SIZE IS ALWAYS A PRIME NUMBER
         HashTable table2 = new HashTable(34);
@@ -35,19 +35,19 @@ public class HashTableTest {
         assert (table.containsKey(1));
 
         //ADDING KEY WITH SAME HASH VALUE
-        Student coolerRyan = new Student(14, "CoolerRyan", "Protheroe");
+        Student coolerRyan = new Student(54, "CoolerRyan", "Protheroe");
         table.put((int) coolerRyan.getKey(), coolerRyan);
         System.out.println(table.toString());
         assert (table.contains(coolerRyan));
-        assert (table.containsKey(14));
+        assert (table.containsKey(54));
 
-        //REMOVING STUDENT AT IMPORPER INDEX//COLLSIONS
+        //REMOVING STUDENT THAT COLLIDED WITH OTHER KEY
         System.out.println(table.remove((int) ryan.getKey()));
         System.out.println(table.toString());
         assert (!table.isEmpty());
         assert (table.size() == 1);
 
-        //RESIZE
+        //RESIZE/PUT
         HashTable table3 = new HashTable(3);
         System.out.println(table3.toString());
 
@@ -66,6 +66,23 @@ public class HashTableTest {
         Student fill4 = new Student(14, "SQUAAAD", "Protheroe");
         table3.put((int) fill4.getKey(), fill4);
         System.out.println(table3.toString());
+
+        //GET
+        System.out.println(table3.get(14));
+        assert (table3.get(14) == fill2);
+        //assert (table3.get(15) == null);
+
+        //CONTAINS
+        assert (table3.contains(fill1));
+        assert (table3.contains(fill2));
+        assert (table3.contains(fill3));
+        assert (table3.contains(fill4));
+        
+        //CONTAINS KEY
+        assert (table3.containsKey((int) fill1.getKey()));
+        assert (table3.containsKey((int) fill2.getKey()));
+        assert (table3.containsKey((int) fill3.getKey()));
+        assert (table3.containsKey((int) fill4.getKey()));
 
     }
 }
