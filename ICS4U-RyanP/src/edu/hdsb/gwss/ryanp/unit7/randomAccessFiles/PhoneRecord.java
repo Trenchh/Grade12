@@ -11,12 +11,13 @@ import java.text.NumberFormat;
  *
  * @author 1protheroery
  */
-public class Phone {
+public class PhoneRecord {
 
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
+    //protected final int RECORD_SIZE;
+    //private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
     private static final int NOT_SET = -1;
 
     //CLASS VARIABLE
@@ -29,13 +30,29 @@ public class Phone {
     private int phoneID;
     private int number;
     private String OS;
+    boolean unlocked;
 
-    public Phone() {
+    public PhoneRecord() {
         this.setPhoneID();
         this.setName("Phone #" + this.phoneID);
         this.setStorage(NOT_SET);
         this.setCarrier(null);
+        this.unlocked = false;
+    }
 
+    public String getOS() {
+        return OS;
+    }
+
+    public void setOS(String OS) {
+        StringBuilder temp = new StringBuilder();
+        if (OS != null) {
+            temp.append(OS.trim());
+        } else {
+            temp.append("TBD");
+        }
+        temp.setLength(10);
+        this.OS = temp.toString();
     }
 
     public void setNumber(int number) {
@@ -57,12 +74,15 @@ public class Phone {
     }
 
     public void setCarrier(String carrier) {
-        this.carrier = null;
-        for (int i = 0; i < CARRIERS.length; i++) {
-            if (carrier.toUpperCase().equals(CARRIERS[i])) {
-                this.carrier = carrier;
-            }
+        StringBuilder temp = new StringBuilder();
+
+        if (carrier != null) {
+            temp.append(carrier.trim());
+        } else {
+            temp.append("TBD");
         }
+        temp.setLength(10);
+        this.carrier = temp.toString();
     }
 
     public String getCarrier() {
@@ -90,11 +110,14 @@ public class Phone {
     }
 
     public void setName(String name) {
-        if (name == null || name.length() > 20) {
-            System.out.println("INVALID NAME");
+        StringBuilder temp = new StringBuilder();
+        if (name != null) {
+            temp.append(name.trim());
         } else {
-            this.name = name;
+            temp.append("TBD");
         }
+        temp.setLength(10);
+        this.name = temp.toString();
     }
 
     public String getName() {
@@ -109,4 +132,5 @@ public class Phone {
     public int getPhoneID() {
         return phoneID;
     }
+
 }
