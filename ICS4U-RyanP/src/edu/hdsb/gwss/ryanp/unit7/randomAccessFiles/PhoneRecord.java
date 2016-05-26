@@ -16,13 +16,18 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    //protected final int RECORD_SIZE;
-    //private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
+//    protected final int RECORD_SIZE;
+    protected static final int LENGTH_CARRIER = 20;
+    protected static final int LENGTH_OS = 20;
+    protected static final int LENGTH_NAME = 40;
+//    private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
+    private static final String[] RATING = {"5", "4", "3", "2", "1", "0"};
     private static final int NOT_SET = -1;
 
     //CLASS VARIABLE
     private static int lastIDUsed = 0;
 
+    private char rating;
     private String name;
     private int storage;
     private String carrier;
@@ -38,6 +43,50 @@ public class PhoneRecord {
         this.setStorage(NOT_SET);
         this.setCarrier(null);
         this.unlocked = false;
+        this.setNumber(NOT_SET);
+        this.setOS(null);
+    }
+
+    public PhoneRecord(String name, int storage, double price) {
+        this();
+        this.setName(name);
+        this.setStorage(storage);
+        this.setPrice(price);
+    }
+
+    public PhoneRecord(String name, int storage, double price, String os, int number, String carrier, char rating) {
+        this(name, storage, price);
+        this.setOS(os);
+        this.setNumber(number);
+        this.setCarrier(carrier);
+        this.setRating(rating);
+    }
+
+    public char getRating() {
+        return rating;
+    }
+
+    public void setRating(char rating) {
+        if (rating <= 5 && rating >= 0) {
+            this.rating = rating;
+        } else {
+            this.rating = '0';
+        }
+    }
+
+    public double getPrice() {
+        if (this.price == NOT_SET) {
+            System.out.println("SET PRICE");
+        }
+        return price;
+    }
+
+    public void setPrice(double price) {
+        if (price < 0) {
+            this.price = NOT_SET;
+        } else {
+            this.price = price;
+        }
     }
 
     public String getOS() {
@@ -51,7 +100,7 @@ public class PhoneRecord {
         } else {
             temp.append("TBD");
         }
-        temp.setLength(10);
+        temp.setLength(LENGTH_OS);
         this.OS = temp.toString();
     }
 
@@ -60,13 +109,11 @@ public class PhoneRecord {
             this.number = number;
         } else {
             this.number = NOT_SET;
-            System.out.println("INVALID NUMBER");
         }
     }
 
     public int getNumber() {
         if (this.number == NOT_SET) {
-            System.out.println("SET NUMBER");
         } else {
             System.out.println("THE NUMBER FOR " + this.name + " IS " + this.number);
         }
@@ -81,13 +128,12 @@ public class PhoneRecord {
         } else {
             temp.append("TBD");
         }
-        temp.setLength(10);
+        temp.setLength(LENGTH_CARRIER);
         this.carrier = temp.toString();
     }
 
     public String getCarrier() {
         if (this.carrier == null) {
-            System.out.println("SET CARRIER");
         }
         return carrier;
     }
@@ -95,15 +141,13 @@ public class PhoneRecord {
     public void setStorage(int amount) {
         if (amount <= 0) {
             this.storage = NOT_SET;
-            System.out.println("INVALID AMOUNT");
-
         } else {
             this.storage = amount;
         }
     }
 
     public int getStorage() {
-        if (storage == NOT_SET) {
+        if (this.storage == NOT_SET) {
             System.out.println("SET AMOUNT OF STORAGE");
         }
         return storage;
@@ -116,7 +160,7 @@ public class PhoneRecord {
         } else {
             temp.append("TBD");
         }
-        temp.setLength(10);
+        temp.setLength(LENGTH_NAME);
         this.name = temp.toString();
     }
 

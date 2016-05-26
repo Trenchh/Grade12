@@ -15,7 +15,7 @@ public class PhoneStore {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PhoneRecord phone1 = new PhoneRecord();
+        PhoneRecord phone1 = new PhoneRecord("Samsung Galaxy S6", 32, 399.99);
+        
     }
-
 }
