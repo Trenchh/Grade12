@@ -34,7 +34,7 @@ public class Fraction {
         return f;
     }
 
-    public Fraction larger(Fraction f, Fraction g) {
+    public static Fraction larger(Fraction f, Fraction g) {
         if (g.size() > f.size()) {
             return g;
         } else if (g.size() == f.size()) {
@@ -50,7 +50,7 @@ public class Fraction {
         return woo;
     }
 
-    public Fraction times(Fraction f, Fraction g) {
+    public static Fraction times(Fraction f, Fraction g) {
         int newNum = g.numerator * f.numerator;
         int newDen = g.denominator * f.denominator;
         Fraction woo = new Fraction(newNum, newDen);
