@@ -16,7 +16,7 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    protected final int RECORD_SIZE = 200;
+    public static final int RECORD_SIZE = 200;
     protected static final int LENGTH_CARRIER = 20;
     protected static final int LENGTH_OS = 20;
     protected static final int LENGTH_NAME = 40;
@@ -38,7 +38,7 @@ public class PhoneRecord {
     boolean unlocked;
 
     public PhoneRecord() {
-        this.setPhoneID();
+        this.setPhoneID(-1);
         this.setName("Phone #" + this.phoneID);
         this.setStorage(NOT_SET);
         this.setCarrier(null);
@@ -168,9 +168,10 @@ public class PhoneRecord {
         return name;
     }
 
-    private int setPhoneID() {
-        this.phoneID = ++lastIDUsed;
-        return phoneID;
+    protected void setPhoneID(int phoneID) {
+        //this.phoneID = ++lastIDUsed;
+        this.phoneID = phoneID;
+        //return phoneID;
     }
 
     public int getPhoneID() {
