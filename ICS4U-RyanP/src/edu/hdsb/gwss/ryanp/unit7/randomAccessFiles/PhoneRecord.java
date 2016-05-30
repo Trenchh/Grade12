@@ -16,7 +16,7 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-//    protected final int RECORD_SIZE;
+    protected final int RECORD_SIZE = 200;
     protected static final int LENGTH_CARRIER = 20;
     protected static final int LENGTH_OS = 20;
     protected static final int LENGTH_NAME = 40;
@@ -33,7 +33,7 @@ public class PhoneRecord {
     private String carrier;
     private double price;
     private int phoneID;
-    private int number;
+    //private int number;
     private String OS;
     boolean unlocked;
 
@@ -43,7 +43,7 @@ public class PhoneRecord {
         this.setStorage(NOT_SET);
         this.setCarrier(null);
         this.unlocked = false;
-        this.setNumber(NOT_SET);
+        //this.setNumber(NOT_SET);
         this.setOS(null);
     }
 
@@ -54,12 +54,13 @@ public class PhoneRecord {
         this.setPrice(price);
     }
 
-    public PhoneRecord(String name, int storage, double price, String os, int number, String carrier, char rating) {
+    public PhoneRecord(String name, int storage, double price, String os, String carrier, char rating, boolean unlocked) {
         this(name, storage, price);
         this.setOS(os);
-        this.setNumber(number);
+        //this.setNumber(number);
         this.setCarrier(carrier);
         this.setRating(rating);
+        this.setUnlocked(unlocked);
     }
 
     public char getRating() {
@@ -104,22 +105,21 @@ public class PhoneRecord {
         this.OS = temp.toString();
     }
 
-    public void setNumber(int number) {
-        if (Integer.toString(number).length() == 10) {
-            this.number = number;
-        } else {
-            this.number = NOT_SET;
-        }
-    }
-
-    public int getNumber() {
-        if (this.number == NOT_SET) {
-        } else {
-            System.out.println("THE NUMBER FOR " + this.name + " IS " + this.number);
-        }
-        return number;
-    }
-
+//    public void setNumber(int number) {
+//        if (Integer.toString(number).length() == 10) {
+//            this.number = number;
+//        } else {
+//            this.number = NOT_SET;
+//        }
+//    }
+//
+//    public int getNumber() {
+//        if (this.number == NOT_SET) {
+//        } else {
+//            System.out.println("THE NUMBER FOR " + this.name + " IS " + this.number);
+//        }
+//        return number;
+//    }
     public void setCarrier(String carrier) {
         StringBuilder temp = new StringBuilder();
 
@@ -175,6 +175,19 @@ public class PhoneRecord {
 
     public int getPhoneID() {
         return phoneID;
+    }
+
+    public boolean isUnlocked() {
+        return unlocked;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+        this.unlocked = unlocked;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + "{" + "rating=" + rating + ", storage=" + storage + ", carrier=" + carrier + ", price=" + price + ", phoneID=" + phoneID + ", OS=" + OS + ", unlocked=" + unlocked + '}';
     }
 
 }
