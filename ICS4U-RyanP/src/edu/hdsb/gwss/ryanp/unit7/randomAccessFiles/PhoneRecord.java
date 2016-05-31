@@ -16,16 +16,13 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    public static final int RECORD_SIZE = 200;
-    protected static final int LENGTH_CARRIER = 20;
-    protected static final int LENGTH_OS = 20;
-    protected static final int LENGTH_NAME = 40;
-//    private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
+    public static final int RECORD_SIZE = 60;
+    protected static final int LENGTH_CARRIER = 10;
+    protected static final int LENGTH_OS = 10;
+    protected static final int LENGTH_NAME = 25;
+//  private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
     private static final String[] RATING = {"5", "4", "3", "2", "1", "0"};
     private static final int NOT_SET = -1;
-
-    //CLASS VARIABLE
-    private static int lastIDUsed = 0;
 
     private char rating;
     private String name;
@@ -38,7 +35,7 @@ public class PhoneRecord {
     boolean unlocked;
 
     public PhoneRecord() {
-        this.setPhoneID(-1);
+        this.setPhoneID(NOT_SET);
         this.setName("Phone #" + this.phoneID);
         this.setStorage(NOT_SET);
         this.setCarrier(null);
@@ -64,14 +61,14 @@ public class PhoneRecord {
     }
 
     public char getRating() {
-        return rating;
+        return this.rating;
     }
 
     public void setRating(char rating) {
         if (rating <= 5 && rating >= 0) {
             this.rating = rating;
         } else {
-            this.rating = '0';
+            this.rating = ' ';
         }
     }
 
@@ -79,7 +76,7 @@ public class PhoneRecord {
         if (this.price == NOT_SET) {
             System.out.println("SET PRICE");
         }
-        return price;
+        return this.price;
     }
 
     public void setPrice(double price) {
@@ -91,7 +88,7 @@ public class PhoneRecord {
     }
 
     public String getOS() {
-        return OS;
+        return this.OS;
     }
 
     public void setOS(String OS) {
@@ -135,7 +132,7 @@ public class PhoneRecord {
     public String getCarrier() {
         if (this.carrier == null) {
         }
-        return carrier;
+        return this.carrier;
     }
 
     public void setStorage(int amount) {
@@ -188,7 +185,7 @@ public class PhoneRecord {
 
     @Override
     public String toString() {
-        return this.name + "{" + "rating=" + rating + ", storage=" + storage + ", carrier=" + carrier + ", price=" + price + ", phoneID=" + phoneID + ", OS=" + OS + ", unlocked=" + unlocked + '}';
+        return this.getName() + "{" + "rating=" + this.getRating() + ", storage=" + this.getStorage() + ", carrier=" + this.getCarrier() + ", price=" + money.format(getPrice()) + ", phoneID=" + this.getPhoneID() + ", OS=" + this.getOS() + ", unlocked=" + this.isUnlocked() + '}';
     }
 
 }

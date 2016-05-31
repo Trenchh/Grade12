@@ -20,7 +20,8 @@ public class PhoneStore {
     private RandomAccessFile raf;
 
     public PhoneStore() {
-        open();
+        this.open();
+
     }
 
     private void open() {
@@ -29,6 +30,7 @@ public class PhoneStore {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PhoneStore.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     private void close() throws IOException {
@@ -37,16 +39,13 @@ public class PhoneStore {
 
     private PhoneRecord write(PhoneRecord p) {
         try {
-
             // WHERE ARE WE MOVING?
             if (p.getPhoneID() == -1) {
                 raf.seek(raf.length());
                 p.setPhoneID((int) (raf.length() / PhoneRecord.RECORD_SIZE) + 1);
             } else {
-                //todo                
-                //raf.seek();
+                raf.seek((p.getPhoneID() - 1) * PhoneRecord.RECORD_SIZE);
             }
-
             raf.writeChars(p.getName());
             raf.writeInt(p.getStorage());
             raf.writeDouble(p.getPrice());
@@ -73,8 +72,13 @@ public class PhoneStore {
         return write(p);
     }
 
-    public void remove() {
+    public void remove(PhoneRecord p) {
+        try {
+            raf.seek((int) p.getPhoneID() * PhoneRecord.RECORD_SIZE);
 
+        } catch (IOException ex) {
+            Logger.getLogger(PhoneStore.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
