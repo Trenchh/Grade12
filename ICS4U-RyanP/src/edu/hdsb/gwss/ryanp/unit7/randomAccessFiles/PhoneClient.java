@@ -20,7 +20,7 @@ public class PhoneClient {
      */
     public static void main(String[] args) throws Exception {
         System.out.println("Creating 4 Phone Records");
-        PhoneRecord phone1 = new PhoneRecord("Samsung Galaxy S1", 4, 99.99, "ANDROID", "Rogers", (char) 0, true);
+        PhoneRecord phone1 = new PhoneRecord("Samsung Galaxy S1", 4, 99.99, "ANDROID", "Rogers", '0', true);
         PhoneRecord phone2 = new PhoneRecord("Samsung Galaxy S2", 8, 199.99, "ANDROID", "Koodo", (char) 1, false);
         PhoneRecord phone3 = new PhoneRecord("Samsung Galaxy S3", 16, 299.99, "ANDROID", "Wind", (char) 2, false);
         PhoneRecord phone4 = new PhoneRecord("Samsung Galaxy S4", 32, 399.99, "ANDROID", "Bell", (char) 3, true);
@@ -30,6 +30,7 @@ public class PhoneClient {
         PhoneRecord phone8 = new PhoneRecord("iPhone 6S", 32, 399.99, "IOS", "Bell", (char) 4, false);
         System.out.println("*********************");
 
+        System.out.println(phone2.getRating());
         System.out.println(phone2.toString());
 
         PhoneStore store = new PhoneStore();

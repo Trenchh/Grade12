@@ -21,7 +21,6 @@ public class PhoneStore {
 
     public PhoneStore() {
         this.open();
-
     }
 
     private void open() {
@@ -30,7 +29,6 @@ public class PhoneStore {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PhoneStore.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private void close() throws IOException {
@@ -46,6 +44,7 @@ public class PhoneStore {
             } else {
                 raf.seek((p.getPhoneID() - 1) * PhoneRecord.RECORD_SIZE);
             }
+            raf.writeBoolean(p.isDeleted());
             raf.writeChars(p.getName());
             raf.writeInt(p.getStorage());
             raf.writeDouble(p.getPrice());
@@ -61,6 +60,7 @@ public class PhoneStore {
     }
 
     private PhoneRecord read(PhoneRecord p) {
+        
         return p;
     }
 
@@ -75,7 +75,8 @@ public class PhoneStore {
     public void remove(PhoneRecord p) {
         try {
             raf.seek((int) p.getPhoneID() * PhoneRecord.RECORD_SIZE);
-
+            p.setDeleted(true);
+            raf.writeBoolean(p.isDeleted());
         } catch (IOException ex) {
             Logger.getLogger(PhoneStore.class.getName()).log(Level.SEVERE, null, ex);
         }
