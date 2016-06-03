@@ -60,7 +60,7 @@ public class PhoneStore {
     }
 
     private PhoneRecord read(PhoneRecord p) {
-        
+
         return p;
     }
 

@@ -16,7 +16,7 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    public static final int RECORD_SIZE = 55;
+    public static final int RECORD_SIZE = 57;
     protected static final int LENGTH_CARRIER = 10;
     protected static final int LENGTH_OS = 10;
     protected static final int LENGTH_NAME = 20;
@@ -32,8 +32,8 @@ public class PhoneRecord {
     private int phoneID;
     //private int number;
     private String OS;
-    boolean unlocked;
-    boolean deleted;
+    private boolean unlocked;
+    private boolean deleted;
 
     public PhoneRecord() {
         this.deleted = false;
@@ -79,7 +79,7 @@ public class PhoneRecord {
 
     public void setRating(char rating) {
         if (rating <= 5 && rating >= 0) {
-            System.out.println(this.rating + "set");
+            System.out.println(rating + "set");
             this.rating = rating;
         } else {
             this.rating = ' ';
