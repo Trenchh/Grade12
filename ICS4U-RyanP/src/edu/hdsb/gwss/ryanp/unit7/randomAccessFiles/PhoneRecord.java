@@ -21,7 +21,7 @@ public class PhoneRecord {
     protected static final int LENGTH_OS = 10;
     protected static final int LENGTH_NAME = 20;
 //  private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
-    private static final String[] RATING = {"5", "4", "3", "2", "1", "0"};
+    private static final String[] RATING = {"5 STARS", "4 STARS", "3 STARS", "2 STARS", "1 STAR", "0 STARS"};
     private static final int NOT_SET = -1;
 
     private char rating;
@@ -73,13 +73,15 @@ public class PhoneRecord {
     public char getRating() {
         if (this.rating == ' ') {
             System.out.println("SET RATING");
+        } else {
+            System.out.println(RATING[this.rating]);
         }
         return this.rating;
     }
 
     public void setRating(char rating) {
         if (rating <= 5 && rating >= 0) {
-            System.out.println(rating + "set");
+            System.out.println(rating + " stars set");
             this.rating = rating;
         } else {
             this.rating = ' ';
