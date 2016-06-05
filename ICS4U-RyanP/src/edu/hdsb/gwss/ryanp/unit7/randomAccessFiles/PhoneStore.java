@@ -88,7 +88,7 @@ public class PhoneStore {
             }
             position = position + 4;
             raf.seek(position);
-            System.out.println(raf.readLine().substring((int) position, PhoneRecord.LENGTH_NAME));
+            System.out.println(raf.readLine().substring(0, PhoneRecord.LENGTH_NAME));
 
             tmp.setName(raf.readLine().substring((int) position, raf.readLine().indexOf("|")));
             position = position + tmp.LENGTH_NAME;
