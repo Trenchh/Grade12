@@ -67,15 +67,10 @@ public class PhoneStore {
         return p;
     }
 
-    public void read() throws IOException {
-        Scanner input = new Scanner(System.in);
+    public PhoneRecord read(long recordNumber) throws IOException {
         PhoneRecord tmp = new PhoneRecord();
 
         long numRecords = raf.length() / PhoneRecord.RECORD_SIZE;
-        System.out.println("\nThere are " + numRecords + " records currently in the file.");
-
-        System.out.println("Which record do you want [1 - " + numRecords + "] or 0 to exit?");
-        long recordNumber = input.nextLong();
 
         while (recordNumber != 0) {
             long position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
@@ -90,20 +85,28 @@ public class PhoneStore {
             raf.seek(position);
             System.out.println(raf.readLine().substring(0, PhoneRecord.LENGTH_NAME));
 
-            tmp.setName(raf.readLine().substring((int) position, raf.readLine().indexOf("|")));
+            tmp.setName(raf.readLine().substring(0, PhoneRecord.LENGTH_NAME));
             position = position + tmp.LENGTH_NAME;
             raf.seek(position);
             tmp.setStorage(raf.readInt());
 
-            System.out.println(tmp.toString());
-            System.out.println("\nThere are " + numRecords + " records currently in the file.");
-            System.out.println("Which record do you want [1 - " + numRecords + "] or 0 to exit?");
-            recordNumber = input.nextLong();
+            return tmp;
         }
+        return null;
     }
 
     public PhoneRecord add(PhoneRecord p) {
         return write(p);
+    }
+
+    public PhoneRecord get() throws IOException {
+        Scanner input = new Scanner(System.in);
+        long numRecords = raf.length() / PhoneRecord.RECORD_SIZE;
+        System.out.println("\nThere are " + numRecords + " records currently in the file.");
+
+        System.out.println("Which record do you want [1 - " + numRecords + "] or 0 to exit?");
+        long recordNumber = input.nextLong();
+        return read(recordNumber);
     }
 
     public PhoneRecord update(PhoneRecord p) {

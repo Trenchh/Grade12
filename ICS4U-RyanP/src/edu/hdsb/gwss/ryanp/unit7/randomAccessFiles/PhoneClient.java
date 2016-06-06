@@ -14,7 +14,6 @@ import java.io.RandomAccessFile;
 import java.io.*;
 
 public class PhoneClient {
-
     /**
      * @param args the command line arguments
      */
@@ -40,7 +39,7 @@ public class PhoneClient {
 //        store.update(phone1);
 //
 //        store.add(phone2);
-
-        store.read();
+        store.get();
+        
     }
 }

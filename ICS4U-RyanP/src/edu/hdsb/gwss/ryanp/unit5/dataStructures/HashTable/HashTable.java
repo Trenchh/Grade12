@@ -44,7 +44,7 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public double loadFactor() {
-        return this.size() / this.capacity();
+        return this.size() / (double) this.capacity();
     }
 
     @Override
@@ -68,7 +68,7 @@ public class HashTable implements HashTableInterface {
         //4/5 IS FILED, RESIZE WILL MAKE IT 4/16
         //DENOMINATOR HAS TO BE A PRIME NUMBER... SO ITS 4/17
         //NOT A DIRECT COPY, HAVE TO REHASH
-        
+
         Student[] newTable = this.hashTable;
         System.out.println("SIZE " + this.size());
         this.hashTable = new Student[nextPrime(this.size() * 4)];
@@ -94,6 +94,7 @@ public class HashTable implements HashTableInterface {
                 if (this.hashTable[index].getKey() == key) {
                     return this.hashTable[index];
                 }
+                index++;
             }
             return null;
         }
@@ -127,7 +128,7 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public void put(int key, Student student) {
-        if (this.loadFactor() < 0.75) {
+        if (this.size() + 1 / this.capacity() < 0.75) {
             int index = this.hash(key);
             while (this.hashTable[index] != null) {
                 index = (index + 1) % this.capacity();
