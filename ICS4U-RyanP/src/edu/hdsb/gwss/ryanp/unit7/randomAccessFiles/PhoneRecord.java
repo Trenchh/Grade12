@@ -5,6 +5,7 @@
  */
 package edu.hdsb.gwss.ryanp.unit7.randomAccessFiles;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
 
 /**
@@ -16,7 +17,7 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    public static final int RECORD_SIZE = 97;
+    public static final int RECORD_SIZE = 95;
     protected static final int LENGTH_CARRIER = 10;
     protected static final int LENGTH_OS = 10;
     protected static final int LENGTH_NAME = 20;
@@ -59,7 +60,7 @@ public class PhoneRecord {
         this.setOS(os);
         //this.setNumber(number);
         this.setCarrier(carrier);
-        System.out.println(rating + "CONSTRUCTOR");
+        //System.out.println(rating + "CONSTRUCTOR");
         this.setRating(rating);
         this.setUnlocked(unlocked);
     }
@@ -76,17 +77,17 @@ public class PhoneRecord {
         if (this.rating == ' ') {
             System.out.println("SET RATING");
         } else {
-            System.out.println(this.rating);
+            return this.rating;
         }
-        return this.rating;
+        return ' ';
     }
 
     public void setRating(char rating) {
         if (rating <= '5' && rating >= '0') {
             this.rating = rating;
-            System.out.println("set");
+            //System.out.println("set");
         } else {
-            System.out.println("invalid rating");
+            //System.out.println("invalid rating");
             this.rating = ' ';
         }
     }
@@ -185,9 +186,8 @@ public class PhoneRecord {
     }
 
     protected void setPhoneID(int phoneID) {
-        //this.phoneID = ++lastIDUsed;
+        //System.out.println("PHONEID SETTER" + phoneID);
         this.phoneID = phoneID;
-        //return phoneID;
     }
 
     public int getPhoneID() {

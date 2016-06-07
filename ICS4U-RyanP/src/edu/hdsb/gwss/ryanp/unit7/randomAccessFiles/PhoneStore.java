@@ -35,7 +35,7 @@ public class PhoneStore {
     private PhoneRecord write(PhoneRecord p) throws IOException {
         if (p.getPhoneID() == -1) {
             raf.seek(raf.length());
-            p.setPhoneID((int) (raf.length() / PhoneRecord.RECORD_SIZE) + 1);
+            p.setPhoneID((int) ((raf.length() / PhoneRecord.RECORD_SIZE) + 1));
         } else {
             raf.seek((p.getPhoneID() - 1) * PhoneRecord.RECORD_SIZE);
         }
@@ -45,13 +45,15 @@ public class PhoneStore {
         raf.writeDouble(p.getPrice());
         raf.writeChars(p.getOS());
         raf.writeChars(p.getCarrier());
-        raf.writeInt(p.getRating());
+        raf.writeChar(p.getRating());
         raf.writeBoolean(p.isUnlocked());
         return p;
     }
 
     public PhoneRecord read(long recordNumber) throws IOException {
         PhoneRecord tmp = new PhoneRecord();
+        tmp.setPhoneID((int) recordNumber);
+
         long position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
         raf.seek(position);
 //        System.out.println(raf.readBoolean());
@@ -80,20 +82,17 @@ public class PhoneStore {
             carrierName[i] = raf.readChar();
         }
         tmp.setCarrier(new String(carrierName));
-        System.out.println(raf.readChar() + " ||char print");
         tmp.setRating(raf.readChar());
         tmp.setUnlocked(raf.readBoolean());
-
         System.out.println(tmp.toString());
         return tmp;
-
     }
 
     public PhoneRecord add(PhoneRecord p) throws IOException {
         return write(p);
     }
 
-    public PhoneRecord get(int recordNumber) throws IOException {
+    public PhoneRecord get(long recordNumber) throws IOException {
         return read(recordNumber);
     }
 
