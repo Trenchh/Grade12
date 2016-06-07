@@ -16,12 +16,12 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    public static final int RECORD_SIZE = 57;
+    public static final int RECORD_SIZE = 97;
     protected static final int LENGTH_CARRIER = 10;
     protected static final int LENGTH_OS = 10;
     protected static final int LENGTH_NAME = 20;
 //  private static final String[] CARRIERS = {"BELL", "ROGERS", "TELUS", "KOODO", "WIND", "VIRGIN"};
-    private static final String[] RATING = {"5 STARS", "4 STARS", "3 STARS", "2 STARS", "1 STAR", "0 STARS"};
+    //private static final String[] RATING = {"5 STARS", "4 STARS", "3 STARS", "2 STARS", "1 STAR", "0 STARS"};
     private static final int NOT_SET = -1;
 
     private char rating;
@@ -44,6 +44,7 @@ public class PhoneRecord {
         this.unlocked = false;
         //this.setNumber(NOT_SET);
         this.setOS(null);
+        this.setRating((char) 0);
     }
 
     public PhoneRecord(String name, int storage, double price) {
@@ -58,6 +59,7 @@ public class PhoneRecord {
         this.setOS(os);
         //this.setNumber(number);
         this.setCarrier(carrier);
+        System.out.println(rating + "CONSTRUCTOR");
         this.setRating(rating);
         this.setUnlocked(unlocked);
     }
@@ -74,16 +76,17 @@ public class PhoneRecord {
         if (this.rating == ' ') {
             System.out.println("SET RATING");
         } else {
-            System.out.println(RATING[this.rating]);
+            System.out.println(this.rating);
         }
         return this.rating;
     }
 
     public void setRating(char rating) {
-        if (rating <= 5 && rating >= 0) {
-            System.out.println(rating + " stars set");
+        if (rating <= '5' && rating >= '0') {
             this.rating = rating;
+            System.out.println("set");
         } else {
+            System.out.println("invalid rating");
             this.rating = ' ';
         }
     }
@@ -117,7 +120,6 @@ public class PhoneRecord {
         temp.setLength(LENGTH_OS);
         this.OS = temp.toString();
     }
-
 //    public void setNumber(int number) {
 //        if (Integer.toString(number).length() == 10) {
 //            this.number = number;
@@ -133,6 +135,7 @@ public class PhoneRecord {
 //        }
 //        return number;
 //    }
+
     public void setCarrier(String carrier) {
         StringBuilder temp = new StringBuilder();
 
