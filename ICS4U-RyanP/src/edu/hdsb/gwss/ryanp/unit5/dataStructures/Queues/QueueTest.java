@@ -53,6 +53,7 @@ public class QueueTest {
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == false);
         assert (queue.isFull() == true);
+            System.out.println(queue.toString());
 
         // ENQUEUE WHEN FULL
         queue.enqueue(25);
@@ -62,6 +63,7 @@ public class QueueTest {
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == false);
         assert (queue.isFull() == true);
+            System.out.println(queue.toString());
 
         // DEQUEUE THEN ENQUEUE
         queue.dequeue();
@@ -72,6 +74,7 @@ public class QueueTest {
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == false);
         assert (queue.isFull() == true);
+            System.out.println(queue.toString());
 
         // MAKE EMPTY
         queue.makeEmpty();
@@ -81,6 +84,7 @@ public class QueueTest {
         assert (queue.capacity() == Queue.DEFAULT_SIZE);
         assert (queue.isEmpty() == true);
         assert (queue.isFull() == false);
+            System.out.println(queue.toString());
 
         // DEQUEUE WHEN EMPTY
         queue.dequeue();

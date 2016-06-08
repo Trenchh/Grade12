@@ -55,7 +55,6 @@ public class LinkListTester {
         System.out.println("DATA: " + ll.toString());
         assert (ll.size() == 2);
         ll.removeTail();
-        //REMOVETAIL() NOT WORKING
         System.out.println("DATA: " + ll.toString());
         assert (ll.size() == 1);
         ll.remove("ABC");

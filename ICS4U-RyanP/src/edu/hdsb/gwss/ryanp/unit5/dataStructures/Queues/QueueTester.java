@@ -65,6 +65,8 @@ public class QueueTester {
             assert (q.front() == 0);
             assert (q.back() == i);
         }
+        
+            System.out.println(q.toString());
 
         System.out.println("=== EMPTY 1/2 QUEUE ===");
         //  DEQUEUE; HALF
@@ -73,20 +75,19 @@ public class QueueTester {
             assert (q.back() == q.capacity() - 1);
             assert (q.front() == i);
             value = q.dequeue();
-            q.toString();
+            System.out.println(q.toString());
             if (i != q.capacity() - 1) {
                 assert (q.front() == i + 1);
             }
             assert (q.size() == q.capacity() - i - 1);
         }
-
         // ENQUEUE; HALF to FILL
         System.out.println("=== ENQUEUE 1/2 WRAP AROUND ===");
         System.out.println(q.size());
         for (int i = half; i < q.capacity(); i++) {
             assert (q.isFull() == false);
             q.enqueue(half + i);
-            q.toString();
+            System.out.println(q.toString());
             assert (q.isEmpty() == false);
             System.out.println("SiZE " + q.size());
             assert (q.size() == (i + 1));
