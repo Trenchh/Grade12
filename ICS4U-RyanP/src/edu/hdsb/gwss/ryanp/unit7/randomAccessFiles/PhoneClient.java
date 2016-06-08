@@ -40,11 +40,14 @@ public class PhoneClient {
         //store.add(phone2);
         //store.get(1);
         //store.get(2);
+
         //DOESNT UPDATE BECAUSE THE ID DOESNT SET, SO IT JUST MAKES NEW ID AND PUTS AT END OF THE FILE
         //phone1.setUnlocked(true);
         //store.update(phone1);
         //store.get(1);
         //store.update(phone1);
+        
+        //DOESNT SET ID FOR SOME REASON
         System.out.println(phone1.getPhoneID());
     }
 }
