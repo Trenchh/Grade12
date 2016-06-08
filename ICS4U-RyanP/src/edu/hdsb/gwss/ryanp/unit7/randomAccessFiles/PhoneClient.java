@@ -30,24 +30,6 @@ public class PhoneClient {
         PhoneRecord phone8 = new PhoneRecord("iPhone 6S", 32, 399.99, "IOS", "Bell", (char) 4, false);
         System.out.println("*********************");
 
-        //System.out.println(phone2.getRating());
-        //System.out.println(phone2.toString());
-        PhoneStore store = new PhoneStore();
-        // phone2.setDeleted(true);
-        //store.add(phone1);
-        // phone1.setUnlocked(false);
-        // store.update(phone1);
-        //store.add(phone2);
-        //store.get(1);
-        //store.get(2);
-
-        //DOESNT UPDATE BECAUSE THE ID DOESNT SET, SO IT JUST MAKES NEW ID AND PUTS AT END OF THE FILE
-        //phone1.setUnlocked(true);
-        //store.update(phone1);
-        //store.get(1);
-        //store.update(phone1);
         
-        //DOESNT SET ID FOR SOME REASON
-        System.out.println(phone1.getPhoneID());
     }
 }

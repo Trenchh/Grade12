@@ -60,7 +60,6 @@ public class PhoneRecord {
         this.setOS(os);
         //this.setNumber(number);
         this.setCarrier(carrier);
-        //System.out.println(rating + "CONSTRUCTOR");
         this.setRating(rating);
         this.setUnlocked(unlocked);
     }
@@ -85,9 +84,7 @@ public class PhoneRecord {
     public void setRating(char rating) {
         if (rating <= '5' && rating >= '0') {
             this.rating = rating;
-            //System.out.println("set");
         } else {
-            //System.out.println("invalid rating");
             this.rating = ' ';
         }
     }

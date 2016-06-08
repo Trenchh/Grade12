@@ -54,7 +54,7 @@ public class LinkListTester {
         ll.addAtEnd("XYZ");
         System.out.println("DATA: " + ll.toString());
         assert (ll.size() == 2);
-        ll.remove("XYZ");
+        ll.removeTail();
         //REMOVETAIL() NOT WORKING
         System.out.println("DATA: " + ll.toString());
         assert (ll.size() == 1);
