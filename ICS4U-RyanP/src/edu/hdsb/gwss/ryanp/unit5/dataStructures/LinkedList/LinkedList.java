@@ -72,19 +72,21 @@ public class LinkedList implements LinkListInterface {
 
     @Override
     public void remove(String str) {
-        if (this.head.getData() == str) {
-            this.removeHead();
-        } else if (this.tail.getData() == str) {
-            this.removeTail();
+        if (!this.isEmpty()) {
+            if (this.head.getData().equals(str)) {
+                this.removeHead();
+            } else if (this.tail.getData().equals(str)) {
+                this.removeTail();
 
-        } else if (!this.isEmpty()) {
-            Node n = this.head;
-            while (!n.getNext().getData().equals(str)) {
-                n = n.getNext();
+            } else if (!this.isEmpty()) {
+                Node n = this.head;
+                while (!n.getNext().getData().equals(str)) {
+                    n = n.getNext();
+                }
+                Node tmp = n.getNext();
+                n.setNext(n.getNext().getNext());
+                tmp = null;
             }
-            Node tmp = n.getNext();
-            n.setNext(n.getNext().getNext());
-            tmp = null;
         }
     }
 
@@ -96,7 +98,15 @@ public class LinkedList implements LinkListInterface {
                 this.makeEmpty();
                 return tmp.getData();
             } else {
-                removeTailRecursion(this.head);
+                Node n = this.head;
+                while(n.getNext() != this.tail) {
+                    n = n.getNext();
+                }
+                Node tmp = this.tail;
+                this.tail = n;
+                tmp.setNext(null);
+                return tmp.getData();
+                //removeTailRecursion(this.head);
             }
         }
         return null;
@@ -136,17 +146,17 @@ public class LinkedList implements LinkListInterface {
         return null;
     }
 
-    private String removeTailRecursion(Node next) {
-        if (next.getNext() == this.tail) {
-            Node tmp = this.tail;
-            this.tail = next;
-            tmp.setNext(null);
-            return tmp.getData();
-        } else {
-            removeTailRecursion(next.getNext());
-        }
-        return null;
-    }
+//    private String removeTailRecursion(Node next) {
+//        if (next.getNext() == this.tail) {
+//            Node tmp = this.tail;
+//            this.tail = next;
+//            tmp.setNext(null);
+//            return tmp.getData();
+//        } else {
+//            removeTailRecursion(next.getNext());
+//        }
+//        return null;
+//    }
 
     @Override
     public String toString() {
