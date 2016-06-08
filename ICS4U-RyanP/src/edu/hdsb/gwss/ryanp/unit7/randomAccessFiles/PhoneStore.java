@@ -35,8 +35,9 @@ public class PhoneStore {
     private PhoneRecord write(PhoneRecord p) throws IOException {
         if (p.getPhoneID() == -1) {
             raf.seek(raf.length());
-            p.setPhoneID((int) ((raf.length() / PhoneRecord.RECORD_SIZE) + 1));
+            p.setPhoneID(((int) (raf.length() / PhoneRecord.RECORD_SIZE) + 1));
         } else {
+            System.out.println(p.getPhoneID() + " WRITE PHONE ID");
             raf.seek((p.getPhoneID() - 1) * PhoneRecord.RECORD_SIZE);
         }
         // raf.writeBoolean(p.isDeleted());

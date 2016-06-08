@@ -34,14 +34,17 @@ public class PhoneClient {
         //System.out.println(phone2.toString());
         PhoneStore store = new PhoneStore();
         // phone2.setDeleted(true);
-        store.add(phone1);
+        //store.add(phone1);
         // phone1.setUnlocked(false);
         // store.update(phone1);
-        store.add(phone2);
-        store.get(1);
-        store.get(2);
-        phone1.setUnlocked(false);
-        store.update(phone1);
-        store.get(1);
+        //store.add(phone2);
+        //store.get(1);
+        //store.get(2);
+        //DOESNT UPDATE BECAUSE THE ID DOESNT SET, SO IT JUST MAKES NEW ID AND PUTS AT END OF THE FILE
+        //phone1.setUnlocked(true);
+        //store.update(phone1);
+        //store.get(1);
+        //store.update(phone1);
+        System.out.println(phone1.getPhoneID());
     }
 }

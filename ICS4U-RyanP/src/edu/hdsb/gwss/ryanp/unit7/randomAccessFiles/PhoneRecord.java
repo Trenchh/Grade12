@@ -66,7 +66,7 @@ public class PhoneRecord {
     }
 
     public boolean isDeleted() {
-        return deleted;
+        return this.deleted;
     }
 
     public void setDeleted(boolean deleted) {
@@ -167,7 +167,7 @@ public class PhoneRecord {
         if (this.storage == NOT_SET) {
             System.out.println("SET AMOUNT OF STORAGE");
         }
-        return storage;
+        return this.storage;
     }
 
     public void setName(String name) {
@@ -182,20 +182,19 @@ public class PhoneRecord {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     protected void setPhoneID(int phoneID) {
-        //System.out.println("PHONEID SETTER" + phoneID);
         this.phoneID = phoneID;
     }
 
     public int getPhoneID() {
-        return phoneID;
+        return this.phoneID;
     }
 
     public boolean isUnlocked() {
-        return unlocked;
+        return this.unlocked;
     }
 
     public void setUnlocked(boolean unlocked) {
