@@ -50,9 +50,9 @@ public class HashTable implements HashTableInterface {
     @Override
     public void makeEmpty() {
         for (int i = 0; i < this.capacity(); i++) {
-            if (this.hashTable[i] != null) {
-                this.hashTable[i] = null;
-            }
+
+            this.hashTable[i] = null;
+
         }
     }
 
@@ -94,7 +94,8 @@ public class HashTable implements HashTableInterface {
                 if (this.hashTable[index].getKey() == key) {
                     return this.hashTable[index];
                 }
-                index++;
+                index = index + 1;
+                index = index % this.capacity();
             }
             return null;
         }
@@ -128,17 +129,35 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public void put(int key, Student student) {
-        if (this.size() + 1 / this.capacity() < 0.75) {
-            int index = this.hash(key);
-            while (this.hashTable[index] != null) {
-                index = (index + 1) % this.capacity();
-            }
+        int index = this.hash(key);
+        if (this.hashTable[index] == null) {
             this.hashTable[index] = student;
         } else {
+            while (this.hashTable[index] != null) {
+                index = index + 1;
+                index = index % this.capacity();
+            }
+            this.hashTable[index] = student;
+        }
+        if (this.loadFactor() >= .75) {
             this.resize();
-            this.put(key, student);
         }
 
+//        System.out.println("A");
+//        if (this.size() + 1 / this.capacity() < 0.75) {
+//            System.out.println("A");
+//            int index = this.hash(key);
+//            while (this.hashTable[index] != null) {
+//                System.out.println("A");
+//                index = index + 1 % this.capacity();
+//            }
+//            this.hashTable[index] = student;
+//            System.out.println("A");
+//        }
+//        } else {
+//            this.resize();
+//            this.put(key, student);
+//        }
     }
 
     @Override
@@ -156,13 +175,15 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public boolean containsKey(int key) {
-        if (!this.isEmpty()) {
-            for (int i = this.hash(key); this.hashTable[i] != null; i++) {
-                if (this.hashTable[i].getKey() == key) {
-                    return true;
-                }
+        int index = this.hash(key);
+
+        while (this.hashTable[index] != null) {
+            if (this.hashTable[index].getKey() == key) {
+                return true;
+            } else {
+                index = index + 1;
+                index = index % this.capacity();
             }
-            return false;
         }
         return false;
     }

@@ -30,8 +30,8 @@ public class HashTableTester {
         assert (ht.hash(1) == 1);
         assert (ht.hash(ht.capacity()) == 0);
         assert (ht.hash(ht.capacity() - 1) == ht.capacity() - 1);
-//
-//        // PUT
+
+        // PUT
         ht.put(0, new Student(0, "A", "B"));
         valuesAdded[nextSpot] = 0;
         nextSpot++;
@@ -46,7 +46,12 @@ public class HashTableTester {
         assert (ht.loadFactor() == (1.0 / (double) ht.capacity()));
 
         // PUT; SAME HASH VALUE
-        ht.put(ht.capacity(), new Student(ht.capacity(), "A", "B"));
+        System.out.println(ht.loadFactor());
+        System.out.println(ht.size());
+        System.out.println(ht.toString());
+
+        ht.put(23, new Student(23, "A", "B"));
+        System.out.println(ht.toString());
         valuesAdded[nextSpot] = ht.capacity();
         nextSpot++;
         assert (!ht.isEmpty());
@@ -75,7 +80,7 @@ public class HashTableTester {
         assert (ht.loadFactor() < 0.75);
         System.out.println(ht.loadFactor());
         assert (ht.capacity() == 23);
-//
+
         // BEFORE RESIZE: 18/23 --> New Size: 18 / 0.25
         System.out.println("RESIZED");
         ht.put(666, new Student(666, "A", "B"));
@@ -83,7 +88,7 @@ public class HashTableTester {
         nextSpot++;
         System.out.println(ht.capacity());
         assert (ht.capacity() == 73);
-        
+
         //FIX
         assert (ht.loadFactor() < 0.25);
 
@@ -105,7 +110,6 @@ public class HashTableTester {
         assert (ht.isEmpty());
         assert (ht.capacity() == 73);
         assert (ht.loadFactor() == 0.0);
-
     }
 
 }
