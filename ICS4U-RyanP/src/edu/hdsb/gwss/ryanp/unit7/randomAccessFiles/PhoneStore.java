@@ -64,6 +64,7 @@ public class PhoneStore {
                 position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
                 raf.seek(position);
             }
+            
             char phoneName[] = new char[PhoneRecord.LENGTH_NAME];
             for (int i = 0; i < PhoneRecord.LENGTH_NAME; i++) {
                 phoneName[i] = raf.readChar();
