@@ -58,13 +58,17 @@ public class PhoneStore {
 
             long position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
             raf.seek(position);
+            long record = recordNumber;
 
-            while (raf.readBoolean() == true) {
-                recordNumber++;
-                position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
-                raf.seek(position);
+            for (long i = 0; i < record; i++) {
+                while (raf.readBoolean() == true) {
+                    recordNumber++;
+                    position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
+                    raf.seek(position);
+                }
+                //raf.seek(PhoneRecord.RECORD_SIZE * (recordNumber));
             }
-            
+
             char phoneName[] = new char[PhoneRecord.LENGTH_NAME];
             for (int i = 0; i < PhoneRecord.LENGTH_NAME; i++) {
                 phoneName[i] = raf.readChar();

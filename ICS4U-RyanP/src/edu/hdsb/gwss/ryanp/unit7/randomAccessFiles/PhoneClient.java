@@ -52,7 +52,7 @@ public class PhoneClient {
         s.add(phone6);
         s.add(phone7);
         s.get(1);
-        s.get(7);
+        //s.get(2);
 
         //NOT SURE HOW YOU WANTED REMOVE. I MADE IT SO THAT IF THE ID YOU'RE LOOKING FOR IS REMOVED, IT WILL LOOK FOR THE NEXT ONE THAT ISN'T REMOVED.
         //THE OTHER WAY WOULD JUST HAVE A STATEMENT SAYING THAT THE OBJECT WAS REMOVED...
