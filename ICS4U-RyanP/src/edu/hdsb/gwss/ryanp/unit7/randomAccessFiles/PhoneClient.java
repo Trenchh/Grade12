@@ -31,16 +31,25 @@ public class PhoneClient {
         System.out.println("*********************");
 
         PhoneStore s = new PhoneStore();
-//        s.add(phone1);
-//        s.add(phone2);
-//        s.add(phone3);
-//        s.add(phone4);
+        s.add(phone1);
+        s.add(phone2);
+        s.add(phone3);
+        s.add(phone4);
 //        phone4 = s.get(4);
 //        System.out.println(phone4.getPhoneID());
 //        System.out.println(phone4.toString());
 //        phone4.setUnlocked(true);
 //        s.update(phone4);
-//        phone4 = s.get(4);
 
+        s.remove(phone1);
+        s.remove(phone2);
+        s.remove(phone3);
+        s.remove(phone4);
+        s.get(1);
+        s.remove(phone4);
+        s.get(4);
+
+        //NOT SURE HOW YOU WANTED REMOVE. I MADE IT SO THAT IF THE ID YOU'RE LOOKING FOR IS REMOVED, IT WILL LOOK FOR THE NEXT ONE THAT ISN'T REMOVED.
+        //THE OTHER WAY WOULD JUST HAVE A STATEMENT SAYING THAT THE OBJECT WAS REMOVED...
     }
 }
