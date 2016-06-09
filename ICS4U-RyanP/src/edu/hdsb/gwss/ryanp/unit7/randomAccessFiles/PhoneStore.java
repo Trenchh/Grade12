@@ -60,7 +60,6 @@ public class PhoneStore {
             raf.seek(position);
 
             while (raf.readBoolean() == true) {
-                System.out.println("AAA");
                 recordNumber++;
                 position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
                 raf.seek(position);
@@ -92,6 +91,7 @@ public class PhoneStore {
     }
 
     public PhoneRecord add(PhoneRecord p) throws IOException {
+        System.out.println("ADDED: " + p.getName());
         return write(p);
     }
 
@@ -104,6 +104,7 @@ public class PhoneStore {
     }
 
     public PhoneRecord remove(PhoneRecord p) throws IOException {
+        System.out.println("REMOVED: " + p.getName());
         p.setDeleted(true);
         return this.write(p);
     }

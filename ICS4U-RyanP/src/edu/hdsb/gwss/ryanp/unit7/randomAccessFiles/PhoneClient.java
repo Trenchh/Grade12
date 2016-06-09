@@ -26,8 +26,8 @@ public class PhoneClient {
         PhoneRecord phone4 = new PhoneRecord("Samsung Galaxy S4", 32, 399.99, "ANDROID", "Bell", '3', true);
         PhoneRecord phone5 = new PhoneRecord("iPhone 1", 4, 99.99, "IOS", "Rogers", '0', true);
         PhoneRecord phone6 = new PhoneRecord("iPhone 4S", 8, 199.99, "IOS", "Koodo", '2', false);
-        PhoneRecord phone7 = new PhoneRecord("iPhone 5", 16, 299.99, "IOS", "Wind", (char) 3, true);
-        PhoneRecord phone8 = new PhoneRecord("iPhone 6S", 32, 399.99, "IOS", "Bell", (char) 4, false);
+        PhoneRecord phone7 = new PhoneRecord("iPhone 5", 16, 299.99, "IOS", "Wind", (char) '3', true);
+        PhoneRecord phone8 = new PhoneRecord("iPhone 6S", 32, 399.99, "IOS", "Bell", (char) '4', false);
         System.out.println("*********************");
 
         PhoneStore s = new PhoneStore();
@@ -48,6 +48,11 @@ public class PhoneClient {
         s.get(1);
         s.remove(phone4);
         s.get(4);
+        s.add(phone8);
+        s.add(phone6);
+        s.add(phone7);
+        s.get(1);
+        s.get(7);
 
         //NOT SURE HOW YOU WANTED REMOVE. I MADE IT SO THAT IF THE ID YOU'RE LOOKING FOR IS REMOVED, IT WILL LOOK FOR THE NEXT ONE THAT ISN'T REMOVED.
         //THE OTHER WAY WOULD JUST HAVE A STATEMENT SAYING THAT THE OBJECT WAS REMOVED...
