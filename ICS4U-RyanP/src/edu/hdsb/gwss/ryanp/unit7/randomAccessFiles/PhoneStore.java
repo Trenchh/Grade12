@@ -51,7 +51,7 @@ public class PhoneStore {
     }
 
     public PhoneRecord read(long recordNumber) throws IOException {
-        if (recordNumber < raf.length() / PhoneRecord.RECORD_SIZE) {
+        if (recordNumber <= raf.length() / PhoneRecord.RECORD_SIZE) {
             if (this.isEmpty() == false) {
                 PhoneRecord tmp = new PhoneRecord();
                 tmp.setPhoneID((int) recordNumber);

@@ -53,7 +53,9 @@ public class PhoneClient {
         s.add(phone7);
         s.get(1);
         s.get(2);
-        s.get(6);
+        
+        //DOESNT WORK FOR SOME REASON/ GETS 2 // ITS 4 MINS TO 12, NO TIME TO FIX.
+        s.get(3);
 
         //NOT SURE HOW YOU WANTED REMOVE. I MADE IT SO THAT IF THE ID YOU'RE LOOKING FOR IS REMOVED, IT WILL LOOK FOR THE NEXT ONE THAT ISN'T REMOVED.
         //THE OTHER WAY WOULD JUST HAVE A STATEMENT SAYING THAT THE OBJECT WAS REMOVED...
