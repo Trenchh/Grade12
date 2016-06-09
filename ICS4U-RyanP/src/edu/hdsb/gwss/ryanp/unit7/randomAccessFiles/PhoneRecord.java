@@ -17,7 +17,7 @@ public class PhoneRecord {
     NumberFormat money = NumberFormat.getCurrencyInstance();
 
     //CLASS CONSTANTS
-    public static final int RECORD_SIZE = 95;
+    public static final int RECORD_SIZE = 96;
     protected static final int LENGTH_CARRIER = 10;
     protected static final int LENGTH_OS = 10;
     protected static final int LENGTH_NAME = 20;

@@ -63,7 +63,7 @@ public class Queue implements QueueInterface {
         int value = EMPTY;
         if (!this.isEmpty()) {
             value = this.queue[this.front];
-            if (this.back == this.front ) {              
+            if (this.back == this.front) {
                 this.makeEmpty();
             } else {
                 this.front = (this.front + 1) % this.capacity();
@@ -75,17 +75,18 @@ public class Queue implements QueueInterface {
     @Override
     public int size() {
         if (!this.isEmpty()) {
-            if (this.back == this.front ) {
+            if (this.back == this.front) {
                 return 1;
             } else if (this.back > this.front) {
                 return this.back + 1 - this.front;
             } else {
+                System.out.println(this.back + " BACK");
+                System.out.println(this.front + " FRONT");
                 int sum = this.back + this.front;
-                return this.capacity() + 1 - sum;
+                return (this.capacity() - this.front) + (this.back + 1);
             }
         }
         return 0;
-
     }
 
     @Override
@@ -95,7 +96,7 @@ public class Queue implements QueueInterface {
 
     @Override
     public boolean isEmpty() {
-        if(this.front == EMPTY && this.back == EMPTY){
+        if (this.front == EMPTY && this.back == EMPTY) {
             return true;
         }
         return false;

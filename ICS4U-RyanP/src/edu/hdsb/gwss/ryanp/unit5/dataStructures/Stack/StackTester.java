@@ -9,7 +9,6 @@ public class StackTester {
     /**
      */
     public static void main( String[] args ) {
-
         Stack s = new Stack( 10 );
 
         // EMPTY STACK

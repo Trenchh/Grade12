@@ -92,25 +92,6 @@ public class LinkedList implements LinkListInterface {
 
     @Override
     public String removeTail() {
-//        String value = null;
-//        if( size() == 0 ) {
-//            value = null;
-//        }
-//        else if( size() == 1 ) {
-//            value = head.getData();
-//            makeEmpty();
-//        }
-//        else {
-//            Node beforeN = head;
-//            while( beforeN.getNext().getNext() != null ) {
-//                beforeN = beforeN.getNext();
-//            }
-//            
-//            value = this.tail.getData();
-//            beforeN.setNext(null);
-//            this.tail = beforeN;            
-//        }
-
         Node n = this.head;
         Node tmp;
         if (!this.isEmpty()) {
@@ -129,8 +110,6 @@ public class LinkedList implements LinkListInterface {
         } else {
             return null;
         }
-
-        // return value;
     }
 
     @Override
