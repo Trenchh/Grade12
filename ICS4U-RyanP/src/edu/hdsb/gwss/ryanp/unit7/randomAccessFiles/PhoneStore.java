@@ -51,48 +51,54 @@ public class PhoneStore {
     }
 
     public PhoneRecord read(long recordNumber) throws IOException {
+        if (recordNumber < raf.length() / PhoneRecord.RECORD_SIZE) {
+            if (this.isEmpty() == false) {
+                PhoneRecord tmp = new PhoneRecord();
+                tmp.setPhoneID((int) recordNumber);
 
-        if (this.isEmpty() == false) {
-            PhoneRecord tmp = new PhoneRecord();
-            tmp.setPhoneID((int) recordNumber);
+                long position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
+                raf.seek(position);
+                long record = recordNumber;
 
-            long position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
-            raf.seek(position);
-            long record = recordNumber;
-
-            for (long i = 0; i < record; i++) {
-                while (raf.readBoolean() == true) {
-                    recordNumber++;
-                    position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
-                    raf.seek(position);
+                for (long i = 0; i < record; i++) {
+                    while (raf.readBoolean() == true) {
+                        recordNumber++;
+                        position = PhoneRecord.RECORD_SIZE * (recordNumber - 1);
+                        raf.seek(position);
+                    }
+                    if (i < record - 1) {
+                        raf.seek(PhoneRecord.RECORD_SIZE * (recordNumber));
+                    }
                 }
-                //raf.seek(PhoneRecord.RECORD_SIZE * (recordNumber));
-            }
 
-            char phoneName[] = new char[PhoneRecord.LENGTH_NAME];
-            for (int i = 0; i < PhoneRecord.LENGTH_NAME; i++) {
-                phoneName[i] = raf.readChar();
+                char phoneName[] = new char[PhoneRecord.LENGTH_NAME];
+                for (int i = 0; i < PhoneRecord.LENGTH_NAME; i++) {
+                    phoneName[i] = raf.readChar();
+                }
+                tmp.setName(new String(phoneName));
+                tmp.setStorage(raf.readInt());
+                tmp.setPrice(raf.readDouble());
+                char OSName[] = new char[PhoneRecord.LENGTH_OS];
+                for (int i = 0; i < PhoneRecord.LENGTH_OS; i++) {
+                    OSName[i] = raf.readChar();
+                }
+                tmp.setOS(new String(OSName));
+                char carrierName[] = new char[PhoneRecord.LENGTH_CARRIER];
+                for (int i = 0; i < PhoneRecord.LENGTH_CARRIER; i++) {
+                    carrierName[i] = raf.readChar();
+                }
+                tmp.setCarrier(new String(carrierName));
+                tmp.setRating(raf.readChar());
+                tmp.setUnlocked(raf.readBoolean());
+                System.out.println(tmp.toString());
+                return tmp;
             }
-            tmp.setName(new String(phoneName));
-            tmp.setStorage(raf.readInt());
-            tmp.setPrice(raf.readDouble());
-            char OSName[] = new char[PhoneRecord.LENGTH_OS];
-            for (int i = 0; i < PhoneRecord.LENGTH_OS; i++) {
-                OSName[i] = raf.readChar();
-            }
-            tmp.setOS(new String(OSName));
-            char carrierName[] = new char[PhoneRecord.LENGTH_CARRIER];
-            for (int i = 0; i < PhoneRecord.LENGTH_CARRIER; i++) {
-                carrierName[i] = raf.readChar();
-            }
-            tmp.setCarrier(new String(carrierName));
-            tmp.setRating(raf.readChar());
-            tmp.setUnlocked(raf.readBoolean());
-            System.out.println(tmp.toString());
-            return tmp;
+            System.out.println("THE FILE IS EMPTY");
+            return null;
         }
-        System.out.println("THE FILE IS EMPTY");
+        System.out.println("THERE IS NO OBJECT AT " + recordNumber);
         return null;
+
     }
 
     public PhoneRecord add(PhoneRecord p) throws IOException {
