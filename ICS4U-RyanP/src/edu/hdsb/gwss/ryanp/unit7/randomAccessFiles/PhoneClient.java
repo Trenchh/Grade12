@@ -30,6 +30,17 @@ public class PhoneClient {
         PhoneRecord phone8 = new PhoneRecord("iPhone 6S", 32, 399.99, "IOS", "Bell", (char) 4, false);
         System.out.println("*********************");
 
-        
+        PhoneStore s = new PhoneStore();
+//        s.add(phone1);
+//        s.add(phone2);
+//        s.add(phone3);
+//        s.add(phone4);
+//        phone4 = s.get(4);
+//        System.out.println(phone4.getPhoneID());
+//        System.out.println(phone4.toString());
+//        phone4.setUnlocked(true);
+//        s.update(phone4);
+//        phone4 = s.get(4);
+
     }
 }
